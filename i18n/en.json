@@ -1,0 +1,17 @@
+{
+  "ProductCard": {
+    "sku": "SKU: "
+  },
+  "AddToCart": {
+    "add": "Add to cart",
+    "adding": "Adding...",
+    "added success": "Product successfully added to cart!"
+  },
+  "Header": {
+    "items in cart": "{total_quantity} item ('s) in cart"
+  },
+  "CategoryPagination": {
+    "Prev": "Prev",
+    "Next": "Next"
+  }
+}

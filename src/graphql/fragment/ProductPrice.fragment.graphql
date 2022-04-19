@@ -1,0 +1,4 @@
+fragment priceFragment on ProductPrice {
+    discount {percent_off}
+    final_price {value currency}
+}

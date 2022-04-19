@@ -1,0 +1,5 @@
+mutation mergeCarts($destination: String, $source: String!) {
+    mergeCarts(destination_cart_id: $destination, source_cart_id: $source){
+        ...cart
+    }
+}

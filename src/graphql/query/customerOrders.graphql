@@ -1,0 +1,18 @@
+query customerOrders {
+    customer {
+        orders {
+            total_count
+            items {
+                order_date
+                id
+                total {
+                    grand_total {
+                        currency
+                        value
+                    }
+                }
+                status
+            }
+        }
+    }
+}

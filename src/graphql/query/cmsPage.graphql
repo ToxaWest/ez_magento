@@ -1,0 +1,6 @@
+query CmsPage($identifier: String, $id: Int) {
+    cmsPage(identifier: $identifier, id: $id){
+        content
+        title
+    }
+}

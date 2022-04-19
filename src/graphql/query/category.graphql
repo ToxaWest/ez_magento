@@ -1,0 +1,23 @@
+query categoryList($id: String, $id_list: [String]){
+    categoryList(filters: {ids: {
+        eq: $id,
+        in: $id_list
+    }}){
+        name
+        breadcrumbs {
+            category_url
+            category_name
+        }
+        meta_title
+        meta_description
+        meta_keywords
+        product_count
+        description
+        image
+        default_sort_by
+        display_mode
+        cms_block {
+            identifier
+        }
+    }
+}

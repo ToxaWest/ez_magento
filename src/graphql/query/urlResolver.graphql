@@ -1,0 +1,8 @@
+query urlResolver($url: String!){
+    urlResolver(url: $url){
+        type
+        entity_uid
+        sku
+        id
+    }
+}

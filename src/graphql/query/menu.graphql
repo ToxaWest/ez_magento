@@ -1,0 +1,13 @@
+query Menu ($identifier: String!) {
+    scandiwebMenu(identifier: $identifier){
+        items {
+            url
+            position
+            parent_id
+            item_id
+            title
+        }
+
+        title
+    }
+}

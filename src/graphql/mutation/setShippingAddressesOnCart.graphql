@@ -1,0 +1,7 @@
+mutation setShippingAddressesOnCart($input: SetShippingAddressesOnCartInput){
+    setShippingAddressesOnCart(input: $input){
+        cart {
+            ...cart
+        }
+    }
+}

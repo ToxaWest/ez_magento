@@ -1,0 +1,42 @@
+.Image {
+  display: inline-block;
+  overflow: hidden;
+  height: 0;
+  width: 100%;
+  padding-bottom: var(--image-padding-bottom);
+  background: var(--image-default-background);
+
+  &Content {
+    position: absolute;
+    height: max-content;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    font-size: .8em;
+    background-color: var(--image-default-background);
+  }
+
+  &Image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-position: 50% 50%;
+    object-fit: contain;
+
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--image-default-background);
+    }
+  }
+}

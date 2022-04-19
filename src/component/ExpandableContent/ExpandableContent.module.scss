@@ -1,0 +1,33 @@
+.heading {
+  display: flex;
+  width: 100%;
+  cursor: pointer;
+  padding: 8px 10px;
+  border-width: 0;
+  border-bottom-width: 1px;
+  transition: .3s all ease-in-out;
+  &:after {
+    content: '\203A';
+    margin-left: auto;
+    display: inline-block;
+    transform: rotate(90deg);
+    transition: .3s all ease-in-out;
+  }
+
+  &.active {
+    background-color: var(--theme-color-secondary);
+    &:after{
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+.content {
+  overflow: hidden;
+  max-height: 0;
+  transition: .3s max-height ease-in-out;
+  &_active {
+    overflow-y: auto;
+    max-height: 100vh;
+  }
+}

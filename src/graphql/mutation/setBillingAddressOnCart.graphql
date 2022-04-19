@@ -1,0 +1,7 @@
+mutation setBillingAddressOnCart($input: SetBillingAddressOnCartInput){
+    setBillingAddressOnCart(input: $input){
+        cart {
+            ...cart
+        }
+    }
+}

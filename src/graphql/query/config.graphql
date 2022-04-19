@@ -1,0 +1,55 @@
+query StoreConfig {
+    categoryMenu: categoryList {
+        ...categoryMenuFragment
+        children {
+            ...categoryMenuFragment
+            children {
+                ...categoryMenuFragment
+                children {
+                    ...categoryMenuFragment
+                    children {
+                        ...categoryMenuFragment
+                    }
+                }
+            }
+        }
+    }
+    storeConfig {
+        cms_home_page
+        secure_base_media_url
+        base_url
+        head_shortcut_icon
+        copyright
+        default_title
+        default_description
+        guest_checkout
+        default_country
+        address_lines_quantity
+        show_vat_number_on_storefront
+        region_display_all
+        default_keywords
+        locale
+        cms_no_route
+        pagination_frame_skip
+        pagination_frame
+        plp_list_mode
+        product_reviews_enabled
+        secure_base_media_url
+        root_category_uid
+        show_cms_breadcrumbs
+        title_separator
+        title_suffix
+        title_prefix
+        wishlist_general_active
+        redirect_dashboard
+        store_name
+        store_code
+        logo_alt
+        logo_height
+        logo_width
+        header_logo_src
+        root_category_id
+        anchor_text_for_previous
+        anchor_text_for_next
+    }
+}

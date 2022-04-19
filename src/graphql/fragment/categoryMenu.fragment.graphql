@@ -1,0 +1,6 @@
+fragment categoryMenuFragment on CategoryTree {
+    title: name
+    url
+    item_id: id
+    include_in_menu
+}

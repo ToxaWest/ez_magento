@@ -3,17 +3,40 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "build": "NODE_ENV=production next build",
+    "start": "NODE_ENV=production next start",
+    "lint": "next lint",
+    "eslint": "eslint ./src --ignore-pattern *.test.*",
+    "eslint:fix": "npm run eslint -- --fix"
   },
   "dependencies": {
-    "next": "12.1.4",
-    "react": "18.0.0",
-    "react-dom": "18.0.0"
+    "@apollo/client": "^3.5.10",
+    "@reduxjs/toolkit": "^1.8.1",
+    "classnames": "^2.3.1",
+    "cookie": "^0.4.2",
+    "cookie-cutter": "^0.2.0",
+    "final-form": "^4.20.6",
+    "graphql": "^16.3.0",
+    "next": "^12.1.5",
+    "next-intl": "^2.6.0",
+    "html-react-parser": "^1.4.11",
+    "prop-types": "^15.8.1",
+    "react-slick": "^0.28.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-final-form": "^6.5.9",
+    "react-redux": "^8.0.0",
+    "sharp": "^0.30.3"
   },
   "devDependencies": {
-    "eslint": "7.32.0",
-    "eslint-config-next": "12.1.4"
+    "eslint-plugin-fp": "^2.3.0",
+    "eslint": "^8.13.0",
+    "eslint-plugin-array-func": "^3.1.7",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-next": "12.1.4",
+    "minify-graphql-loader": "^1.0.2",
+    "sass": "^1.50.0"
   }
 }

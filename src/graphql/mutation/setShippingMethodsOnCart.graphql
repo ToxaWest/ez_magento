@@ -1,0 +1,7 @@
+mutation setShippingMethodsOnCart($input: SetShippingMethodsOnCartInput){
+    setShippingMethodsOnCart(input: $input){
+        cart {
+            ...cart
+        }
+    }
+}

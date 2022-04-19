@@ -1,0 +1,51 @@
+.wrapper {
+  grid-area: select;
+  display: inline-block;
+
+  input {
+    &[type='hidden'] {
+      display: none;
+    }
+  }
+}
+
+.mainInput {
+
+  &ReadOnly {
+    cursor: pointer;
+  }
+}
+
+.options {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  max-height: 300px;
+  min-width: 100%;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.listItem {
+  list-style: none;
+  margin: 0;
+  cursor: pointer;
+  padding: 0;
+  span {
+    background-color: transparent;
+    white-space: nowrap;
+  }
+  &:focus-visible{
+    border: none;
+    outline: none;
+    background-color: var(--theme-color-secondary);
+  }
+  &:hover {
+    background-color: var(--theme-color-secondary);
+  }
+  &Active{
+    background-color: var(--theme-color);
+  }
+}

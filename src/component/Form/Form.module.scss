@@ -1,0 +1,35 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+}
+
+.field{
+  display: flex;
+  flex-direction: column;
+  label {
+    &:after {
+      content: ':';
+    }
+  }
+  &.checkbox{
+    flex-direction: row-reverse;
+    label {
+      margin-right: auto;
+      &:after{
+        content: '';
+      }
+    }
+  }
+}
+
+
+
+.fieldset{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+
+  &.checkbox_fieldset {
+    grid-template-columns: repeat(1,1fr);
+  }
+}

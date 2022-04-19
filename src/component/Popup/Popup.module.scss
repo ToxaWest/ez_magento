@@ -1,0 +1,20 @@
+.wrapper {
+  position: var(--popup-wrapper-position);
+  top: var(--popup-wrapper-top);
+  left: var(--popup-wrapper-left);
+  width: var(--popup-wrapper-width);
+  height: var(--popup-wrapper-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  background-color: rgba(47, 47, 47, 0.5);
+}
+
+.content {
+  background-color: var(--theme-color);
+  min-width: 200px;
+  min-height: 200px;
+  max-width: 60vw;
+  width: 100%;
+}

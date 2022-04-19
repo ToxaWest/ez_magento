@@ -1,0 +1,23 @@
+.wrapper {
+  margin: 10px 0;
+  padding: 0;
+  max-width: 300px;
+  border: 1px solid var(--theme-color-secondary);
+}
+.item{
+  margin: 0;
+  padding: 5px 10px;
+  border-bottom: 2px solid var(--theme-color-secondary);
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  cursor: pointer;
+  &:hover{
+    background-color: var(--theme-color);
+  }
+
+  &[aria-selected="true"]{
+    border-color: var(--theme-color);
+    background-color: var(--theme-color-secondary);
+  }
+}

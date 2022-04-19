@@ -1,0 +1,10 @@
+query country($id: String){
+    country(id: $id){
+        is_state_required
+        available_regions {
+            name
+            code
+            id
+        }
+    }
+}

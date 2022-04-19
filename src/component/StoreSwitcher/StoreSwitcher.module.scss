@@ -1,0 +1,13 @@
+.wrapper {
+  grid-area: store_switcher;
+  input {
+    border: none;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    &:focus-within{
+      border: none;
+      background-color: var(--theme-color-secondary);
+    }
+  }
+}

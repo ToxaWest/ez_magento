@@ -1,0 +1,10 @@
+mutation estimateShippingCosts ($address: EstimateShippingCostsAddress!, $guestCartId: String){
+    estimateShippingCosts(address: $address, guestCartId: $guestCartId){
+        method_code
+        method_title
+        carrier_code
+        carrier_title
+        price_incl_tax
+        price_excl_tax
+    }
+}

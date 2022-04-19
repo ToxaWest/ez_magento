@@ -1,0 +1,32 @@
+:root{
+  --theme-color-main: #ececec;
+  --theme-color: #f3faff;
+  --theme-color-secondary: #bad4ff;
+  --theme-color-text: #282828;
+  --theme-border-radius: 5px; // not percent
+
+
+  --popup-wrapper-position: fixed;
+  --popup-wrapper-top: 0;
+  --popup-wrapper-left: 0;
+  --popup-wrapper-width: 100vw;
+  --popup-wrapper-height: 100vh;
+
+  --cartItem-image-width: 70px;
+
+  --image-padding-bottom: 100%;
+  --image-default-background: #9a9a9a;
+  --image-content-color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --theme-color-main: #1a1a1a;
+    --theme-color: #2a2a2a;
+    --theme-color-secondary: #4b4b4b;
+    --theme-color-text: #cecece;
+
+    --image-default-background: #1e1e1e;
+    --image-content-color: #575757;
+  }
+}

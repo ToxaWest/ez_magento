@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "baseUrl": "src",
+        "paths": {
+            "Style/*": ["style/*"],
+            "Component/*": ["component/*"],
+            "Route/*": ["route/*"],
+            "Store/*": ["store/*"],
+            "Util/*": ["util/*"],
+            "Query/*": ["query/*"],
+            "Type/*": ["type/*"],
+            "Hook/*": ["hook/*"],
+            "Graphql/*": ["graphql/*"],
+            "Ui/*": ["ui/*"],
+            "Dispatcher/*": ["dispatcher/*"]
+        }
+    },
+    "exclude": [
+        "node_modules",
+        ".next"
+    ]
+}

@@ -1,0 +1,7 @@
+mutation setPaymentMethodOnCart($input: SetPaymentMethodOnCartInput){
+    setPaymentMethodOnCart(input: $input){
+        cart {
+            ...cart
+        }
+    }
+}

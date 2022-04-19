@@ -1,0 +1,21 @@
+.wrapper {
+  display: grid;
+  grid-area: CategoryDescription;
+  grid-template-columns: 150px 1fr;
+  grid-template-areas:
+                    'image .'
+                    'image .';
+}
+
+.image {
+  padding-bottom: 127.5%;
+  grid-area: image;
+}
+
+.title {
+
+}
+
+.description {
+
+}

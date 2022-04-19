@@ -1,0 +1,69 @@
+query product($sku: String){
+    singleProduct: products(filter: {sku: {eq: $sku}}){
+        items {
+            meta_description
+            categories {
+                breadcrumbs {
+                    category_url
+                    category_name
+                }
+            }
+            meta_title
+            meta_keyword
+            only_x_left_in_stock
+            short_description{
+                html
+            }
+            description {
+                html
+            }
+            s_attributes {
+                attribute_code
+                attribute_label
+                attribute_type
+                attribute_value
+                attribute_options {
+                    label
+                    value
+                    swatch_data {
+                        type
+                        value
+                    }
+                }
+            }
+
+            media_gallery {
+                disabled
+                label
+                url
+                position
+                ... on ProductVideo {
+                    video_content {
+                        video_description
+                        video_url
+                        video_title
+                    }
+                }
+            }
+            qty
+            quantity
+            price_range {
+                ...price_range
+            }
+            sku
+            url
+            id
+            name
+            ... on ConfigurableProduct {
+                configurable_options {
+                    attribute_code
+                    label
+                    values {
+                        label
+                        default_label
+                    }
+                }
+            }
+        }
+    }
+}

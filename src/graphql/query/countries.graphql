@@ -1,0 +1,6 @@
+query countries {
+    countries {
+        id
+        full_name_locale
+    }
+}

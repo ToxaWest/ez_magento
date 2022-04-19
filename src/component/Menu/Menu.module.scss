@@ -1,0 +1,51 @@
+.menu {
+  grid-area: Menu;
+  display: flex;
+  margin: 0 auto 0 0;
+  padding: 0;
+
+  &_child {
+    display: none;
+    &_active {
+      z-index: 2;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      left: 1px;
+      top: 0;
+      white-space: nowrap;
+      min-width: 100%;
+      display: block;
+      border: 1px solid black;
+    }
+  }
+
+  &_item {
+    display: grid;
+    grid-gap: 0;
+    grid-template-areas: 'a toggle ' 'child_wrapper child_wrapper';
+    padding: 10px 0 10px 10px;
+
+    a {
+      margin-right: 10px;
+    }
+
+    &.level{
+      &_1, &_2{
+        grid-template-areas: 'a toggle child_wrapper';
+      }
+    }
+  }
+}
+
+
+
+.child_wrapper {
+  grid-area: child_wrapper;
+}
+
+.toggle {
+  grid-area: toggle;
+  margin-left: auto;
+  margin-right: 10px;
+}

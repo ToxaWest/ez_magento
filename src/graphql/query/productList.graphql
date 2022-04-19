@@ -1,0 +1,17 @@
+query ProductList($filter: ProductAttributeFilterInput, $sort: ProductAttributeSortInput, $currentPage: Int) {
+    products(filter: $filter, sort: $sort, currentPage:$currentPage){
+        items {
+            sku
+            url
+            id
+            name
+            price_range {
+                ...price_range
+            }
+            small_image {
+                label
+                url
+            }
+        }
+    }
+}

@@ -1,0 +1,14 @@
+.wrapper {
+  grid-area: CategoryPage;
+  display: grid;
+  grid-template-columns: minmax(150px,300px) 1fr 1fr;
+  grid-template-areas:
+          'LayeredNavigation CategoryDescription CategoryDescription'
+          'LayeredNavigation count select'
+          'LayeredNavigation ProductList ProductList'
+          'LayeredNavigation CategoryPagination CategoryPagination';
+}
+
+.count {
+  grid-area: count;
+}

@@ -1,0 +1,10 @@
+query customer{
+    customer {
+        firstname
+        lastname
+        email
+        id
+        date_of_birth
+        confirmation_required
+    }
+}

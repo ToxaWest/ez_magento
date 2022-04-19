@@ -1,0 +1,18 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: var(--cartItem-image-width) 1fr;
+  grid-template-areas: 'i .' 'i .' 'i .' 'i .' 'i .';
+  max-width: 100%;
+  grid-column-gap: 10px;
+  .image {
+    grid-area: i;
+  }
+}
+
+
+
+.removeBtn{
+  position: absolute;
+  top: 0;
+  right: 0;
+}

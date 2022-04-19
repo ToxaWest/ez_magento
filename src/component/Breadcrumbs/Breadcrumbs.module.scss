@@ -1,0 +1,24 @@
+.wrapper {
+  grid-area: Breadcrumbs;
+}
+
+.list {
+  margin: 5px 0;
+  padding: 0;
+  display: flex;
+  font-size: .7rem;
+  grid-gap: 5px;
+  &_item {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    &:after{
+      content: '/';
+      padding-left: 5px;
+    }
+  }
+  &_current {
+    list-style: none;
+    opacity: .6;
+  }
+}

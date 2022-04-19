@@ -1,0 +1,36 @@
+query ProductListInformation(
+    $currentPage: Int,
+    $filter: ProductAttributeFilterInput,
+    $sort: ProductAttributeSortInput
+) {
+    productsInformation: products(filter: $filter, sort: $sort, currentPage: $currentPage){
+        sort_fields {
+            default
+            options {
+                label
+                value
+            }
+        }
+        total_count
+        page_info {
+            page_size
+            total_pages
+            current_page
+        }
+        aggregations {
+            attribute_code
+            label
+            count
+            position
+            options {
+                count
+                label
+                value
+                swatch_data {
+                    value
+                    type
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,94 @@
+fragment cart on Cart {
+    items {
+        id
+        quantity
+        prices {
+            price {
+                value
+                currency
+            }
+        }
+        product {
+            sku
+            url
+            name
+            price_range {
+                ...price_range
+            }
+            thumbnail {
+                url
+            }
+            small_image {
+                path
+                url
+                label
+            }
+        }
+    }
+    email
+    is_virtual
+    available_payment_methods {
+        code
+        title
+    }
+    selected_payment_method {
+        code
+        purchase_order_number
+    }
+    billing_address {
+        street
+        firstname
+        lastname
+        telephone
+        city
+        country {
+            code
+        }
+        region {
+            region_id
+            label
+        }
+        street
+        postcode
+    }
+    shipping_addresses {
+        selected_shipping_method {
+            method_code
+            carrier_code
+        }
+        firstname
+        lastname
+        street
+        city
+        postcode
+        telephone
+        country {
+            code
+        }
+        region {
+            label
+            region_id
+        }
+        available_shipping_methods {
+            carrier_code
+            carrier_title
+            method_code
+            method_title
+            amount {
+                value
+                currency
+            }
+        }
+    }
+    prices {
+        grand_total {
+            value
+            currency
+        }
+    }
+    total_quantity
+    selected_payment_method {
+        purchase_order_number
+        code
+    }
+}

@@ -1,0 +1,3 @@
+fragment price_range on PriceRange {
+    maximum_price {...priceFragment} minimum_price {...priceFragment}
+}
