@@ -1,9 +1,9 @@
 import { useLazyQuery, useQuery } from '@apollo/client';
+import { PHONE_TYPE, SELECT_TYPE } from '@component/Field/Field.config';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { PHONE_TYPE, SELECT_TYPE } from 'Component/Field/Field.config';
 import ConfigQuery from 'Query/config.query';
 
 const useUserAddress = ({ fields }) => {

@@ -3,13 +3,13 @@
         "baseUrl": "src",
         "paths": {
             "Style/*": ["style/*"],
-            "Component/*": ["component/*"],
+            "@component/*": ["component/*"],
             "Route/*": ["route/*"],
             "Store/*": ["store/*"],
             "Util/*": ["util/*"],
             "Query/*": ["query/*"],
             "Type/*": ["type/*"],
-            "Hook/*": ["hook/*"],
+            "@hook/*": ["hook/*"],
             "Graphql/*": ["graphql/*"],
             "Ui/*": ["ui/*"],
             "Dispatcher/*": ["dispatcher/*"]

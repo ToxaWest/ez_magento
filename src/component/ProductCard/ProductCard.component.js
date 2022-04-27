@@ -1,17 +1,16 @@
 import styles from './ProductCard.module.scss';
 
+import AddToCart from '@component/AddToCart';
+import Image from '@component/Image';
+import Link from '@component/Link';
+import ProductPrice from '@component/ProductPrice';
 import { useTranslations } from 'next-intl';
 import PropTypes from 'prop-types';
 
-import AddToCart from 'Component/AddToCart';
-import Image from 'Component/Image';
-import Link from 'Component/Link';
-import ProductPrice from 'Component/ProductPrice';
-
-const ProductCardComponent = ({
+function ProductCardComponent({
     wrapperTag,
     product
-}) => {
+}) {
     const Tag = wrapperTag;
     const {
         name,
@@ -35,7 +34,7 @@ const ProductCardComponent = ({
             <AddToCart showQty={ false } product={ product } />
         </Tag>
     );
-};
+}
 
 ProductCardComponent.propTypes = {
     product: PropTypes.shape({

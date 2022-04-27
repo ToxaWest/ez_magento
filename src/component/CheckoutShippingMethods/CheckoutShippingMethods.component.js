@@ -1,18 +1,18 @@
 import styles from './CheckoutShippingMethods.module.scss';
 
+import Loader from '@component/Loader';
+import useSetShippingMethodsOnCart from '@hook/useSetShippingMethodsOnCart';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 
-import Loader from 'Component/Loader';
-import useSetShippingMethodsOnCart from 'Hook/useSetShippingMethodsOnCart';
 import { ACCOUNT_ROUTE_PATHNAME } from 'Route/AccountPage/AccountPage.config';
 import { BILLING } from 'Route/CheckoutPage/CheckoutPage.config';
 import { getFinalPrice } from 'Util/Price/price';
 
 const cx = classNames.bind(styles);
 
-const CheckoutShippingMethodsComponent = () => {
+function CheckoutShippingMethodsComponent() {
     const { shipping_addresses } = useSelector(
         (state) => state.cart.cart
     );
@@ -84,6 +84,6 @@ const CheckoutShippingMethodsComponent = () => {
             <button onClick={ onClick } disabled={ !selected_shipping_method }>submit</button>
         </>
     );
-};
+}
 
 export default CheckoutShippingMethodsComponent;

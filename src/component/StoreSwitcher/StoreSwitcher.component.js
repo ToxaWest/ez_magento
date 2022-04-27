@@ -2,9 +2,9 @@ import styles from './StoreSwitcher.module.scss';
 
 import PropTypes from 'prop-types';
 
-import Select from 'Component/Select';
+import Select from 'Ui/Select';
 
-const StoreSwitcherComponent = (props) => {
+function StoreSwitcherComponent(props) {
     const { storeList, handleChange, currentStore } = props;
     return (
         <Select
@@ -14,7 +14,7 @@ const StoreSwitcherComponent = (props) => {
           defaultValue={ currentStore }
         />
     );
-};
+}
 
 StoreSwitcherComponent.propTypes = {
     currentStore: PropTypes.string.isRequired,

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles);
 
-const ImageComponent = (props) => {
+function ImageComponent(props) {
     const {
         url,
         alt,
@@ -42,7 +42,7 @@ const ImageComponent = (props) => {
         { renderImage() }
       </div>
     );
-};
+}
 
 ImageComponent.propTypes = {
     alt: PropTypes.string,

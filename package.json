@@ -1,42 +1,44 @@
 {
   "name": "ez_magento",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "NODE_ENV=production next build",
     "start": "NODE_ENV=production next start",
-    "lint": "next lint",
-    "eslint": "eslint ./src --ignore-pattern *.test.*",
-    "eslint:fix": "npm run eslint -- --fix"
+    "lint": "next lint -d ./src",
+    "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
-    "@apollo/client": "^3.5.10",
+    "@apollo/client": "^3.6.0",
     "@reduxjs/toolkit": "^1.8.1",
     "classnames": "^2.3.1",
-    "cookie": "^0.4.2",
+    "cookie": "^0.5.0",
     "cookie-cutter": "^0.2.0",
-    "final-form": "^4.20.6",
-    "graphql": "^16.3.0",
+    "final-form": "^4.20.7",
+    "graphql": "^16.4.0",
+    "html-react-parser": "^1.4.12",
     "next": "^12.1.5",
     "next-intl": "^2.6.0",
-    "html-react-parser": "^1.4.11",
     "prop-types": "^15.8.1",
-    "react-slick": "^0.28.1",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-draggable": "^4.4.5",
     "react-final-form": "^6.5.9",
-    "react-redux": "^8.0.0",
-    "sharp": "^0.30.3"
+    "react-redux": "^8.0.1",
+    "sharp": "^0.30.4"
   },
   "devDependencies": {
-    "eslint-plugin-fp": "^2.3.0",
-    "eslint": "^8.13.0",
+    "@next/eslint-plugin-next": "^12.1.5",
+    "eslint": "^8.14.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-next": "12.1.5",
     "eslint-plugin-array-func": "^3.1.7",
-    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-fp": "^2.3.0",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-react": "^7.29.4",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-next": "12.1.4",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
     "minify-graphql-loader": "^1.0.2",
-    "sass": "^1.50.0"
+    "sass": "^1.51.0"
   }
 }

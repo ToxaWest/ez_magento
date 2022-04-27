@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 
 import CategoryPageComponent from 'Route/CategoryPage/CategoryPage.component';
 
-const CategoryPageContainer = () => {
+function CategoryPageContainer() {
     const { total_count } = useSelector((state) => state.products.productsInformation);
 
     const componentProps = {
@@ -12,6 +12,6 @@ const CategoryPageContainer = () => {
     return (
       <CategoryPageComponent { ...componentProps } />
     );
-};
+}
 
 export default CategoryPageContainer;

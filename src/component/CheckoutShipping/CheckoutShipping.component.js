@@ -1,9 +1,8 @@
+import Form from '@component/Form';
+import Loader from '@component/Loader';
 import PropTypes from 'prop-types';
 
-import Form from 'Component/Form';
-import Loader from 'Component/Loader';
-
-const CheckoutShippingComponent = (props) => {
+function CheckoutShippingComponent(props) {
     const {
         fields, onSubmit, loading, defaultValues
     } = props;
@@ -19,7 +18,7 @@ const CheckoutShippingComponent = (props) => {
         </>
 
     );
-};
+}
 
 CheckoutShippingComponent.propTypes = {
     defaultValues: PropTypes.shape({}),

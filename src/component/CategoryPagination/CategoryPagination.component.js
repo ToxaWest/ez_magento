@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles);
-const CategoryPaginationComponent = (props) => {
+function CategoryPaginationComponent(props) {
     const {
         page_info: { total_pages, current_page },
         pagination_frame,
@@ -125,7 +125,7 @@ const CategoryPaginationComponent = (props) => {
             </ul>
         </nav>
     );
-};
+}
 
 CategoryPaginationComponent.propTypes = {
     anchor_text_for_next: PropTypes.string,

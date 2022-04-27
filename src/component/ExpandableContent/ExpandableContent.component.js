@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
-const ExpandableContentComponent = (props) => {
+function ExpandableContentComponent(props) {
     const {
         children, isExpanded, contentWrapperTag, heading
     } = props;
@@ -52,7 +52,7 @@ const ExpandableContentComponent = (props) => {
             { getContentChild() }
         </>
     );
-};
+}
 
 ExpandableContentComponent.defaultProps = {
     contentWrapperTag: 'div',

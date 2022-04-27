@@ -1,18 +1,18 @@
 import styles from './Popup.module.scss';
 
+import ClickOutside from '@component/ClickOutside';
+import { freezeScroll, unfreezeScroll } from '@component/Popup/Popup.config';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import ClickOutside from 'Component/ClickOutside';
-import { freezeScroll, unfreezeScroll } from 'Component/Popup/Popup.config';
 import { hidePopup } from 'Store/popup';
 
 const cx = classNames.bind(styles);
 
-const PopupComponent = (props) => {
+function PopupComponent(props) {
     const {
         isStatic, children, isActive, outsideClick, onClose, id, classNames
     } = props;
@@ -92,7 +92,7 @@ const PopupComponent = (props) => {
     }
 
     return null;
-};
+}
 
 PopupComponent.propTypes = {
     children: PropTypes.oneOfType([

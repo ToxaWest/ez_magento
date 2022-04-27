@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import accountQuery from 'Query/account.query';
 
 const useCustomerOrders = () => {
-    const [loadGreeting] = useLazyQuery(accountQuery.customerOrders);
+    const [loadGreeting] = useLazyQuery(accountQuery.customerOrders, { ssr: false });
     const { isSignedIn } = useSelector((state) => state.account);
     const [customerOrders, setData] = useState({ items: [], total_count: 0 });
     const [loading, setLoading] = useState(true);

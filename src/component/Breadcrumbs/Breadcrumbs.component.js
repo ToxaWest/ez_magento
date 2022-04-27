@@ -1,10 +1,9 @@
 import styles from './Breadcrumbs.module.scss';
 
+import Link from '@component/Link';
 import { useSelector } from 'react-redux';
 
-import Link from 'Component/Link';
-
-const BreadcrumbsComponent = () => {
+function BreadcrumbsComponent() {
     const { breadcrumbs, current: { name, url }, showBreadcrumbs } = useSelector((state) => state.breadcrumbs);
     const { show_cms_breadcrumbs } = useSelector((state) => state.config.config);
 
@@ -50,6 +49,6 @@ const BreadcrumbsComponent = () => {
             </ul>
         </nav>
     );
-};
+}
 
 export default BreadcrumbsComponent;

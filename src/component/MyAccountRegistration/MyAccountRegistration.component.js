@@ -1,6 +1,6 @@
-import Form from 'Component/Form';
+import Form from '@component/Form';
 
-const MyAccountRegistrationComponent = () => {
+function MyAccountRegistrationComponent() {
     const fields = {
         firstname: {
             label: 'firstname'
@@ -23,6 +23,6 @@ const MyAccountRegistrationComponent = () => {
     return (
         <Form onSubmit={ onSubmit } fields={ fields } />
     );
-};
+}
 
 export default MyAccountRegistrationComponent;

@@ -1,12 +1,12 @@
 import styles from './CartPage.module.scss';
 
+import CartItem from '@component/CartItem';
+import Link from '@component/Link';
 import { useSelector } from 'react-redux';
 
-import CartItem from 'Component/CartItem';
-import Link from 'Component/Link';
 import { CHECKOUT_URL } from 'Route/CheckoutPage/CheckoutPage.config';
 
-const CartPageComponent = () => {
+function CartPageComponent() {
     const { cart: { items }, loading } = useSelector((state) => state.cart);
 
     if (!loading && items.length === 0) {
@@ -22,6 +22,6 @@ const CartPageComponent = () => {
         </div>
 
     );
-};
+}
 
 export default CartPageComponent;

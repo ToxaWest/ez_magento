@@ -1,13 +1,12 @@
 import styles from './ProductPage.module.scss';
 
+import AddToCart from '@component/AddToCart';
+import ProductAttributes from '@component/ProductAttributes';
+import ProductMediaGallery from '@component/ProductMediaGallery';
+import ProductPrice from '@component/ProductPrice';
 import { useSelector } from 'react-redux';
 
-import AddToCart from 'Component/AddToCart';
-import ProductAttributes from 'Component/ProductAttributes';
-import ProductMediaGallery from 'Component/ProductMediaGallery';
-import ProductPrice from 'Component/ProductPrice';
-
-const ProductPageComponent = () => {
+function ProductPageComponent() {
     const { singleProduct: product } = useSelector((state) => state.products);
 
     const { name, sku, price_range } = product;
@@ -25,6 +24,6 @@ const ProductPageComponent = () => {
             />
         </div>
     );
-};
+}
 
 export default ProductPageComponent;

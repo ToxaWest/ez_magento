@@ -1,10 +1,10 @@
+import Loader from '@component/Loader';
+import useCustomerOrders from '@hook/useCustomerOrders';
 import { useSelector } from 'react-redux';
 
-import Loader from 'Component/Loader';
-import useCustomerOrders from 'Hook/useCustomerOrders';
 import { getFinalPrice } from 'Util/Price/price';
 
-const MyAccountOrdersComponent = () => {
+function MyAccountOrdersComponent() {
     const { customerOrders: { items, total_count }, loading } = useCustomerOrders();
     const locale = useSelector((state) => state.config.config.locale.replace('_', '-'));
 
@@ -45,6 +45,6 @@ const MyAccountOrdersComponent = () => {
             </table>
         </div>
     );
-};
+}
 
 export default MyAccountOrdersComponent;

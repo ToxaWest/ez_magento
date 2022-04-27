@@ -1,8 +1,8 @@
 import { useMutation } from '@apollo/client';
+import useGetCartId from '@hook/useGetCartId';
 import { useDispatch } from 'react-redux';
 
 import { cartErrorResolver } from 'Dispatcher/cart.dispatcher';
-import useGetCartId from 'Hook/useGetCartId';
 import cartQuery from 'Query/cart.query';
 import { updateCart } from 'Store/cart.store';
 import { setErrorNotification } from 'Store/notifiactions';

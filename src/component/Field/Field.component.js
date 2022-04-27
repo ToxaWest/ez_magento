@@ -1,15 +1,15 @@
 import styles from './Field.module.scss';
 
-import PropTypes from 'prop-types';
-import { Field } from 'react-final-form';
-
 import {
     CHECKBOX_TYPE, composeValidation,
     HIDDEN_TYPE, PHONE_TYPE, SELECT_TYPE, TEXT_TYPE
-} from 'Component/Field/Field.config';
-import Select from 'Component/Select';
+} from '@component/Field/Field.config';
+import PropTypes from 'prop-types';
+import { Field } from 'react-final-form';
 
-const FieldComponent = (props) => {
+import Select from 'Ui/Select';
+
+function FieldComponent(props) {
     const {
         type, onChange: onFieldChange, validation, options
     } = props;
@@ -65,7 +65,7 @@ const FieldComponent = (props) => {
           ) }
         />
     );
-};
+}
 
 FieldComponent.propTypes = {
     onChange: PropTypes.func,

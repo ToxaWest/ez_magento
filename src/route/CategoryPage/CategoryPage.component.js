@@ -1,14 +1,13 @@
 import styles from './CategoryPage.module.scss';
 
+import CategoryDescription from '@component/CategoryDescription';
+import CategoryPagination from '@component/CategoryPagination';
+import CategorySort from '@component/CategorySort';
+import LayeredNavigation from '@component/LayeredNavigation';
+import ProductList from '@component/ProductList';
 import PropTypes from 'prop-types';
 
-import CategoryDescription from 'Component/CategoryDescription';
-import CategoryPagination from 'Component/CategoryPagination';
-import CategorySort from 'Component/CategorySort';
-import LayeredNavigation from 'Component/LayeredNavigation';
-import ProductList from 'Component/ProductList';
-
-const CategoryPageComponent = (props) => {
+function CategoryPageComponent(props) {
     const { total_count } = props;
     return (
         <div className={ styles.wrapper }>
@@ -20,7 +19,7 @@ const CategoryPageComponent = (props) => {
             <CategoryPagination />
         </div>
     );
-};
+}
 
 CategoryPageComponent.propTypes = {
     total_count: PropTypes.number.isRequired

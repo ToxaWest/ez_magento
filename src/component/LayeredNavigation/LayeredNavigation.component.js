@@ -1,11 +1,11 @@
 import styles from './LayeredNavigation.module.scss';
 
+import ExpandableContent from '@component/ExpandableContent';
 import PropTypes from 'prop-types';
 
-import ExpandableContent from 'Component/ExpandableContent';
 import { notInteractiveClick } from 'Util/Events';
 
-const LayeredNavigationComponent = (props) => {
+function LayeredNavigationComponent(props) {
     const { aggregations, onSelect, isSelected } = props;
 
     const renderOption = (option, code) => {
@@ -48,7 +48,7 @@ const LayeredNavigationComponent = (props) => {
             { aggregations.map(renderAttribute) }
         </aside>
     );
-};
+}
 
 LayeredNavigationComponent.propTypes = {
     aggregations: PropTypes.arrayOf(PropTypes.shape({

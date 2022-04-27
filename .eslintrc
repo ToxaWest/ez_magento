@@ -7,11 +7,21 @@
     "airbnb",
     "plugin:array-func/recommended"
   ],
+  "settings": {
+    "next": {
+      "rootDir": "./src"
+    }
+  },
   "plugins": [
     "fp",
     "simple-import-sort",
     "react"
   ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2021": true
+  },
   "rules": {
     "fp/no-arguments": "error",
     "fp/no-loops": "error",

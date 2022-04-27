@@ -8,13 +8,11 @@ export const setAddressesInFormObject = (fields = {}, numberOfLines = 1) => {
     // removing street related fields from the form object
     const newFields = Object.keys(fields)
         .filter((key) => !addressKeys.includes(key))
-        .reduce(
-            (acc, key) => {
-                acc[key] = fields[key];
+        .reduce((acc, key) => {
+            acc[key] = fields[key];
 
-                return acc;
-            }, {}
-        );
+            return acc;
+        }, {});
 
     const isStreetArray = addressValues.some((item) => item);
     if (isStreetArray) {
@@ -25,9 +23,9 @@ export const setAddressesInFormObject = (fields = {}, numberOfLines = 1) => {
     return newFields;
 };
 
-export const _normalizeStreetFields = (street = []) => street.reduce(
-    (acc, value, index) => ({ ...acc, [`street${index}`]: value }), {}
-);
+export const _normalizeStreetFields = (street = []) => street.reduce((acc, value, index) => (
+    { ...acc, [`street${index}`]: value }
+), {});
 
 export const _normalizeRegion = (region = {}) => {
     const { region_id, label } = region;

@@ -1,14 +1,14 @@
+import useAddSimpleProductToCart from '@hook/useAddSimpleProductToCart';
 import { useTranslations } from 'next-intl';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import useAddSimpleProductToCart from 'Hook/useAddSimpleProductToCart';
 import { setInfoNotification, setSuccessNotification } from 'Store/notifiactions';
 
 import AddToCartComponent from './AddToCart.component';
 
-const AddToCartContainer = (props) => {
+function AddToCartContainer(props) {
     const { showQty, product } = props;
     const { __typename, sku } = product;
     const [qty, setQty] = useState(1);
@@ -61,7 +61,7 @@ const AddToCartContainer = (props) => {
         { ...containerProps }
       />
     );
-};
+}
 
 AddToCartContainer.propTypes = {
     product: PropTypes.shape({

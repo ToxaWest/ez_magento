@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { getFinalPrice } from 'Util/Price/price';
 
-const ProductPriceComponent = (props) => {
+function ProductPriceComponent(props) {
     const { price_range: { maximum_price, minimum_price } } = props;
     const { discount: { percent_off }, final_price } = maximum_price;
     const isRenderRange = final_price.value !== minimum_price.final_price.value;
@@ -35,7 +35,7 @@ const ProductPriceComponent = (props) => {
         { renderPriceRange() }
       </div>
     );
-};
+}
 
 ProductPriceComponent.propTypes = {
     price_range: PropTypes.shape({

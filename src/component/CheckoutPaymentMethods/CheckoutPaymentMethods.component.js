@@ -1,16 +1,16 @@
 import styles from './CheckoutPaymentMethods.module.scss';
 
+import Loader from '@component/Loader';
+import usePlaceOrder from '@hook/usePlaceOrder';
+import useSetPaymentMethodOnCart from '@hook/useSetPaymentMethodOnCart';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
 
-import Loader from 'Component/Loader';
-import usePlaceOrder from 'Hook/usePlaceOrder';
-import useSetPaymentMethodOnCart from 'Hook/useSetPaymentMethodOnCart';
 import { notInteractiveClick } from 'Util/Events';
 
 const cx = classNames.bind(styles);
 
-const CheckoutPaymentMethodsComponent = () => {
+function CheckoutPaymentMethodsComponent() {
     const { selected_payment_method, available_payment_methods } = useSelector(
         (state) => state.cart.cart
     );
@@ -52,6 +52,6 @@ const CheckoutPaymentMethodsComponent = () => {
             <button onClick={ placeOrder } disabled={ !selected_payment_method.code }>Place order</button>
         </div>
     );
-};
+}
 
 export default CheckoutPaymentMethodsComponent;

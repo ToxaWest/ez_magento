@@ -1,0 +1,16 @@
+.slider {
+  width: 100%;
+  overflow-x: hidden;
+  :global {
+    .react-draggable-dragging {
+      transition-duration: unset!important;
+    }
+  }
+}
+
+.list {
+  display: flex;
+  grid-gap: 0;
+  flex-wrap: nowrap;
+  transition-property: transform;
+}

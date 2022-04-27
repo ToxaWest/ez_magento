@@ -3,27 +3,35 @@ import PropTypes from 'prop-types';
 
 import Button from 'Ui/Button';
 
-const AddToCartComponent = ({
+function AddToCartComponent({
     showQty, qty, setQuantity, submit, loading
-}) => {
+}) {
     const t = useTranslations('AddToCart');
+    const renderQtyChanger = () => {
+        if (!showQty) {
+            return null;
+        }
+
+        return (
+            <input
+              type="number"
+              value={ qty }
+              onChange={ setQuantity }
+              min={ 1 }
+              step={ 1 }
+            />
+        );
+    };
+
     return (
       <div>
-        { showQty && (
-        <input
-          type="number"
-          value={ qty }
-          onChange={ setQuantity }
-          min={ 1 }
-          step={ 1 }
-        />
-        ) }
+        { renderQtyChanger() }
         <Button disabled={ loading } onClick={ submit }>
             { loading ? t('adding') : t('add') }
         </Button>
       </div>
     );
-};
+}
 
 AddToCartComponent.propTypes = {
     loading: PropTypes.bool.isRequired,

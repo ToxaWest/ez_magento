@@ -1,10 +1,10 @@
+import Loader from '@component/Loader';
 import { useEffect, useState } from 'react';
 
-import Loader from 'Component/Loader';
 import { ORDER_DATA } from 'Route/CheckoutPage/CheckoutPage.config';
 import BrowserDatabase from 'Util/BrowserDatabase';
 
-const CheckoutSuccessPageComponent = () => {
+function CheckoutSuccessPageComponent() {
     const [order, setOrder] = useState(null);
 
     useEffect(() => {
@@ -29,6 +29,6 @@ const CheckoutSuccessPageComponent = () => {
             { renderContent() }
         </div>
     );
-};
+}
 
 export default CheckoutSuccessPageComponent;

@@ -1,9 +1,9 @@
 import { useMutation } from '@apollo/client';
+import useGetCustomer from '@hook/useGetCustomer';
+import useMergeCarts from '@hook/useMergeCarts';
 import { useDispatch } from 'react-redux';
 
 import { TOKEN_ID } from 'Dispatcher/myAccount.dispatcher';
-import useGetCustomer from 'Hook/useGetCustomer';
-import useMergeCarts from 'Hook/useMergeCarts';
 import accountQuery from 'Query/account.query';
 import { setErrorNotification } from 'Store/notifiactions';
 import BrowserDatabase from 'Util/BrowserDatabase';

@@ -53,7 +53,7 @@ const client = new ApolloClient({
         headersMiddleware,
         httpLink
     ]),
-    ssrMode: typeof window === 'undefined'
+    ssrMode: !process.browser
 });
 
 export default client;

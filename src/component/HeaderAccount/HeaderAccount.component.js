@@ -1,14 +1,14 @@
+import MyAccountSignIn from '@component/MyAccountSignIn';
+import Popup from '@component/Popup';
+import { popupId } from '@component/Popup/Popup.config';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import MyAccountSignIn from 'Component/MyAccountSignIn';
-import Popup from 'Component/Popup';
-import { popupId } from 'Component/Popup/Popup.config';
 import { ACCOUNT_ROUTE_PATHNAME, DEFAULT_ACCOUNT_TAB } from 'Route/AccountPage/AccountPage.config';
 import { hidePopup, showPopup } from 'Store/popup';
 
-const HeaderAccountComponent = () => {
+function HeaderAccountComponent() {
     const dispatch = useDispatch();
 
     const { customer: { firstname }, isSignedIn } = useSelector((state) => state.account);
@@ -50,6 +50,6 @@ const HeaderAccountComponent = () => {
             </Popup>
         </div>
     );
-};
+}
 
 export default HeaderAccountComponent;

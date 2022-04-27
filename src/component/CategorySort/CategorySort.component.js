@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-import Select from 'Component/Select';
+import Select from 'Ui/Select';
 
-const CategorySortComponent = (props) => {
+function CategorySortComponent(props) {
     const { options, onSortChange, defaultSort } = props;
     return (
         <Select
@@ -11,7 +11,7 @@ const CategorySortComponent = (props) => {
           onChange={ onSortChange }
         />
     );
-};
+}
 
 CategorySortComponent.propTypes = {
     defaultSort: PropTypes.string.isRequired,

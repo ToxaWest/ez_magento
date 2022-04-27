@@ -1,15 +1,16 @@
 import styles from './CartItem.module.scss';
 
+import Image from '@component/Image';
+import Link from '@component/Link';
+import Loader from '@component/Loader';
+import ProductPrice from '@component/ProductPrice';
+import useRemoveItemFromCart from '@hook/useRemoveItemFromCart';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-import Image from 'Component/Image';
-import Link from 'Component/Link';
-import Loader from 'Component/Loader';
-import ProductPrice from 'Component/ProductPrice';
-import useRemoveItemFromCart from 'Hook/useRemoveItemFromCart';
+import Button from 'Ui/Button';
 
-const CartItemComponent = (props) => {
+function CartItemComponent(props) {
     const removeItem = useRemoveItemFromCart();
     const [isLoading, setLoading] = useState(false);
     const {
@@ -35,10 +36,10 @@ const CartItemComponent = (props) => {
                 <span>{ sku }</span>
                 <ProductPrice price_range={ price_range } />
                 { `${quantity} items` }
-            <button onClick={ () => remove(id) } className={ styles.removeBtn }>remove</button>
+            <Button onClick={ () => remove(id) } className={ styles.removeBtn }>remove</Button>
         </div>
     );
-};
+}
 
 CartItemComponent.propTypes = {
     id: PropTypes.string.isRequired,

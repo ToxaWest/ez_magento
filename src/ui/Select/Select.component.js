@@ -1,13 +1,20 @@
+/*
+ * Copyright (c) 2022. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+ * Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+ * Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+ * Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+ * Vestibulum commodo. Ut rhoncus gravida arcu.
+ */
+
 import styles from './Select.module.scss';
 
+import ClickOutside from '@component/ClickOutside';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import ClickOutside from 'Component/ClickOutside';
-
 const cx = classNames.bind(styles);
 
-const SelectComponent = (props) => {
+function SelectComponent(props) {
     const {
         opened,
         optionRef,
@@ -83,7 +90,7 @@ const SelectComponent = (props) => {
             </div>
         </ClickOutside>
     );
-};
+}
 
 SelectComponent.propTypes = {
     opened: PropTypes.bool.isRequired,

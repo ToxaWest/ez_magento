@@ -1,10 +1,10 @@
+import CategorySortComponent from '@component/CategorySort/CategorySort.component';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 
-import CategorySortComponent from 'Component/CategorySort/CategorySort.component';
 import { setUrlQuery } from 'Util/Link';
 
-const CategorySortContainer = () => {
+function CategorySortContainer() {
     const { sort_fields: { options, default: default_sort } } = useSelector(
         (state) => state.products.productsInformation
     );
@@ -37,6 +37,6 @@ const CategorySortContainer = () => {
     return (
       <CategorySortComponent { ...containerProps } />
     );
-};
+}
 
 export default CategorySortContainer;

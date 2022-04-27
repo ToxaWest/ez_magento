@@ -1,15 +1,15 @@
 import styles from './AccountPage.module.scss';
 
+import Link from '@component/Link';
+import Loader from '@component/Loader';
 import PropTypes from 'prop-types';
 import { createElement } from 'react';
 
-import Link from 'Component/Link';
-import Loader from 'Component/Loader';
 import {
     urlWithAccount
 } from 'Route/AccountPage/AccountPage.config';
 
-const AccountPageComponent = (props) => {
+function AccountPageComponent(props) {
     const { tab, tabMap, loading } = props;
     const renderContent = () => {
         const selected = tabMap[tab];
@@ -49,7 +49,7 @@ const AccountPageComponent = (props) => {
             { renderContent() }
         </div>
     );
-};
+}
 
 AccountPageComponent.propTypes = {
     loading: PropTypes.bool.isRequired,

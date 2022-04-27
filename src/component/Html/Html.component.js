@@ -13,14 +13,13 @@
 /* eslint-disable consistent-return */
 // Disabled due `domToReact` internal logic
 
+import { attributesToPropsWidget } from '@component/Html/Html.config';
+import Image from '@component/Image';
+import Link from '@component/Link';
+import WidgetFactory from '@component/WidgetFactory';
 import parser, { attributesToProps, domToReact } from 'html-react-parser';
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
-
-import { attributesToPropsWidget } from 'Component/Html/Html.config';
-import Image from 'Component/Image';
-import Link from 'Component/Link';
-import WidgetFactory from 'Component/WidgetFactory';
 
 /**
  * Html content parser
@@ -61,6 +60,7 @@ export class Html extends PureComponent {
     ];
 
     parserOptions = {
+        // eslint-disable-next-line react/no-unstable-nested-components
         replace: (domNode) => {
             const { data, name: domName, attribs: domAttrs } = domNode;
 
@@ -111,8 +111,8 @@ export class Html extends PureComponent {
         const { href, ...attrs } = attribs;
 
         if (href) {
-            const isAbsoluteUrl = (value) => new RegExp('^(?:[a-z]+:)?//', 'i').test(value);
-            const isSpecialLink = (value) => new RegExp('^(sms|tel|mailto):', 'i').test(value);
+            const isAbsoluteUrl = (value) => /^(?:[a-z]+:)?\/\//i.test(value);
+            const isSpecialLink = (value) => /^(sms|tel|mailto):/i.test(value);
 
             if (!isAbsoluteUrl(href) && !isSpecialLink(href)) {
                 return (

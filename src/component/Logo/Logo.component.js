@@ -1,10 +1,9 @@
 import styles from './Logo.module.scss';
 
+import Image from '@component/Image';
+import Link from '@component/Link';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
-
-import Image from 'Component/Image';
-import Link from 'Component/Link';
 
 const LogoComponent = () => {
     const {

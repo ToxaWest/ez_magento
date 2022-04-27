@@ -1,9 +1,9 @@
+import LinkComponent from '@component/Link/Link.component';
 import PropTypes from 'prop-types';
 
-import LinkComponent from 'Component/Link/Link.component';
 import { hrefDoctor } from 'Util/Link';
 
-const LinkContainer = ({ href, className, children }) => {
+function LinkContainer({ href, className, children }) {
     const componentProps = {
         children,
         className,
@@ -13,7 +13,7 @@ const LinkContainer = ({ href, className, children }) => {
     return (
       <LinkComponent { ...componentProps } />
     );
-};
+}
 
 LinkContainer.propTypes = {
     children: PropTypes.oneOfType([PropTypes.shape({}), PropTypes.node]).isRequired,

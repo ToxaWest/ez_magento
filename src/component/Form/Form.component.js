@@ -1,17 +1,16 @@
 import styles from './Form.module.scss';
 
+import Field from '@component/Field';
+import { HIDDEN_TYPE } from '@component/Field/Field.config';
+import { sortFieldsByGroup } from '@component/Form/Form.util';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { cloneElement } from 'react';
 import { Form, FormSpy } from 'react-final-form';
 
-import Field from 'Component/Field';
-import { HIDDEN_TYPE } from 'Component/Field/Field.config';
-import { sortFieldsByGroup } from 'Component/Form/Form.util';
-
 const cx = classNames.bind(styles);
 
-const FormComponent = (props) => {
+function FormComponent(props) {
     const {
         onSubmit, fields, renderActions: actionsRender, initialValues, subscription, onChange, id, className
     } = props;
@@ -96,7 +95,7 @@ const FormComponent = (props) => {
           ) }
         />
     );
-};
+}
 
 FormComponent.propTypes = {
     fields: PropTypes.shape({ [PropTypes.string]: PropTypes.shape({}) }),

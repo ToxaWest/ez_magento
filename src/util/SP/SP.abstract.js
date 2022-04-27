@@ -82,14 +82,10 @@ export default class SPAbstract {
         try {
             const { data: { availableStores: initialStoreList } } = await this.request(configQuery.availableStores);
 
-            const storeList = initialStoreList.map((data) => {
-                const { store_code } = data;
-
-                return {
-                    ...data,
-                    lang_prefix: getLangPrefix(store_code)
-                };
-            });
+            const storeList = initialStoreList.map((data) => ({
+                ...data,
+                lang_prefix: getLangPrefix(data.store_code)
+            }));
 
             const currentStore = storeList.find(
                 ({ lang_prefix }) => lang_prefix === this.locale

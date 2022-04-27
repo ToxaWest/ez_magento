@@ -1,16 +1,15 @@
 import styles from './MiniCart.module.scss';
 
+import CartItem from '@component/CartItem';
+import ClickOutside from '@component/ClickOutside';
+import Link from '@component/Link';
+import Popup from '@component/Popup';
+import { popupId } from '@component/Popup/Popup.config';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import CartItem from 'Component/CartItem';
-import ClickOutside from 'Component/ClickOutside';
-import Link from 'Component/Link';
-import Popup from 'Component/Popup';
-import { popupId } from 'Component/Popup/Popup.config';
-
-const MiniCartComponent = () => {
+function MiniCartComponent() {
     const t = useTranslations('Header');
     const { cart } = useSelector((state) => state.cart);
     const [isActive, setActive] = useState(false);
@@ -46,6 +45,6 @@ const MiniCartComponent = () => {
             { renderContent() }
         </ClickOutside>
     );
-};
+}
 
 export default MiniCartComponent;

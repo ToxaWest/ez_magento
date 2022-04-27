@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 
 import { getAttributeValue } from 'Util/Attributes/Attributes';
 
-const ProductAttributesComponent = () => {
+function ProductAttributesComponent() {
     const { singleProduct: { s_attributes } } = useSelector((state) => state.products);
 
     const renderAttribute = (item) => {
@@ -32,6 +32,6 @@ const ProductAttributesComponent = () => {
         </tbody>
       </table>
     );
-};
+}
 
 export default ProductAttributesComponent;

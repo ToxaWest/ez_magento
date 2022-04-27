@@ -1,12 +1,11 @@
+import useUrl from '@hook/useUrl';
 import PropTypes from 'prop-types';
-
-import useUrl from 'Hook/useUrl';
 
 import ImageComponent from './Image.component';
 
 export const DEFAULT_PADDING = 100;
 
-const ImageContainer = (props) => {
+function ImageContainer(props) {
     const {
         width,
         height,
@@ -18,7 +17,7 @@ const ImageContainer = (props) => {
     const { getUrl } = useUrl();
 
     const _getCorrectUrl = () => {
-        const isAbsoluteUrl = (value) => new RegExp('^(?:[a-z]+:)?//', 'i').test(value);
+        const isAbsoluteUrl = (value) => /^(?:[a-z]+:)?\/\//i.test(value);
 
         if (isAbsoluteUrl(url)) {
             return url;
@@ -47,7 +46,7 @@ const ImageContainer = (props) => {
         { ...componentProps }
       />
     );
-};
+}
 
 ImageContainer.propTypes = {
     alt: PropTypes.string,

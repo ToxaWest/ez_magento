@@ -25,8 +25,8 @@ export const checkActive = (items, id) => Object.entries(items).some(([parent, c
     parseInt(parent, 10) === id ? true : checkActive(current, id)
 ));
 
-export const addToActive = (activeItems, id, parent_id) => Object.entries(activeItems).reduce(
-    (acc, [parent, current]) => {
+export const addToActive = (activeItems, id, parent_id) => Object.entries(activeItems)
+    .reduce((acc, [parent, current]) => {
         if (parseInt(parent, 10) === parent_id) {
             acc[parent] = { ...current, [id]: {} };
         } else {
@@ -34,8 +34,7 @@ export const addToActive = (activeItems, id, parent_id) => Object.entries(active
         }
 
         return acc;
-    }, {}
-);
+    }, {});
 
 export const removeFromActive = (activeItems, id) => Object.entries(activeItems).reduce((acc, [parent, current]) => {
     if (parseInt(parent, 10) !== id) {

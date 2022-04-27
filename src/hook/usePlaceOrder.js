@@ -1,10 +1,10 @@
 import { useMutation } from '@apollo/client';
+import useGetCartId from '@hook/useGetCartId';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { CART_ID } from 'Dispatcher/cart.dispatcher';
-import useGetCartId from 'Hook/useGetCartId';
 import CheckoutQuery from 'Query/checkout.query';
 import { ORDER_DATA, SUCCESS, urlWithCheckout } from 'Route/CheckoutPage/CheckoutPage.config';
 import { setErrorNotification } from 'Store/notifiactions';

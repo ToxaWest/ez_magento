@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import SelectComponent from './Select.component';
 
-const SelectContainer = (props) => {
+function SelectContainer(props) {
     const {
         options: selectOptions,
         onChange,
@@ -116,7 +116,7 @@ const SelectContainer = (props) => {
     };
 
     return <SelectComponent { ...containerProps } />;
-};
+}
 
 SelectContainer.propTypes = {
     className: PropTypes.string,

@@ -5,7 +5,7 @@ import { setUrlQuery } from 'Util/Link';
 
 import CategoryPaginationComponent from './CategoryPagination.component';
 
-const CategoryPaginationContainer = () => {
+function CategoryPaginationContainer() {
     const { page_info } = useSelector((state) => state.products.productsInformation);
     const {
         pagination_frame, pagination_frame_skip, anchor_text_for_previous, anchor_text_for_next
@@ -31,6 +31,6 @@ const CategoryPaginationContainer = () => {
     return (
         <CategoryPaginationComponent { ...containerProps } />
     );
-};
+}
 
 export default CategoryPaginationContainer;

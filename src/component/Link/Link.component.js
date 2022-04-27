@@ -1,17 +1,19 @@
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 
-const LinkComponent = ({
+function LinkComponent({
     href,
     title,
     className,
     children
-}) => (
-    <Link href={ href }>
+}) {
+    return (
+<Link href={ href }>
         { /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
         <a className={ className } title={ title }>{ children }</a>
-    </Link>
-);
+</Link>
+    );
+}
 
 LinkComponent.propTypes = {
     children: PropTypes.oneOfType([PropTypes.shape({}), PropTypes.node]).isRequired,

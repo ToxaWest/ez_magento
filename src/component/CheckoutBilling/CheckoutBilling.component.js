@@ -1,16 +1,16 @@
+import { CHECKBOX_TYPE } from '@component/Field/Field.config';
+import Form from '@component/Form';
+import Loader from '@component/Loader';
+import useSetBillingAddressOnCart from '@hook/useSetBillingAddressOnCart';
+import useUserAddress from '@hook/useUserAddress';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { CHECKBOX_TYPE } from 'Component/Field/Field.config';
-import Form from 'Component/Form';
-import Loader from 'Component/Loader';
-import useSetBillingAddressOnCart from 'Hook/useSetBillingAddressOnCart';
-import useUserAddress from 'Hook/useUserAddress';
 import { CHECKOUT_ROUTE_PATHNAME, PAYMENT } from 'Route/CheckoutPage/CheckoutPage.config';
 import { _normalizeAddressAsMagentoStyle } from 'Util/Address';
 
-const CheckoutBillingComponent = () => {
+function CheckoutBillingComponent() {
     const [sameAsShipping, setSameAsShipping] = useState(true);
     const router = useRouter();
     const { billing_address } = useSelector((state) => state.cart.cart);
@@ -63,6 +63,6 @@ const CheckoutBillingComponent = () => {
         </>
 
     );
-};
+}
 
 export default CheckoutBillingComponent;

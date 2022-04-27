@@ -1,10 +1,9 @@
 import styles from './ProductList.module.scss';
 
+import ProductCard from '@component/ProductCard';
 import PropTypes from 'prop-types';
 
-import ProductCard from 'Component/ProductCard';
-
-const ProductListComponent = ({ items }) => {
+function ProductListComponent({ items }) {
     const renderProductCard = (item) => (
       <ProductCard
         key={ item.id }
@@ -18,7 +17,7 @@ const ProductListComponent = ({ items }) => {
         { items.map(renderProductCard) }
       </ul>
     );
-};
+}
 
 ProductListComponent.propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({

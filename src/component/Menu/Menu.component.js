@@ -1,13 +1,12 @@
 import styles from './Menu.module.scss';
 
+import Link from '@component/Link';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import Link from 'Component/Link';
-
 const cx = classNames.bind(styles);
 
-const MenuComponent = ({ menu, toggle, isActive }) => {
+function MenuComponent({ menu, toggle, isActive }) {
     const renderMenuItem = (item, level) => {
         const {
             children, title, url, item_id, parent_id
@@ -36,10 +35,12 @@ const MenuComponent = ({ menu, toggle, isActive }) => {
               aria-label="toggle"
             />
             <div className={ cx(styles.child_wrapper) }>
-                <ul className={ cx(styles.menu_child,
+                <ul className={ cx(
+                    styles.menu_child,
                     {
                         [styles.menu_child_active]: isActive(item_id)
-                    }) }
+                    }
+                ) }
                 >
                 { items.map((i) => renderMenuItem(i, level + 1)) }
                 </ul>
@@ -52,7 +53,7 @@ const MenuComponent = ({ menu, toggle, isActive }) => {
           { Object.values(menu).map((i) => renderMenuItem(i, 0)) }
         </ul>
     );
-};
+}
 
 MenuComponent.propTypes = {
     isActive: PropTypes.func.isRequired,

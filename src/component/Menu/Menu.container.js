@@ -1,11 +1,11 @@
+import MenuComponent from '@component/Menu/Menu.component';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import MenuComponent from 'Component/Menu/Menu.component';
 import { addToActive, checkActive, removeFromActive } from 'Util/Menu/Menu';
 
-const MenuContainer = ({ identifier }) => {
+function MenuContainer({ identifier }) {
     const { [identifier]: menu } = useSelector((state) => state.config.menu);
 
     const [activeItems, setActive] = useState({});
@@ -46,7 +46,7 @@ const MenuContainer = ({ identifier }) => {
         { ...componentProps }
       />
     );
-};
+}
 
 MenuContainer.propTypes = {
     identifier: PropTypes.string.isRequired

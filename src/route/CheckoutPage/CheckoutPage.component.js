@@ -3,7 +3,7 @@ import { createElement } from 'react';
 
 import { notInteractiveClick } from 'Util/Events';
 
-const CheckoutPageComponent = (props) => {
+function CheckoutPageComponent(props) {
     const {
         tabMap, onClick, tab
     } = props;
@@ -46,7 +46,7 @@ const CheckoutPageComponent = (props) => {
             { renderTab() }
         </div>
     );
-};
+}
 
 CheckoutPageComponent.propTypes = {
     tabMap: PropTypes.shape({}).isRequired,

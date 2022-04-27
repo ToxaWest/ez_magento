@@ -1,12 +1,12 @@
+import CheckoutBilling from '@component/CheckoutBilling';
+import CheckoutPaymentMethods from '@component/CheckoutPaymentMethods';
+import CheckoutShipping from '@component/CheckoutShipping';
+import CheckoutShippingMethods from '@component/CheckoutShippingMethods';
+import { popupId } from '@component/Popup/Popup.config';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import CheckoutBilling from 'Component/CheckoutBilling';
-import CheckoutPaymentMethods from 'Component/CheckoutPaymentMethods';
-import CheckoutShipping from 'Component/CheckoutShipping';
-import CheckoutShippingMethods from 'Component/CheckoutShippingMethods';
-import { popupId } from 'Component/Popup/Popup.config';
 import {
     BILLING, CHECKOUT_ROUTE_PATHNAME, DELIVERY, PAYMENT, SHIPPING
 } from 'Route/CheckoutPage/CheckoutPage.config';
@@ -15,7 +15,7 @@ import { showPopup } from 'Store/popup';
 
 import CheckoutPageComponent from './CheckoutPage.component';
 
-const CheckoutPageContainer = () => {
+function CheckoutPageContainer() {
     const {
         cart: { items, isVirtual }, loading, accountLoading, isSignedIn, guest_checkout
     } = useSelector(({
@@ -100,6 +100,6 @@ const CheckoutPageContainer = () => {
           { ...containerProps }
         />
     );
-};
+}
 
 export default CheckoutPageContainer;

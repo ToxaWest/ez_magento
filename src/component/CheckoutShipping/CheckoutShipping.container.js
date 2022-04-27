@@ -1,14 +1,14 @@
+import useSetShippingAddressOnCart from '@hook/useSetShippingAddressOnCart';
+import useUserAddress from '@hook/useUserAddress';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 
-import useSetShippingAddressOnCart from 'Hook/useSetShippingAddressOnCart';
-import useUserAddress from 'Hook/useUserAddress';
 import { CHECKOUT_ROUTE_PATHNAME, DELIVERY } from 'Route/CheckoutPage/CheckoutPage.config';
 import { _normalizeAddressAsMagentoStyle } from 'Util/Address';
 
 import CheckoutShippingComponent from './CheckoutShipping.component';
 
-const CheckoutShippingContainer = () => {
+function CheckoutShippingContainer() {
     const [setShippingAddressOnCart, loading] = useSetShippingAddressOnCart();
     const router = useRouter();
     const fields = useUserAddress({});
@@ -43,6 +43,6 @@ const CheckoutShippingContainer = () => {
           { ...containerProps }
         />
     );
-};
+}
 
 export default CheckoutShippingContainer;

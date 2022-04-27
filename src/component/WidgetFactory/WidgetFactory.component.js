@@ -12,7 +12,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-// import FormRenderResolver from 'Component/Form/Form.renderResolver';
+// import FormRenderResolver from '@component/Form/Form.renderResolver';
 // import {
 //     CATALOG_LINK_LIST,
 //     CATALOG_PRODUCT_LIST, FORM, INSTAGRAM,
@@ -21,12 +21,12 @@ import { PureComponent } from 'react';
 //     SLIDER
 // } from './WidgetFactory.config';
 
-// export const ProductListWidget = dynamic(() => import('Component/ProductListWidget'));
-// export const NewProducts = dynamic(() => import('Component/NewProducts'));
-// export const HomeSlider = dynamic(() => import('Component/SliderWidget'));
-// export const RecentlyViewedWidget = dynamic(() => import('Component/RecentlyViewedWidget'));
-// export const CatalogLinkList = dynamic(() => import('Component/CatalogLinkList'));
-// export const Instagram = dynamic(() => import('Component/Instagram'));
+// export const ProductListWidget = dynamic(() => import('@component/ProductListWidget'));
+// export const NewProducts = dynamic(() => import('@component/NewProducts'));
+// export const HomeSlider = dynamic(() => import('@component/SliderWidget'));
+// export const RecentlyViewedWidget = dynamic(() => import('@component/RecentlyViewedWidget'));
+// export const CatalogLinkList = dynamic(() => import('@component/CatalogLinkList'));
+// export const Instagram = dynamic(() => import('@component/Instagram'));
 
 /** @namespace Component/WidgetFactory/Component */
 export class WidgetFactory extends PureComponent {

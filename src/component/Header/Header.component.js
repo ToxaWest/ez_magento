@@ -1,19 +1,21 @@
 import styles from './Header.module.scss';
 
-import HeaderAccount from 'Component/HeaderAccount';
-import Logo from 'Component/Logo';
-import Menu from 'Component/Menu';
-import MiniCart from 'Component/MiniCart';
-import StoreSwitcher from 'Component/StoreSwitcher';
+import HeaderAccount from '@component/HeaderAccount';
+import Logo from '@component/Logo';
+import Menu from '@component/Menu';
+import MiniCart from '@component/MiniCart';
+import StoreSwitcher from '@component/StoreSwitcher';
 
-const HeaderComponent = () => (
-    <header className={ styles.wrapper }>
+function HeaderComponent() {
+    return (
+<header className={ styles.wrapper }>
         <Logo />
         <Menu identifier="category_menu" />
         <HeaderAccount />
         <MiniCart />
         <StoreSwitcher />
-    </header>
-);
+</header>
+    );
+}
 
 export default HeaderComponent;

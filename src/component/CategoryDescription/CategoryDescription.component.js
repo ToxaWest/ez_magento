@@ -1,11 +1,10 @@
 import styles from './CategoryDescription.module.scss';
 
+import Html from '@component/Html';
+import Image from '@component/Image';
 import { useSelector } from 'react-redux';
 
-import Html from 'Component/Html';
-import Image from 'Component/Image';
-
-const CategoryDescriptionComponent = () => {
+function CategoryDescriptionComponent() {
     const {
         current: {
             description,
@@ -23,6 +22,6 @@ const CategoryDescriptionComponent = () => {
             </div>
         </div>
     );
-};
+}
 
 export default CategoryDescriptionComponent;

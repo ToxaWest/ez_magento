@@ -5,7 +5,7 @@ import client from 'Util/Request/apolloClient';
 
 import StoreSwitcherComponent from './StoreSwitcher.component';
 
-const StoreSwitcherContainer = () => {
+function StoreSwitcherContainer() {
     const _normalizeStoreList = (list) => list.map(({ lang_prefix, store_name, default_display_currency_code }) => ({
         currency_code: default_display_currency_code, label: store_name, value: lang_prefix
     }));
@@ -38,6 +38,6 @@ const StoreSwitcherContainer = () => {
         { ...componentProps }
       />
     );
-};
+}
 
 export default StoreSwitcherContainer;

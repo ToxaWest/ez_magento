@@ -5,7 +5,7 @@ import { getIsFilterSelected, setFilterAttribute } from 'Util/Link';
 
 import LayeredNavigationComponent from './LayeredNavigation.component';
 
-const LayeredNavigationContainer = () => {
+function LayeredNavigationContainer() {
     const { aggregations } = useSelector((state) => state.products.productsInformation);
 
     const router = useRouter();
@@ -25,6 +25,6 @@ const LayeredNavigationContainer = () => {
     return (
         <LayeredNavigationComponent { ...containerProps } />
     );
-};
+}
 
 export default LayeredNavigationContainer;

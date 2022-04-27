@@ -1,8 +1,7 @@
+import Html from '@component/Html';
 import { useSelector } from 'react-redux';
 
-import Html from 'Component/Html';
-
-const CmsPageComponent = () => {
+function CmsPageComponent() {
     const { page } = useSelector((state) => state.cms);
     if (!page) {
         return null;
@@ -14,6 +13,6 @@ const CmsPageComponent = () => {
           <Html content={ content } />
       </div>
     );
-};
+}
 
 export default CmsPageComponent;

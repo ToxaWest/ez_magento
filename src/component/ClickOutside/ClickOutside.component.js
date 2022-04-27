@@ -1,9 +1,8 @@
+import useOnClickOutside from '@hook/useOnClickOutside';
 import PropTypes from 'prop-types';
 import {
     cloneElement, useRef
 } from 'react';
-
-import useOnClickOutside from 'Hook/useOnClickOutside';
 
 /** @namespace Component/ClickOutside/Component */
 const ClickOutside = ({ children, onClick }) => {

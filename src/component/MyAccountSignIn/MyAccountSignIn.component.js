@@ -1,9 +1,8 @@
+import Form from '@component/Form';
+import useGenerateCustomerToken from '@hook/useGenerateCustomerToken';
 import PropTypes from 'prop-types';
 
-import Form from 'Component/Form';
-import useGenerateCustomerToken from 'Hook/useGenerateCustomerToken';
-
-const MyAccountSignInComponent = (props) => {
+function MyAccountSignInComponent(props) {
     const { onSignIn } = props;
     const fields = {
         email: {
@@ -24,7 +23,7 @@ const MyAccountSignInComponent = (props) => {
     return (
         <Form onSubmit={ onSubmit } fields={ fields } />
     );
-};
+}
 
 MyAccountSignInComponent.propTypes = {
     onSignIn: PropTypes.func

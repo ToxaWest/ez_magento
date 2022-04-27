@@ -1,8 +1,8 @@
+import MyAccountOrders from '@component/MyAccountOrders';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import MyAccountOrders from 'Component/MyAccountOrders';
 import AccountPageComponent from 'Route/AccountPage/AccountPage.component';
 import {
     ACCOUNT_ROUTE_PATHNAME,
@@ -11,7 +11,7 @@ import {
     ORDER_LIST
 } from 'Route/AccountPage/AccountPage.config';
 
-const AccountPageContainer = () => {
+function AccountPageContainer() {
     const router = useRouter();
     const { query: { tab } } = router;
     const { isSignedIn, loading } = useSelector((state) => state.account);
@@ -57,6 +57,6 @@ const AccountPageContainer = () => {
     };
 
     return <AccountPageComponent { ...containerProps } />;
-};
+}
 
 export default AccountPageContainer;

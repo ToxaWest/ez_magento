@@ -1,3 +1,5 @@
-const Button = (props) => <button { ...props } />;
+function Button(props) {
+    return <button { ...props } />;
+}
 
 export default Button;

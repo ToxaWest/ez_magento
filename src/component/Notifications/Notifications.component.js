@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { resetNotification } from 'Store/notifiactions';
 
 const cx = classNames.bind(styles);
-const NotificationsComponent = () => {
+function NotificationsComponent() {
     const { type, message } = useSelector((state) => state.notifications);
     const dispatch = useDispatch();
 
@@ -36,6 +36,6 @@ const NotificationsComponent = () => {
         </span>
       </div>
     );
-};
+}
 
 export default NotificationsComponent;

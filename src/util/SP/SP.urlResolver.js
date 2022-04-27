@@ -50,17 +50,12 @@ class SPUrlResolver extends SPAbstract {
         if (!sku) {
             throw new Error('sku is Required');
         }
-
-        const { data: { singleProduct: { items: [singleProduct] } } } = await this.request(
-            productQuery.product, { sku }
-        );
+        const {
+            data: { singleProduct: { items: [singleProduct] } }
+        } = await this.request(productQuery.product, { sku });
 
         this.container = 'ProductPage';
-        this.store.dispatch(updateProductsBreadcrumbs({
-            categories: singleProduct.categories,
-            name: singleProduct.name,
-            url: singleProduct.url
-        }));
+        this.store.dispatch(updateProductsBreadcrumbs(singleProduct));
 
         this.store.dispatch(updateSingleProduct(singleProduct));
     }
@@ -72,21 +67,17 @@ class SPUrlResolver extends SPAbstract {
         this.container = 'CategoryPage';
 
         const { data: { categoryList: [category] } } = await this.request(categoryQuery.category, { id });
-        this.store.dispatch(updateCategoryBreadcrumbs({
-            breadcrumbs: category.breadcrumbs,
-            name: category.name,
-            url: category.url
-        }));
+        this.store.dispatch(updateCategoryBreadcrumbs(category));
         this.store.dispatch(updateCategory(category));
         const variables = getProductVariablesBasedOnQuery(this.query, id);
         await this.getProductList(variables);
     }
 
     async getProductList(variables) {
-        const { data: { products } } = await this.request(productQuery.productList, variables);
-        this.store.dispatch(updateProductList(products));
         const { data: { productsInformation } } = await this.request(productQuery.productListInformation, variables);
         this.store.dispatch(updateProductsInformation(productsInformation));
+        const { data: { products } } = await this.request(productQuery.productList, variables);
+        this.store.dispatch(updateProductList(products));
     }
 }
 
