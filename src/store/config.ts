@@ -9,6 +9,7 @@ export interface configReducerInterface {
     availableStores: availableStoreInterface[],
     config: {
         logo_alt: string,
+        secure_base_url: string,
         logo_height: number,
         logo_width: number,
         header_logo_src: string,

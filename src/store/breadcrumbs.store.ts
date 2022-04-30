@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
-    _normalizeBreadcrumb, categoriesInterface,
+    _normalizeBreadcrumb,
     getProductsBreadcrumbs
 } from '@util/Breadcrumbs';
 
@@ -13,20 +13,6 @@ export interface breadcrumbsInterface {
     breadcrumbs: Array<breadcrumbInterface>,
     current: breadcrumbInterface,
     showBreadcrumbs: boolean
-}
-
-export interface CategoryInterface {
-    url: string,
-    name: string,
-    breadcrumbs: {
-        category_name: string, category_url: string
-    }[]
-}
-
-export interface ProductsInterface {
-    url: string,
-    name: string,
-    categories: categoriesInterface[]
 }
 
 const getInitialState = () => {
@@ -72,7 +58,7 @@ export const breadcrumbsReducer = createSlice({
                 categories,
                 url
             }
-        }: PayloadAction<ProductsInterface>) => {
+        }: PayloadAction<ProductInterface>) => {
             state.breadcrumbs = getProductsBreadcrumbs(categories);
             state.showBreadcrumbs = true;
             state.current = {

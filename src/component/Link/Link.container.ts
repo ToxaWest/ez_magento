@@ -3,7 +3,7 @@ import { hrefDoctor } from '@util/Link';
 import { createElement, ReactElement } from 'react';
 
 interface LinkContainerInterface {
-    children: ReactElement | string | ReactElement[],
+    children?: ReactElement | string | ReactElement[],
     className?: string,
     href?: string,
     title?: string
@@ -23,6 +23,7 @@ function LinkContainer({
 }
 
 LinkContainer.defaultProps = {
+    children: '',
     className: '',
     href: '',
     title: ''

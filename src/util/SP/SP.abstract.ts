@@ -1,8 +1,11 @@
-import { ApolloQueryResult } from '@apollo/client';
+import { ApolloError, ApolloQueryResult } from '@apollo/client';
+import categoryQuery from '@query/category.query';
 import configQuery from '@query/config.query';
 import pageQuery from '@query/page.query';
 import { hideBreadcrumbs } from '@store/breadcrumbs.store';
-import { updatePage } from '@store/cms';
+import {
+    CmsPageInterface, SliderInterface, updatePage, updateWidget
+} from '@store/cms';
 import {
     menuChildInterface,
     updateCategoryMenu, updateConfig, updateMenu, updateStoreList
@@ -12,6 +15,8 @@ import menuUtil, { unsortedItemsInterface } from '@util/Menu/Menu';
 import { getErrorMessage } from '@util/Request';
 import client from '@util/Request/apolloClient';
 import { set } from 'cookie-cutter';
+import { Element } from 'domhandler';
+import parser, { DOMNode } from 'html-react-parser';
 import { NextRouter } from 'next/router';
 import { AbstractIntlMessages } from 'use-intl';
 
@@ -76,8 +81,7 @@ export default class SPAbstract {
                 variables
             });
         } catch (e) {
-            // eslint-disable-next-line no-console,@typescript-eslint/no-unsafe-argument
-            console.log(getErrorMessage(e));
+            getErrorMessage(e as ApolloError);
             return { data: {} } as ApolloQueryResult<object>;
         }
     }
@@ -169,8 +173,52 @@ export default class SPAbstract {
         }
     }
 
+    async getWidget(content: string): Promise<void> {
+        const req = [];
+        const widgetMap = {
+            Slider: async ({ slider_id }: WidgetSliderInterface) => {
+                const { data: { scandiwebSlider } }: ApolloQueryResult<{
+                    scandiwebSlider: SliderInterface
+                }> = await this.request(pageQuery.scandiwebSlider, { id: slider_id });
+
+                this.store.dispatch(updateWidget({ [slider_id]: scandiwebSlider }));
+            },
+            Link: async ({ id_paths }: WidgetLinkInterface) => {
+                const cat = id_paths.replace(/category\//g, '');
+                const id_list = cat.split(',');
+                const { data: { categoryList } }: ApolloQueryResult<{
+                    categoryList: CategoryInterface[]
+                }> = await this.request(categoryQuery.category, { id_list });
+
+                this.store.dispatch(updateWidget({ [id_paths]: categoryList }));
+            }
+        };
+
+        parser(content, {
+            replace: (domNode: DOMNode) => {
+                if (domNode instanceof Element) {
+                    const { attribs, name } = domNode;
+                    if (name === 'widget' && widgetMap[attribs.type]) {
+                        req.push(attribs);
+                    }
+                }
+            }
+        });
+        if (!req.length) {
+            return;
+        }
+        await Promise.all(
+            req.map(
+                (r:WidgetFactoryInterface) => widgetMap[r.type](r) as Promise<void>
+            )
+        );
+    }
+
     async getCmsPage(variables: object) {
-        const { data: { cmsPage } } = await this.request(pageQuery.cmsPage, variables);
+        const { data: { cmsPage } }:
+            ApolloQueryResult<{ cmsPage: CmsPageInterface }> = await this.request(pageQuery.cmsPage, variables);
+        const { content } = cmsPage;
+        await this.getWidget(content);
         this.container = 'CmsPage';
         this.store.dispatch(updatePage(cmsPage));
     }

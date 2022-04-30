@@ -8,19 +8,19 @@ interface SliderContainerInterface {
     children: ReactElement[],
     className?: string,
     settings?: {
-        slidesToShow: number,
-        draggable: boolean,
-        infinity: boolean,
-        transition: number,
-        dots: boolean,
-        nav: boolean
+        slidesToShow?: number,
+        draggable?: boolean,
+        infinity?: boolean,
+        transition?: number,
+        dots?: boolean,
+        nav?: boolean
     }
 }
 const defaultSettings = {
     slidesToShow: 1,
-    infinity: false,
+    infinity: true,
     draggable: true,
-    transition: 0.5,
+    transition: 500,
     nav: true,
     dots: true
 };

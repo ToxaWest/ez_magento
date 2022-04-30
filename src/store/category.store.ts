@@ -1,11 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 interface categoryReducerInterface {
-    current: {
-        description: string,
-        name: string,
-        image: string
-    }
+    current: CategoryInterface
 }
 
 const getInitialState = () => {

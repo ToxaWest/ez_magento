@@ -35,6 +35,7 @@ query StoreConfig {
         plp_list_mode
         product_reviews_enabled
         secure_base_media_url
+        secure_base_url
         root_category_uid
         show_cms_breadcrumbs
         title_separator

@@ -46,5 +46,6 @@ declare interface ProductInterface {
   media_gallery: MediaGalleryInterface[],
   small_image: SmallImageInterface,
   url: string,
-  __typename: 'SimpleProduct'
+  __typename: 'SimpleProduct',
+  categories: CategoryInterface[]
 }

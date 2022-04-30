@@ -29,6 +29,7 @@ function ImageComponent(props: ImageComponentInterface) {
           <Image
             src={ url }
             alt={ alt }
+            draggable={ false }
             layout="fill"
             className={ cx(
                 styles.ImageImage,

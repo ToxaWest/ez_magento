@@ -1,10 +1,27 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+export interface CmsPageInterface {
+    content?: string
+}
+
+export interface SlideInterface { desktop_image: string, slide_text: string, slide_id: string }
+
+export interface SliderInterface {
+    slides: SlideInterface[],
+    show_menu: boolean,
+    show_navigation: boolean,
+    slide_speed: number,
+    slides_to_display: number
+}
+
+export interface WidgetInterface {
+    [key: string]: SliderInterface | CategoryInterface[]
+}
 
 interface cmsReducerInterface {
     block: object,
-    page: {
-        content?: string
-    }
+    widget: WidgetInterface,
+    page: CmsPageInterface
 }
 
 const getInitialState = () => {
@@ -15,7 +32,8 @@ const getInitialState = () => {
 
     return {
         block: {},
-        page: {}
+        page: {},
+        widget: {}
     } as cmsReducerInterface;
 };
 
@@ -25,10 +43,13 @@ export const cmsReducer = createSlice({
     reducers: {
         updatePage: (state, action) => {
             state.page = action.payload;
+        },
+        updateWidget: (state, { payload }: PayloadAction<WidgetInterface>) => {
+            state.widget = { ...state.widget, ...payload };
         }
     }
 });
 
-export const { updatePage } = cmsReducer.actions;
+export const { updatePage, updateWidget } = cmsReducer.actions;
 
 export default cmsReducer.reducer;

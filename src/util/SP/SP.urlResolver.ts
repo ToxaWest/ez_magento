@@ -3,8 +3,6 @@ import categoryQuery from '@query/category.query';
 import productQuery from '@query/product.query';
 import urlQuery from '@query/url.query';
 import {
-    CategoryInterface,
-    ProductsInterface,
     updateCategoryBreadcrumbs,
     updateProductsBreadcrumbs
 } from '@store/breadcrumbs.store';
@@ -63,7 +61,7 @@ class SPUrlResolver extends SPAbstract {
             throw new Error('sku is Required');
         }
         const { data: { singleProduct: { items: [singleProduct] } } }: ApolloQueryResult<{
-            singleProduct: { items: ProductsInterface[] }
+            singleProduct: { items: ProductInterface[] }
         }> = await this.request(productQuery.product, { sku });
 
         this.container = 'ProductPage';

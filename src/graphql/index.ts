@@ -26,9 +26,11 @@ import menu from './query/menu.graphql';
 import product from './query/product.graphql';
 import productList from './query/productList.graphql';
 import productListInformation from './query/productListInformation.graphql';
+import scandiwebSlider from './query/scandiwebSlider.graphql';
 import urlResolver from './query/urlResolver.graphql';
 
 export {
+    scandiwebSlider,
     setPaymentMethodOnCart,
     setBillingAddressOnCart,
     setShippingAddressesOnCart,

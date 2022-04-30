@@ -1,4 +1,5 @@
 import useUrl from '@hook/useUrl';
+import { ReactElement } from 'react';
 
 import ImageComponent from './Image.component';
 
@@ -13,7 +14,7 @@ interface ImageContainerInterface {
     style?: Record<string, string>
 }
 
-function ImageContainer(props: ImageContainerInterface) {
+function ImageContainer(props: ImageContainerInterface): ReactElement {
     const {
         width,
         height,

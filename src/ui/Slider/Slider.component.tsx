@@ -86,7 +86,7 @@ function SliderComponent(props: SliderComponentInterface) {
                 <div
                   ref={ sliderRef }
                   className={ styles.list }
-                  style={ { transitionDuration: `${transition}s` } }
+                  style={ { transitionDuration: `${transition}ms` } }
                 >
                     { children }
                 </div>

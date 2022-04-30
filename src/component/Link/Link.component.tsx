@@ -14,6 +14,13 @@ function LinkComponent({
     className,
     children
 }: LinkComponentInterface) {
+    const isAbsoluteUrl = (value: string) => /^(?:[a-z]+:)?\/\//i.test(value);
+    const isSpecialLink = (value: string) => /^(sms|tel|mailto):/i.test(value);
+
+    if (!isAbsoluteUrl(href) && !isSpecialLink(href)) {
+        return <a className={ className } href={ href } title={ title }>{ children }</a>;
+    }
+
     return (
         <Link href={ href }>
             { /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }

@@ -1,0 +1,14 @@
+query scandiwebSlider($id: ID!){
+    scandiwebSlider(id: $id){
+        slides {
+            slide_text
+            slide_id
+            desktop_image
+        }
+        slider_id
+        slides_to_display
+        show_menu
+        show_navigation
+        slide_speed
+    }
+}
