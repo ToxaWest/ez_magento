@@ -38,10 +38,10 @@ function CartItemComponent(props: CartItemComponentInterface): ReactElement {
         <div className={ styles.wrapper }>
             <Loader isLoading={ isLoading } />
             <Image src={ src } alt={ label || name } width={ 100 } height={ 100 } className={ styles.image } />
-                <Link href={ url } title={ name }>{ name }</Link>
-                <span>{ sku }</span>
-                <ProductPrice price_range={ price_range } />
-                { `${quantity} items` }
+            <Link href={ url } title={ name }>{ name }</Link>
+            <span>{ sku }</span>
+            <ProductPrice price_range={ price_range } />
+            { `${quantity} items` }
             <Button onClick={ () => remove(id) } className={ styles.removeBtn }>remove</Button>
         </div>
     );
