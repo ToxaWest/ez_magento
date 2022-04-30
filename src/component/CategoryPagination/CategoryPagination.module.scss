@@ -5,11 +5,10 @@
   display: flex;
   justify-content: center;
   height: 24px;
-  margin: auto;
   align-items: center;
   z-index: 2;
   width: min-content;
-  margin-top: 4rem;
+  margin: 4rem auto auto;
 
   &Icon {
     display: flex;

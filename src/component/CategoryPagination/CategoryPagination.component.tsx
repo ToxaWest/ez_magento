@@ -120,7 +120,7 @@ function CategoryPaginationComponent(props: CategoryPaginationComponentInterface
         return pages;
     };
 
-    if (total_pages === 1) { // do not show pagination, if there are less then one page
+    if (total_pages === 1) { // do not show pagination, if there are less than one page
         return <ul className={ styles.CategoryPagination } />;
     }
 

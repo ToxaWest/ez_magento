@@ -1,12 +1,9 @@
-// @ts-check
-
-/**
- * @type {import('next').NextConfig}
- **/
-
-module.exports = {
+const nextConfig = {
     reactStrictMode: true,
     compress: true,
+    typescript: {
+        tsconfigPath: './tsconfig.json'
+    },
     swcMinify: true,
     sassOptions: {
         includePaths: ['./src'],
@@ -36,3 +33,5 @@ module.exports = {
         return config;
     }
 };
+
+module.exports = nextConfig;

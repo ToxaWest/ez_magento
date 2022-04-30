@@ -1,4 +1,5 @@
 import { ApolloError, ApolloQueryResult } from '@apollo/client';
+import { CATALOG_LINK_LIST, SLIDER } from '@component/WidgetFactory/WidgetFactory.config';
 import categoryQuery from '@query/category.query';
 import configQuery from '@query/config.query';
 import pageQuery from '@query/page.query';
@@ -176,14 +177,14 @@ export default class SPAbstract {
     async getWidget(content: string): Promise<void> {
         const req = [];
         const widgetMap = {
-            Slider: async ({ slider_id }: WidgetSliderInterface) => {
+            [SLIDER]: async ({ slider_id }: WidgetSliderInterface) => {
                 const { data: { scandiwebSlider } }: ApolloQueryResult<{
                     scandiwebSlider: SliderInterface
                 }> = await this.request(pageQuery.scandiwebSlider, { id: slider_id });
 
                 this.store.dispatch(updateWidget({ [slider_id]: scandiwebSlider }));
             },
-            Link: async ({ id_paths }: WidgetLinkInterface) => {
+            [CATALOG_LINK_LIST]: async ({ id_paths }: WidgetLinkInterface) => {
                 const cat = id_paths.replace(/category\//g, '');
                 const id_list = cat.split(',');
                 const { data: { categoryList } }: ApolloQueryResult<{

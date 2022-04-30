@@ -1,10 +1,12 @@
 import WidgetSlider from '@component/WidgetSlider';
 
+import { SLIDER } from './WidgetFactory.config';
+
 function WidgetFactory(props: WidgetFactoryInterface) {
     const { type } = props;
 
     const widgetMap = {
-        Slider: WidgetSlider
+        [SLIDER]: WidgetSlider
     };
 
     const Component = widgetMap[type];

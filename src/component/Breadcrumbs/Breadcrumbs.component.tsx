@@ -40,7 +40,7 @@ function BreadcrumbsComponent(): JSX.Element {
         <nav aria-label="Breadcrumbs navigation" className={ styles.wrapper }>
             <ul
               itemScope
-              itemType="http://schema.org/BreadcrumbList"
+              itemType="https://schema.org/BreadcrumbList"
               className={ styles.list }
             >
                 { renderLink({ name: 'Home', url: '/' }, -1) }
