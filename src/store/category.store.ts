@@ -1,0 +1,34 @@
+import { createSlice } from '@reduxjs/toolkit';
+
+interface categoryReducerInterface {
+    current: {
+        description: string,
+        name: string,
+        image: string
+    }
+}
+
+const getInitialState = () => {
+    if (typeof window !== 'undefined') {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        return window.__NEXT_DATA__.props.pageProps.state.category as categoryReducerInterface;
+    }
+
+    return {
+        current: {}
+    };
+};
+
+export const categoryReducer = createSlice({
+    initialState: getInitialState() as categoryReducerInterface,
+    name: 'category',
+    reducers: {
+        updateCategory: (state, action) => {
+            state.current = action.payload;
+        }
+    }
+});
+
+export const { updateCategory } = categoryReducer.actions;
+
+export default categoryReducer.reducer;

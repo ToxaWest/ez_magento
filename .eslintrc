@@ -1,11 +1,20 @@
 {
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": ["./tsconfig.json"]
+  },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "next/core-web-vitals",
     "next",
     "airbnb",
-    "plugin:array-func/recommended"
+    "airbnb-typescript",
+    "plugin:array-func/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
   ],
   "settings": {
     "next": {
@@ -15,7 +24,8 @@
   "plugins": [
     "fp",
     "simple-import-sort",
-    "react"
+    "react",
+    "@typescript-eslint"
   ],
   "env": {
     "browser": true,
@@ -23,11 +33,11 @@
     "es2021": true
   },
   "rules": {
+    "@typescript-eslint/no-misused-promises": "off",
     "fp/no-arguments": "error",
     "fp/no-loops": "error",
     "fp/no-delete": "error",
     "no-var": "error",
-    "react/forbid-prop-types": ["error", { "forbid" : ["object"]}],
     "react-hooks/exhaustive-deps": 0,
     "simple-import-sort/imports": ["error", {
       "groups": [
@@ -35,13 +45,10 @@
         // import './AddToCart.style'
         [".+\\.module.scss"],
 
-        // side effect imports (ignore styles)
-        // import 'Util/Polyfill'
-        ["(?!.*\\.style)^\\u0000"],
-
         // anything that starts with @ and lowercase
         // import PropTypes from 'prop-types';
         ["^@?[a-z]"],
+
 
         // anything but a dot
         // import { isSignedIn } from 'Util/Auth';
@@ -138,13 +145,26 @@
     "template-curly-spacing": "off",
     "computed-property-spacing": "off",
     "no-case-declarations": "off",
-    "comma-dangle": [
+    "comma-dangle": "off",
+    "@typescript-eslint/comma-dangle": [
       "error",
       "never"
     ],
     "brace-style": [2, "1tbs", {
       "allowSingleLine": false
     }],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
     "react/react-in-jsx-scope": 0,
     "react/jsx-filename-extension": 0,
     "react/prefer-stateless-function": 0,
@@ -156,6 +176,10 @@
     "import/no-cycle": ["error", {
       "maxDepth": 4
     }],
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/naming-convention": "off",
+    "@typescript-eslint/indent": 0,
     "import/no-extraneous-dependencies": "off",
     "import/no-named-as-default-member": 0,
     "no-underscore-dangle": "off",
