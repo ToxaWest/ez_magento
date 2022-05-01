@@ -34,7 +34,7 @@
       ]
     },
     "jsx": "preserve",
-    "target": "es6",
+    "target": "es2021",
     "lib": [
       "dom",
       "dom.iterable",

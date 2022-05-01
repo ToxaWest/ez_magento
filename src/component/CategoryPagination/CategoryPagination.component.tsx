@@ -1,15 +1,14 @@
-/* eslint-disable fp/no-let, fp/no-loops, no-plusplus */
 import styles from './CategoryPagination.module.scss';
 
+import { PageInfoInterface } from '@store/products.store';
 import classNames from 'classnames';
 import { useTranslations } from 'next-intl';
 
 const cx = classNames.bind(styles);
 
 interface CategoryPaginationComponentInterface {
-    page_info: { total_pages: number, current_page: number },
+    page_info: PageInfoInterface,
     pagination_frame?: number,
-    pagination_frame_skip?: number,
     anchor_text_for_previous?: string,
     anchor_text_for_next?: string,
     onPageSelect: (page: number) => void
@@ -18,7 +17,6 @@ function CategoryPaginationComponent(props: CategoryPaginationComponentInterface
     const {
         page_info: { total_pages, current_page },
         pagination_frame,
-        pagination_frame_skip,
         anchor_text_for_previous,
         anchor_text_for_next,
         onPageSelect
@@ -42,10 +40,14 @@ function CategoryPaginationComponent(props: CategoryPaginationComponentInterface
         pageNumber: number,
         children,
         isCurrent = false,
-    ) => (
+        keyOverride?: string
+    ): JSX.Element => (
             <li
-              key={ pageNumber }
-              className={ styles.CategoryPaginationListItem }
+              key={ keyOverride || pageNumber }
+              className={ cx(
+                  styles.CategoryPaginationListItem,
+                  { [styles.current]: isCurrent }
+              ) }
             >
                 <button onClick={ () => onPageSelect(pageNumber) } disabled={ isCurrent }>
                     { children }
@@ -63,6 +65,8 @@ function CategoryPaginationComponent(props: CategoryPaginationComponentInterface
         return renderPageLink(
             current_page - 1,
             anchor_text_for_previous || renderPageIcon(),
+            false,
+            'prev'
         );
     };
 
@@ -76,60 +80,60 @@ function CategoryPaginationComponent(props: CategoryPaginationComponentInterface
         return renderPageLink(
             current_page + 1,
             anchor_text_for_next || renderPageIcon(true),
+            false,
+            'next'
         );
     };
 
     const renderPageLinks = () => {
-        let pages: JSX.Element[] = [];
-        let i: number;
-
-        // Render next pagination links
-        for (i = current_page; i <= current_page + pagination_frame; i++) {
-            if (i <= total_pages && pages.length <= pagination_frame_skip) {
-                pages.push(renderPageLink(
-                    i,
-                    i.toString(),
-                    i === current_page,
-                ));
+        const range = Math.floor(pagination_frame / 2);
+        const maxPagesBeforeCurrentPage = (): number => {
+            if (current_page >= total_pages - pagination_frame) {
+                return (total_pages - current_page > range)
+                    ? current_page - (pagination_frame - range - 1)
+                    : total_pages - pagination_frame + 1;
             }
-        }
 
-        // Render previous pagination links if necessary
-        for (i = 1; i < current_page; i++) {
-            if (pages.length < pagination_frame) {
-                const id = current_page - i;
-                const pageData = renderPageLink(
-                    id,
-                    id.toString(),
-                );
+            return (current_page <= pagination_frame)
+                ? current_page - (pagination_frame - range - 1)
+                : current_page - range;
+        };
 
-                pages = [pageData, ...pages];
+        const maxPagesAfterCurrentPage = (): number => {
+            if (current_page <= pagination_frame) {
+                return current_page + range < pagination_frame ? pagination_frame : current_page + range;
             }
-        }
 
-        // Edge case for rendering correct count of next links when current page is 1
-        if (current_page === 1 && pages.length < total_pages) {
-            for (i = pages.length + 1; i <= pagination_frame; i++) {
-                pages.push(renderPageLink(
-                    i,
-                    i.toString(),
-                ));
-            }
-        }
+            return current_page >= total_pages ? total_pages : current_page + range;
+        };
 
-        return pages;
+        return Array.from({ length: total_pages })
+            .reduce((acc: JSX.Element[], _page: undefined, index: number) => {
+                const i = index + 1;
+                if (maxPagesAfterCurrentPage() >= i && maxPagesBeforeCurrentPage() <= i) {
+                    return [...acc, renderPageLink(
+                        i,
+                        i.toString(),
+                        i === current_page,
+                    )];
+                }
+
+                return acc;
+            }, []) as JSX.Element[];
     };
 
-    if (total_pages === 1) { // do not show pagination, if there are less than one page
-        return <ul className={ styles.CategoryPagination } />;
+    if (total_pages === 1) {
+        return <nav className={ styles.wrapper } />;
     }
 
     return (
         <nav className={ styles.wrapper }>
             <ul className={ styles.CategoryPagination }>
+                { renderPageLink(1, 'first') }
                 { renderPreviousPageLink() }
                 { renderPageLinks() }
                 { renderNextPageLink() }
+                { renderPageLink(total_pages, 'last') }
             </ul>
         </nav>
     );
@@ -138,8 +142,7 @@ function CategoryPaginationComponent(props: CategoryPaginationComponentInterface
 CategoryPaginationComponent.defaultProps = {
     anchor_text_for_next: '',
     anchor_text_for_previous: '',
-    pagination_frame: 5,
-    pagination_frame_skip: 0
+    pagination_frame: 5
 };
 
 export default CategoryPaginationComponent;

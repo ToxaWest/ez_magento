@@ -23,7 +23,7 @@ const removeParamsIfEmpty = (query: NextRouter['query'], params: object) => Obje
         return acc;
     }, {});
 
-const setUrlQuery = (router: NextRouter, params: object = {}) => {
+const setUrlQuery = (router: NextRouter, params: object = {}): void => {
     const {
         all,
         ...query
@@ -40,7 +40,7 @@ const setUrlQuery = (router: NextRouter, params: object = {}) => {
     ).catch(() => {});
 };
 
-export const getSelectedFiltersFromUrl = (customFilters: string) => {
+export const getSelectedFiltersFromUrl = (customFilters: string): object => {
     const selectedFiltersString = (customFilters || '').split(';');
 
     return selectedFiltersString.reduce((acc, filter) => {
@@ -52,7 +52,7 @@ export const getSelectedFiltersFromUrl = (customFilters: string) => {
             ...acc,
             [key]: value.split(',')
         };
-    }, {}) as object;
+    }, {});
 };
 
 const _getNewSelectedFiltersString = (filterName: string, filterArray: (string | number)[], prev: object = {}) => {
@@ -62,15 +62,15 @@ const _getNewSelectedFiltersString = (filterName: string, filterArray: (string |
     };
 
     return Object.entries(customFilers)
-        .reduce((accumulator, [filterKey, filterValue]) => {
+        .reduce((accumulator: string[], [filterKey, filterValue]) => {
             if (filterValue.length) {
                 const filterValues = filterValue.sort()
                     .join(',');
 
-                accumulator.push(`${filterKey}:${filterValues}`);
+                return [...accumulator, `${filterKey}:${filterValues}`];
             }
 
-            return accumulator as string[];
+            return accumulator;
         }, [])
         .sort()
         .join(';');
@@ -79,7 +79,7 @@ const _getNewSelectedFiltersString = (filterName: string, filterArray: (string |
 const setFilterAttribute = (router: NextRouter, {
     code,
     value
-}: { code: string, value: string | number }) => {
+}: { code: string, value: string | number }): void => {
     const { query: { customFilters } } = router;
     if (!customFilters) {
         setUrlQuery(router, {
@@ -109,25 +109,18 @@ const configureAttributesForRequest = (customFilters: string) => {
     const selected = getSelectedFiltersFromUrl(decodeURIComponent(customFilters));
 
     return Object.entries(selected)
-        .reduce((acc, [key, value]) => {
-            acc[key] = {
-                in: value
-            };
-
-            return acc;
-        }, {});
+        .reduce((acc, [key, value]) => ({ ...acc, [key]: { in: value } }), {});
 };
 
 const getIsFilterSelected = (router: NextRouter, {
     code,
     value
-}: { code: string, value: string | number }) => {
-    const { query: { customFilters } } = router;
+}: { code: string, value: string | number }): boolean => {
+    const { query: { customFilters } } = router as { query: { customFilters?: string } };
     if (!customFilters) {
         return false;
     }
-    const uriComponent: string = typeof customFilters === 'string' ? customFilters : customFilters[0];
-    const selected = getSelectedFiltersFromUrl(decodeURIComponent(uriComponent));
+    const selected = getSelectedFiltersFromUrl(decodeURIComponent(customFilters));
 
     const current = selected[code] as string[];
 

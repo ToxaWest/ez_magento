@@ -39,8 +39,6 @@ function AccountPageContainer() {
             if (tab === DEFAULT_ACCOUNT_TAB) {
                 throw new Error('Please add component for default account tab');
             }
-            // eslint-disable-next-line no-console
-            console.log(`${tab} - not specified, redirect to default account tab`);
             router.push({
                 pathname: ACCOUNT_ROUTE_PATHNAME,
                 query: {

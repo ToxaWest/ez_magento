@@ -5,39 +5,47 @@ export interface availableStoreInterface {
  lang_prefix: string, store_name: string, default_display_currency_code: string
 }
 
+export interface StoreConfigInterface {
+    content_customization_header_menu?: string,
+    logo_alt: string,
+    secure_base_url: string,
+    logo_height: number,
+    logo_width: number,
+    header_logo_src: string,
+    name: string,
+    lang_prefix: string,
+    pagination_frame: number,
+    pagination_frame_skip: number,
+    anchor_text_for_previous?: string,
+    anchor_text_for_next?: string
+    show_cms_breadcrumbs: boolean,
+    cms_home_page?: string | undefined | null,
+    guest_checkout: boolean,
+    default_country: string,
+    address_lines_quantity: number,
+    region_display_all: boolean,
+    store_code: string,
+    secure_base_media_url: string,
+    base_url: string,
+    locale: string
+}
+
+export interface MenuInterface {
+    children: menuItemInterface[],
+    item_id: string,
+    parent_id: number,
+    title: string,
+    url: string
+}
+
+export interface MenuNormalizedInterface {
+    [key: string]: MenuInterface[]
+}
+
 export interface configReducerInterface {
     availableStores: availableStoreInterface[],
-    config: {
-        logo_alt: string,
-        secure_base_url: string,
-        logo_height: number,
-        logo_width: number,
-        header_logo_src: string,
-        name: string,
-        lang_prefix: string,
-        pagination_frame: number,
-        pagination_frame_skip: number,
-        anchor_text_for_previous?: string,
-        anchor_text_for_next?: string
-        show_cms_breadcrumbs: boolean,
-        cms_home_page?: string | undefined | null,
-        guest_checkout: boolean,
-        default_country: string,
-        address_lines_quantity: number,
-        region_display_all: boolean,
-        secure_base_media_url: string,
-        base_url: string,
-        locale: string
-    },
-    menu: {
-        [key: string]: {
-            children: menuItemInterface[],
-            item_id: string,
-            parent_id: number,
-            title: string,
-            url: string
-        }[]
-    }
+    config: StoreConfigInterface,
+    menu: MenuNormalizedInterface
 }
 
 const getInitialState = () => {
@@ -84,7 +92,7 @@ export const configReducer = createSlice({
                 return acc;
             }, {});
 
-            const category_menu = payload.reduce((acc, item) => {
+            const category_menu = payload.reduce((acc: MenuInterface[], item: menuChildInterface) => {
                 const {
                     item_id,
                     children
@@ -95,15 +103,15 @@ export const configReducer = createSlice({
                     children: _normalizeChild(children, item_id),
                     item_id: item_id.toString(),
                     parent_id: 0
-                }] as object[];
-            }, []);
+                }];
+            }, []) as MenuInterface[];
 
             state.menu = { ...state.menu, ...{ category_menu } };
         },
-        updateConfig: (state, action) => {
-            state.config = action.payload;
+        updateConfig: (state, { payload }: { payload: StoreConfigInterface }) => {
+            state.config = payload;
         },
-        updateMenu: (state, { payload }) => {
+        updateMenu: (state, { payload }: { payload: MenuNormalizedInterface }) => {
             state.menu = { ...state.menu, ...payload };
         },
         updateStoreList: (state, { payload }) => {

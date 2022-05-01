@@ -7,7 +7,7 @@ function ProductPriceComponent(props: { price_range: ProductPriceRangeInterface 
     const { price_range: { maximum_price, minimum_price } } = props;
     const { discount: { percent_off }, final_price } = maximum_price;
     const isRenderRange = final_price.value !== minimum_price.final_price.value;
-    const { lang_prefix } = useSelector((state: RootState) => state.config.config);
+    const locale = useSelector((state: RootState) => state.config.config.locale.replace('_', '-'));
 
     const renderDiscount = () => {
         if (percent_off) {
@@ -21,13 +21,13 @@ function ProductPriceComponent(props: { price_range: ProductPriceRangeInterface 
         if (isRenderRange) {
             return (
                 <div>
-                    <span>{ getFinalPrice(minimum_price.final_price, lang_prefix) }</span>
-                    <span>{ getFinalPrice(final_price, lang_prefix) }</span>
+                    <span>{ getFinalPrice(minimum_price.final_price, locale) }</span>
+                    <span>{ getFinalPrice(final_price, locale) }</span>
                 </div>
             );
         }
 
-        return <span>{ getFinalPrice(final_price, lang_prefix) }</span>;
+        return <span>{ getFinalPrice(final_price, locale) }</span>;
     };
 
     return (

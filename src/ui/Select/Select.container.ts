@@ -29,9 +29,12 @@ function SelectContainer(props: SelectContainerInterface): ReactElement {
     const inputRef = useRef<HTMLInputElement>();
 
     const setFocus = (childIndex: number) => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        optionRef.current.children[childIndex].focus();
+        const child = optionRef.current.children[childIndex] as HTMLElement;
+        if (child) {
+            child.focus({
+                preventScroll: true
+            });
+        }
     };
 
     useEffect(() => {
@@ -113,7 +116,9 @@ function SelectContainer(props: SelectContainerInterface): ReactElement {
             return;
         }
 
-        inputRef.current.focus();
+        inputRef.current.focus({
+            preventScroll: true
+        });
     };
 
     const containerProps = {

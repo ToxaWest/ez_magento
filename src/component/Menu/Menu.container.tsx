@@ -1,6 +1,6 @@
 import MenuComponent from '@component/Menu/Menu.component';
 import { RootState } from '@store/index';
-import { addToActive, checkActive, removeFromActive } from '@util/Menu/Menu';
+import { addToActive, checkActive, removeFromActive } from '@util/Menu';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 

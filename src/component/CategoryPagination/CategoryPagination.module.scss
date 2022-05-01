@@ -1,6 +1,12 @@
 .wrapper {
   grid-area: CategoryPagination;
 }
+
+.current {
+  button {
+    color: red;
+  }
+}
 .CategoryPagination {
   display: flex;
   justify-content: center;

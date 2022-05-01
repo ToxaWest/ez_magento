@@ -15,6 +15,7 @@ query StoreConfig {
         }
     }
     storeConfig {
+        content_customization_header_menu
         cms_home_page
         secure_base_media_url
         base_url

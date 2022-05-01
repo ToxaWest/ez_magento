@@ -8,11 +8,11 @@ import {
     CmsPageInterface, SliderInterface, updatePage, updateWidget
 } from '@store/cms';
 import {
-    menuChildInterface,
+    menuChildInterface, StoreConfigInterface,
     updateCategoryMenu, updateConfig, updateMenu, updateStoreList
 } from '@store/config';
 import store, { StateType } from '@store/index';
-import menuUtil, { unsortedItemsInterface } from '@util/Menu/Menu';
+import { normalizeMenu, unsortedItemsInterface } from '@util/Menu';
 import { getErrorMessage } from '@util/Request';
 import client from '@util/Request/apolloClient';
 import { set } from 'cookie-cutter';
@@ -97,13 +97,18 @@ export default class SPAbstract {
                 categoryMenu
             }
         }: ApolloQueryResult<{
-            storeConfig: { store_code: string },
+            storeConfig: StoreConfigInterface,
             categoryMenu: menuChildInterface[]
         }> = await this.request(configQuery.config);
+        const { store_code, content_customization_header_menu } = storeConfig;
+
+        if (content_customization_header_menu) {
+            await this.getMenu(content_customization_header_menu);
+        }
 
         this.store.dispatch(updateConfig({
             ...storeConfig,
-            lang_prefix: getLangPrefix(storeConfig.store_code)
+            lang_prefix: getLangPrefix(store_code)
         }));
 
         this.store.dispatch(updateCategoryMenu(categoryMenu));
@@ -224,7 +229,7 @@ export default class SPAbstract {
         this.store.dispatch(updatePage(cmsPage));
     }
 
-    async getMenu(identifier) {
+    async getMenu(identifier: string) {
         const { data: { scandiwebMenu } }:ApolloQueryResult<{
             scandiwebMenu: {
                 items: unsortedItemsInterface[]
@@ -232,7 +237,7 @@ export default class SPAbstract {
         }> = await this.request(configQuery.menu, { identifier });
 
         this.store.dispatch(updateMenu({
-            [identifier]: Object.values(menuUtil.reduce(scandiwebMenu))
+            [identifier]: [normalizeMenu(scandiwebMenu)]
         }));
     }
 
