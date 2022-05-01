@@ -1,3 +1,4 @@
+import { isAbsoluteUrl, isSpecialLink } from '@util/Link';
 import Link from 'next/link';
 import { ReactElement } from 'react';
 
@@ -14,9 +15,6 @@ function LinkComponent({
     className,
     children
 }: LinkComponentInterface) {
-    const isAbsoluteUrl = (value: string) => /^(?:[a-z]+:)?\/\//i.test(value);
-    const isSpecialLink = (value: string) => /^(sms|tel|mailto):/i.test(value);
-
     if (!isAbsoluteUrl(href) && !isSpecialLink(href)) {
         return <a className={ className } href={ href } title={ title }>{ children }</a>;
     }

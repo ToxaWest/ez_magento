@@ -48,14 +48,11 @@ export function SliderContainer(props: SliderContainerInterface): ReactElement {
         const init = () => {
             const w = sliderRef.current.offsetWidth;
             Array.from(sliderRef.current.children)
-                .forEach((c: HTMLElement) => {
+                .forEach((state: HTMLElement) => {
                     const width = `${w / slidesToShow}px`;
-                    // eslint-disable-next-line no-param-reassign
-                    c.style.minWidth = width;
-                    // eslint-disable-next-line no-param-reassign
-                    c.style.maxWidth = width;
-                    // eslint-disable-next-line no-param-reassign
-                    c.style.width = width;
+                    state.style.minWidth = width;
+                    state.style.maxWidth = width;
+                    state.style.width = width;
                 });
         };
 
@@ -68,13 +65,13 @@ export function SliderContainer(props: SliderContainerInterface): ReactElement {
 
     const [x, setX] = useState<number>(0);
 
-    const goTo = (index: number) => {
+    const goTo = (index: number): void => {
         const w = sliderRef.current.offsetWidth / slidesToShow;
         setX((index) * -w);
         setCurrent(index);
     };
 
-    const getCorrectIndex = (index: number) => {
+    const getCorrectIndex = (index: number): number => {
         const length: number = children.length - 1;
         if (index > length) {
             return infinity ? 0 : current;

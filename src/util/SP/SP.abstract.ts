@@ -9,10 +9,10 @@ import {
 } from '@store/cms';
 import {
     menuChildInterface, StoreConfigInterface,
-    updateCategoryMenu, updateConfig, updateMenu, updateStoreList
+    updateConfig, updateMenu, updateStoreList
 } from '@store/config';
 import store, { StateType } from '@store/index';
-import { normalizeMenu, unsortedItemsInterface } from '@util/Menu';
+import { normalizeCategoryMenu, normalizeMenu, unsortedItemsInterface } from '@util/Menu';
 import { getErrorMessage } from '@util/Request';
 import client from '@util/Request/apolloClient';
 import { set } from 'cookie-cutter';
@@ -100,18 +100,20 @@ export default class SPAbstract {
             storeConfig: StoreConfigInterface,
             categoryMenu: menuChildInterface[]
         }> = await this.request(configQuery.config);
-        const { store_code, content_customization_header_menu } = storeConfig;
+        const { store_code } = storeConfig;
 
-        if (content_customization_header_menu) {
-            await this.getMenu(content_customization_header_menu);
-        }
+        // if (content_customization_header_menu) {
+        //     await this.getMenu(content_customization_header_menu);
+        // }
 
         this.store.dispatch(updateConfig({
             ...storeConfig,
             lang_prefix: getLangPrefix(store_code)
         }));
 
-        this.store.dispatch(updateCategoryMenu(categoryMenu));
+        const category_menu = normalizeCategoryMenu(categoryMenu);
+
+        this.store.dispatch(updateMenu({ category_menu }));
     }
 
     updateClientBasedOnStore({

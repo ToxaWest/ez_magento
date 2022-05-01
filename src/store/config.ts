@@ -71,43 +71,6 @@ export const configReducer = createSlice({
     initialState: getInitialState() as configReducerInterface,
     name: 'config',
     reducers: {
-        updateCategoryMenu: (state, { payload }:{ payload: menuChildInterface[] }) => {
-            const _normalizeChild = (children: menuChildInterface[], parent_id) => children.reduce((acc, item) => {
-                const {
-                    item_id,
-                    children: child,
-                    include_in_menu
-                } = item;
-
-                if (!include_in_menu) {
-                    return acc;
-                }
-                acc[item_id] = {
-                    ...item,
-                    children: _normalizeChild(child, item_id),
-                    item_id: item_id.toString(),
-                    parent_id
-                };
-
-                return acc;
-            }, {});
-
-            const category_menu = payload.reduce((acc: MenuInterface[], item: menuChildInterface) => {
-                const {
-                    item_id,
-                    children
-                } = item;
-
-                return [...acc, {
-                    ...item,
-                    children: _normalizeChild(children, item_id),
-                    item_id: item_id.toString(),
-                    parent_id: 0
-                }];
-            }, []) as MenuInterface[];
-
-            state.menu = { ...state.menu, ...{ category_menu } };
-        },
         updateConfig: (state, { payload }: { payload: StoreConfigInterface }) => {
             state.config = payload;
         },
@@ -123,8 +86,7 @@ export const configReducer = createSlice({
 export const {
     updateConfig,
     updateMenu,
-    updateStoreList,
-    updateCategoryMenu
+    updateStoreList
 } = configReducer.actions;
 
 export default configReducer.reducer;

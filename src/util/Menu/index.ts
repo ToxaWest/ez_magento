@@ -1,4 +1,4 @@
-import { MenuInterface } from '@store/config';
+import { menuChildInterface, MenuInterface } from '@store/config';
 
 export interface unsortedItemsInterface { parent_id: number, position: number, item_id: number }
 
@@ -55,4 +55,36 @@ export const normalizeMenu = ({ items }: { items: unsortedItemsInterface[] }): M
     const result = items.find(({ parent_id }) => parent_id === 0);
 
     return getChild(result);
+};
+
+export const getCategoryItem = ({ children, item_id, ...item } : menuChildInterface, parent_id: number) => {
+    const _normalizeCategoryChild = (n_children: menuChildInterface[], n_parent_id: number) => n_children
+        .reduce((acc, n_item) => {
+            const {
+                item_id: n_item_id,
+                include_in_menu
+            } = n_item;
+
+            if (!include_in_menu) {
+                return acc;
+            }
+
+            return {
+                ...acc,
+                [n_item_id]: getCategoryItem(n_item, n_parent_id)
+            };
+        }, {}) as MenuInterface;
+
+    return {
+        ...item,
+        children: _normalizeCategoryChild(children, item_id),
+        item_id: item_id.toString(),
+        parent_id
+    };
+};
+
+export const normalizeCategoryMenu = (categoryMenu: menuChildInterface[]) => {
+    const item = categoryMenu[0];
+
+    return [getCategoryItem(item, 0)] as MenuInterface[];
 };

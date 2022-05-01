@@ -1,4 +1,5 @@
 import useUrl from '@hook/useUrl';
+import { isAbsoluteUrl } from '@util/Link';
 import { ReactElement } from 'react';
 
 import ImageComponent from './Image.component';
@@ -26,8 +27,6 @@ function ImageContainer(props: ImageContainerInterface): ReactElement {
     const { getUrl } = useUrl();
 
     const _getCorrectUrl = () => {
-        const isAbsoluteUrl = (value: string) => /^(?:[a-z]+:)?\/\//i.test(value);
-
         if (isAbsoluteUrl(url)) {
             return url;
         }

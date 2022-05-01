@@ -11,6 +11,9 @@ const hrefDoctor = (href?: string) => {
     return `/${href}`;
 };
 
+const isAbsoluteUrl = (value: string) => /^(?:[a-z]+:)?\/\//i.test(value);
+const isSpecialLink = (value: string) => /^(sms|tel|mailto):/i.test(value);
+
 const removeParamsIfEmpty = (query: NextRouter['query'], params: object) => Object.entries({ ...query, ...params })
     .reduce((acc, [key, value]) => {
         // eslint-disable-next-line no-prototype-builtins
@@ -132,6 +135,8 @@ const getIsFilterSelected = (router: NextRouter, {
 };
 
 export {
+    isAbsoluteUrl,
+    isSpecialLink,
     getIsFilterSelected,
     configureAttributesForRequest,
     setFilterAttribute,
