@@ -31,7 +31,7 @@ function SliderComponent(props: SliderComponentInterface) {
         }
 
         return (
-            <div style={ { display: 'flex' } } role="listbox" aria-label="Slider dots">
+            <div className={ styles.dots } role="listbox" aria-label="Slider dots">
                 { children.map((child, index) => (
                     <div
                       key={ child.key }
@@ -39,10 +39,9 @@ function SliderComponent(props: SliderComponentInterface) {
                       tabIndex={ 0 }
                       aria-selected={ index === current }
                       onClick={ () => goTo(index) }
+                      aria-label={ (index + 1).toString() }
                       onKeyDown={ notInteractiveClick }
-                    >
-                        { index + 1 }
-                    </div>
+                    />
                 )) }
             </div>
         );
@@ -80,6 +79,7 @@ function SliderComponent(props: SliderComponentInterface) {
                   y: 0
               } }
               disabled={ !draggable }
+              defaultClassNameDragging={ styles.Dragging }
               nodeRef={ sliderRef }
               onStop={ (e, { x: posX }) => setX(posX) }
             >

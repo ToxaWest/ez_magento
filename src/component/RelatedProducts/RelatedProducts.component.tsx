@@ -6,6 +6,10 @@ import { useSelector } from 'react-redux';
 function RelatedProductsComponent() {
     const { singleProduct: { related_products } } = useSelector((state: RootState) => state.products);
 
+    if (!related_products.length) {
+        return null;
+    }
+
     return (
         <div style={ { gridArea: 'relatedProducts' } }>
             <span>related products</span>

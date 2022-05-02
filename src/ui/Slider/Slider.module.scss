@@ -2,10 +2,24 @@
   width: 100%;
   grid-area: slider;
   overflow-x: hidden;
-  :global {
-    .react-draggable-dragging {
-      transition-duration: unset!important;
+}
+
+.Dragging{
+  transition-duration: unset!important;
+}
+
+.dots {
+  display: flex;
+  div {
+    &[aria-selected="true"]{
+      background-color: #fff;
     }
+    width: 15px;
+    padding: 5px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: var(--theme-color-secondary);
+    cursor: pointer;
   }
 }
 

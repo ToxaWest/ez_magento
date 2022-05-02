@@ -1,6 +1,6 @@
 import useUrl from '@hook/useUrl';
 import { isAbsoluteUrl } from '@util/Link';
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 
 import ImageComponent from './Image.component';
 
@@ -25,6 +25,8 @@ function ImageContainer(props: ImageContainerInterface): ReactElement {
     } = props;
 
     const { getUrl } = useUrl();
+    const [{ naturalHeight, naturalWidth }, setParams] = useState<
+        { naturalHeight: number, naturalWidth: number }>({ naturalWidth: width, naturalHeight: height });
 
     const _getCorrectUrl = () => {
         if (isAbsoluteUrl(url)) {
@@ -35,8 +37,12 @@ function ImageContainer(props: ImageContainerInterface): ReactElement {
     };
 
     const _getWrapperStyle = () => {
-        if (width && height) {
-            return { paddingBottom: `${((height / width) * DEFAULT_PADDING).toFixed(0)}%` };
+        if (naturalHeight && naturalWidth) {
+            return {
+                '--image-padding-bottom': `${
+                    ((naturalHeight / naturalWidth) * DEFAULT_PADDING).toFixed(0)
+                }%`
+            };
         }
 
         return {};
@@ -45,6 +51,7 @@ function ImageContainer(props: ImageContainerInterface): ReactElement {
     const componentProps = {
         alt,
         className,
+        setParams,
         url: _getCorrectUrl(),
         wrapperStyle: _getWrapperStyle()
     };
