@@ -45,7 +45,7 @@ function CheckoutPaymentMethodsComponent() {
             <ul className={ styles.wrapper }>
                 { available_payment_methods.map(renderPaymentMethod) }
             </ul>
-            <button onClick={ placeOrder } disabled={ !selected_payment_method.code }>Place order</button>
+            <button onClick={ placeOrder } disabled={ !selected_payment_method?.code }>Place order</button>
         </div>
     );
 }

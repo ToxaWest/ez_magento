@@ -34,6 +34,7 @@ function MenuComponent({ menu, toggle, isActive }: MenuComponentInterface) {
         return (
             <li
               key={ item_id }
+              role="menuitem"
               className={ cx(
                   styles.menu_item,
                   styles[`level_${level}`],
@@ -54,12 +55,14 @@ function MenuComponent({ menu, toggle, isActive }: MenuComponentInterface) {
               aria-label="toggle"
             />
             <div className={ cx(styles.child_wrapper) }>
-                <ul className={ cx(
-                    styles.menu_child,
-                    {
-                        [styles.menu_child_active]: isActive(item_id)
-                    }
-                ) }
+                <ul
+                  role="menu"
+                  className={ cx(
+                      styles.menu_child,
+                      {
+                          [styles.menu_child_active]: isActive(item_id)
+                      }
+                  ) }
                 >
                 { items.map((i) => renderMenuItem(i, level + 1)) }
                 </ul>
@@ -68,7 +71,7 @@ function MenuComponent({ menu, toggle, isActive }: MenuComponentInterface) {
     );
 
     return (
-        <ul className={ styles.menu }>
+        <ul className={ styles.menu } role="menu">
           { Object.values(menu).map((i) => renderMenuItem(i, 0)) }
         </ul>
     );

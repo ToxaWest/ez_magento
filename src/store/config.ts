@@ -27,7 +27,13 @@ export interface StoreConfigInterface {
     store_code: string,
     secure_base_media_url: string,
     base_url: string,
-    locale: string
+    locale: string,
+    title_prefix: string,
+    title_suffix: string,
+    title_separator: string,
+    default_title: string,
+    default_description: string,
+    default_keywords: string
 }
 
 export interface MenuInterface {

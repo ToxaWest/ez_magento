@@ -1,4 +1,5 @@
 import SliderComponent from '@ui/Slider/Slider.component';
+import { NextRouter, useRouter } from 'next/router';
 import {
     createElement,
     ReactElement, useEffect, useRef, useState
@@ -42,6 +43,7 @@ export function SliderContainer(props: SliderContainerInterface): ReactElement {
     } = { ...defaultSettings, ...settings };
 
     const sliderRef = useRef<HTMLDivElement>();
+    const router: NextRouter = useRouter();
     const [current, setCurrent] = useState<number>(0);
 
     useEffect(() => {
@@ -57,8 +59,10 @@ export function SliderContainer(props: SliderContainerInterface): ReactElement {
         };
 
         init();
+        router.events.on('routeChangeComplete', init);
         window.addEventListener('resize', init);
         return () => {
+            router.events.off('routeChangeComplete', init);
             window.removeEventListener('resize', init);
         };
     }, []);

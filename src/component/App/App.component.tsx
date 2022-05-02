@@ -1,15 +1,16 @@
 import Breadcrumbs from '@component/Breadcrumbs';
 import Header from '@component/Header';
+import Meta from '@component/Meta';
 import Notifications from '@component/Notifications';
 import Loader from '@ui/Loader';
 import { ReactElement } from 'react';
 
-interface AppComponentInterface {
+export interface AppComponentInterface {
     loading: boolean,
     children?: ReactElement
 }
 
-function AppComponent(props: AppComponentInterface): ReactElement {
+function AppComponent(props: AppComponentInterface): JSX.Element {
     const {
         loading,
         children
@@ -28,6 +29,7 @@ function AppComponent(props: AppComponentInterface): ReactElement {
     return (
         <>
             <Loader isLoading={ loading } isMain />
+            <Meta />
             <Notifications />
             <Header />
             <main>

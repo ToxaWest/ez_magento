@@ -1,22 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export interface PageInfoInterface {
-    total_pages: number, current_page: number
-}
-
 interface productsReducerInterface {
     productList: {
         items: ProductInterface[]
     },
-    productsInformation: {
-        aggregations: AggregationsInterface[],
-        page_info: PageInfoInterface,
-        total_count: number,
-        sort_fields: {
-            default: string,
-            options: { value: string, label: string }[]
-        }
-    },
+    productsInformation: ProductsInformationInterface,
     singleProduct: ProductInterface
 }
 

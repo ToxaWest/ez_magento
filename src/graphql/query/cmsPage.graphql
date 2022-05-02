@@ -2,5 +2,8 @@ query CmsPage($identifier: String, $id: Int) {
     cmsPage(identifier: $identifier, id: $id){
         content
         title
+        meta_description
+        meta_keywords
+        meta_title
     }
 }

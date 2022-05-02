@@ -4,14 +4,9 @@ import {
     getProductsBreadcrumbs
 } from '@util/Breadcrumbs';
 
-export interface breadcrumbInterface {
-    url: string,
-    name: string
-}
-
 export interface breadcrumbsInterface {
-    breadcrumbs: Array<breadcrumbInterface>,
-    current: breadcrumbInterface,
+    breadcrumbs: BreadcrumbInterface[],
+    current: BreadcrumbInterface,
     showBreadcrumbs: boolean
 }
 
@@ -39,11 +34,7 @@ export const breadcrumbsReducer = createSlice({
             state.showBreadcrumbs = false;
         },
         updateCategoryBreadcrumbs: (state, {
-            payload: {
-                name,
-                breadcrumbs,
-                url
-            }
+            payload: { name, breadcrumbs, url }
         }: PayloadAction<CategoryInterface>) => {
             state.breadcrumbs = _normalizeBreadcrumb(breadcrumbs);
             state.showBreadcrumbs = true;
@@ -53,11 +44,7 @@ export const breadcrumbsReducer = createSlice({
             };
         },
         updateProductsBreadcrumbs: (state, {
-            payload: {
-                name,
-                categories,
-                url
-            }
+            payload: { name, categories, url }
         }: PayloadAction<ProductInterface>) => {
             state.breadcrumbs = getProductsBreadcrumbs(categories);
             state.showBreadcrumbs = true;

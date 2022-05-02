@@ -8,6 +8,8 @@ query categoryList($id: String, $id_list: [String]){
             category_url
             category_name
         }
+        uid
+        url
         meta_title
         meta_description
         meta_keywords

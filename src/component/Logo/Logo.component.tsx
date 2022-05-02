@@ -35,7 +35,7 @@ const LogoComponent = () => {
 
     return wrapper(
         <Image
-          alt={ logo_alt }
+          alt={ logo_alt || 'ez magento' }
           src={ getSrc() }
           width={ logo_width }
           height={ logo_height }

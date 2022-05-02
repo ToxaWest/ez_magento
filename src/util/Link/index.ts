@@ -1,18 +1,18 @@
 import { NextRouter } from 'next/router';
 
+const isAbsoluteUrl = (value: string) => /^(?:[a-z]+:)?\/\//i.test(value);
+const isSpecialLink = (value: string) => /^(sms|tel|mailto):/i.test(value);
+
 const hrefDoctor = (href?: string) => {
     if (!href) {
         return '/';
     }
-    if (href.startsWith('/')) {
+    if (href.startsWith('/') || isAbsoluteUrl(href)) {
         return href;
     }
 
     return `/${href}`;
 };
-
-const isAbsoluteUrl = (value: string) => /^(?:[a-z]+:)?\/\//i.test(value);
-const isSpecialLink = (value: string) => /^(sms|tel|mailto):/i.test(value);
 
 const removeParamsIfEmpty = (query: NextRouter['query'], params: object) => Object.entries({ ...query, ...params })
     .reduce((acc, [key, value]) => {

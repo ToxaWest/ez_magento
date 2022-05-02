@@ -1,8 +1,9 @@
 import { ApolloError, ApolloQueryResult } from '@apollo/client';
-import { CATALOG_LINK_LIST, SLIDER } from '@component/WidgetFactory/WidgetFactory.config';
+import { CATALOG_LINK_LIST, CATALOG_PRODUCT_LIST, SLIDER } from '@component/WidgetFactory/WidgetFactory.config';
 import categoryQuery from '@query/category.query';
 import configQuery from '@query/config.query';
 import pageQuery from '@query/page.query';
+import productQuery from '@query/product.query';
 import { hideBreadcrumbs } from '@store/breadcrumbs.store';
 import {
     CmsPageInterface, SliderInterface, updatePage, updateWidget
@@ -100,6 +101,7 @@ export default class SPAbstract {
             storeConfig: StoreConfigInterface,
             categoryMenu: menuChildInterface[]
         }> = await this.request(configQuery.config);
+
         const { store_code } = storeConfig;
 
         // if (content_customization_header_menu) {
@@ -199,6 +201,15 @@ export default class SPAbstract {
                 }> = await this.request(categoryQuery.category, { id_list });
 
                 this.store.dispatch(updateWidget({ [id_paths]: categoryList }));
+            },
+            [CATALOG_PRODUCT_LIST]: async ({ conditions_encoded, page_var_name }: WidgetProductListInterface) => {
+                const { data: { products } } = await this.request(productQuery.productList, {
+                    filter: {
+                        conditions: { eq: conditions_encoded }
+                    }
+                });
+
+                this.store.dispatch(updateWidget({ [page_var_name]: products }));
             }
         };
 

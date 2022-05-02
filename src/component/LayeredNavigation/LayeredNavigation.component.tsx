@@ -51,7 +51,7 @@ function LayeredNavigationComponent(props: LayeredNavigationComponentInterface) 
                 <ExpandableContent
                   heading={ `${label} (${count})` }
                 >
-                    <ul>
+                    <ul role="listbox" aria-label="Layer Navigation options">
                         { options.map((option) => renderOption(option, attribute_code)) }
                     </ul>
                 </ExpandableContent>

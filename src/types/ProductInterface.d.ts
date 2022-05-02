@@ -47,5 +47,20 @@ declare interface ProductInterface {
   small_image: SmallImageInterface,
   url: string,
   __typename: 'SimpleProduct',
-  categories: CategoryInterface[]
+  categories: CategoryInterface[],
+  related_products: ProductInterface[]
+}
+
+declare interface PageInfoInterface {
+  total_pages: number, current_page: number
+}
+
+declare interface ProductsInformationInterface {
+  aggregations: AggregationsInterface[],
+  page_info: PageInfoInterface,
+  total_count: number,
+  sort_fields: {
+    default: string,
+    options: { value: string, label: string }[]
+  }
 }

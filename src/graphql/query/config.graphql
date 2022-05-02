@@ -15,14 +15,18 @@ query StoreConfig {
         }
     }
     storeConfig {
+        title_prefix
+        title_suffix
+        title_separator
+        default_title
+        default_description
+        default_keywords
         content_customization_header_menu
         cms_home_page
         secure_base_media_url
         base_url
         head_shortcut_icon
         copyright
-        default_title
-        default_description
         guest_checkout
         default_country
         address_lines_quantity

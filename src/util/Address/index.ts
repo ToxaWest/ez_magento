@@ -30,7 +30,7 @@ interface _normalizeStreetFieldsInterface {
 }
 
 export const _normalizeStreetFields = (street:
-    _normalizeStreetFieldsInterface[]) => street.reduce((acc, value, index) => (
+    _normalizeStreetFieldsInterface[]) => (street || []).reduce((acc, value, index) => (
     { ...acc, [`street${index}`]: value }
 ), {});
 
@@ -39,7 +39,7 @@ interface _normalizeRegionInterface {
     label:string
 }
 
-export const _normalizeRegion = (region: _normalizeRegionInterface) => {
+export const _normalizeRegion = (region: _normalizeRegionInterface = { region_id: null, label: '' }) => {
     const { region_id, label } = region;
     if (region_id) {
         return { region_id };

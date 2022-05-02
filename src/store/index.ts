@@ -5,12 +5,14 @@ import cartReducer from '@store/cart.store';
 import categoryReducer from '@store/category.store';
 import cmsReducer from '@store/cms';
 import configReducer from '@store/config';
+import metaReducer from '@store/meta.store';
 import notificationsReducer from '@store/notifiactions';
 import popupReducer from '@store/popup';
 import productsReducer from '@store/products.store';
 
 const store = configureStore({
     reducer: {
+        meta: metaReducer,
         account: accountReducer,
         breadcrumbs: breadcrumbsReducer,
         cart: cartReducer,

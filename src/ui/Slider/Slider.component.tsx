@@ -31,7 +31,7 @@ function SliderComponent(props: SliderComponentInterface) {
         }
 
         return (
-            <div style={ { display: 'flex' } }>
+            <div style={ { display: 'flex' } } role="listbox" aria-label="Slider dots">
                 { children.map((child, index) => (
                     <div
                       key={ child.key }

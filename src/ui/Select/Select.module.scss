@@ -2,6 +2,12 @@
   grid-area: select;
   display: inline-block;
 
+  label {
+    &:before , &:after{
+      display: none;
+    }
+  }
+
   input {
     &[type='hidden'] {
       display: none;

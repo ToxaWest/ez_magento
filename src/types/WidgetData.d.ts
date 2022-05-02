@@ -9,4 +9,13 @@ declare interface WidgetLinkInterface {
     title: string
 }
 
-declare type WidgetFactoryInterface = WidgetLinkInterface | WidgetSliderInterface;
+declare interface WidgetProductListInterface {
+    type: string
+    conditions_encoded: string
+    page_var_name: string
+    products_per_page: number
+    show_pager: number
+    title: string
+}
+
+declare type WidgetFactoryInterface = WidgetLinkInterface | WidgetSliderInterface | WidgetProductListInterface;

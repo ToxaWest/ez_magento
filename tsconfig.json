@@ -53,10 +53,12 @@
     "isolatedModules": true
   },
   "exclude": [
+    "schema.graphql",
     "node_modules",
     ".next"
   ],
   "include": [
+    "next.config.js",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"

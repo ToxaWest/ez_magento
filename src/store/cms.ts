@@ -15,7 +15,7 @@ export interface SliderInterface {
 }
 
 export interface WidgetInterface {
-    [key: string]: SliderInterface | CategoryInterface[]
+    [key: string]: SliderInterface | CategoryInterface[] | { items: ProductInterface[] }
 }
 
 interface cmsReducerInterface {

@@ -1,6 +1,9 @@
-// eslint-disable-next-line import/prefer-default-export
-export const getAttributeValue = ({ attribute_type, attribute_value, attribute_options }:
-    SAttributesInterface): string => {
+import { childSortInterface } from '@component/ProductCard/ProductCard.types';
+import { cloneElement, createElement, ReactElement } from 'react';
+
+export const getAttributeValue = ({
+    attribute_type, attribute_value, attribute_options
+}: SAttributesInterface): string | ReactElement => {
     if (attribute_type === 'text') {
         return attribute_value;
     }
@@ -28,7 +31,39 @@ export const getAttributeValue = ({ attribute_type, attribute_value, attribute_o
         return attribute_value;
     }
 
+    if (attribute_type === 'file') {
+        const isVideo = /(.+\/)+.+(\.(swf|avi|flv|mpg|rm|mov|wav|asf|3gp|mkv|rmvb|mp4))$/i.test(attribute_value);
+        if (isVideo) {
+            return createElement('video', {
+                controls: true,
+                preload: 'none',
+                style: { maxWidth: '100%', width: '300px' },
+                src: `${process.env.NEXT_PUBLIC_API_URL }/media/catalog/product${ attribute_value}`
+            });
+        }
+    }
+
     // eslint-disable-next-line no-console
     console.log(`Attribute type not rendered: ${ attribute_type}`);
     return '';
+};
+
+export const sortedRender = (
+    [key, value]: [string, childSortInterface | boolean],
+    renderMap: { [key: string] : ReactElement }
+) : ReactElement => {
+    if (!value) {
+        return null;
+    }
+    if (typeof value !== 'boolean') {
+        const { renderSort: childRenderSort, ...attrs } = value;
+        return createElement(
+            key,
+            { ...attrs, key },
+            Object.entries(childRenderSort)
+                .map((r) => sortedRender(r, renderMap))
+        );
+    }
+
+    return cloneElement(renderMap[key], { key });
 };

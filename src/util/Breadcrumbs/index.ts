@@ -1,31 +1,19 @@
-export const _normalizeBreadcrumb = (breadcrumbs?: {
-    category_name: string, category_url: string
-}[]) => (
+export const _normalizeBreadcrumb = (breadcrumbs?: CategoryBreadcrumbsInterface[]): BreadcrumbInterface[] => (
     breadcrumbs || []).map(
-    ({
-        category_name,
-        category_url
-    }) => (
-        {
-            name: category_name,
-            url: category_url
-        })
+    ({ category_name, category_url }) => (
+        { name: category_name, url: category_url })
 );
 
-export const getBreadcrumbs = (categories:
-    categoriesInterface[]) => categories.reduce((acc, { breadcrumbs }) => {
+export const getBreadcrumbs = (categories: CategoryInterface[]): BreadcrumbInterface[] => categories
+    .reduce((acc: BreadcrumbInterface[], { breadcrumbs }) => {
         if (breadcrumbs && breadcrumbs.length > acc.length) {
             return _normalizeBreadcrumb(breadcrumbs);
         }
 
-        return acc as [];
-    }, []) as { name: string, url: string }[];
+        return acc;
+    }, []);
 
-export interface categoriesInterface {
-    breadcrumbs: { category_name: string, category_url: string }[]
-}
-
-export const getBreadcrumbsBasedOnPrevPath = (categories: categoriesInterface[]) => categories.find(
+export const getBreadcrumbsBasedOnPrevPath = (categories: CategoryInterface[]) => categories.find(
     ({ breadcrumbs }) => {
         if (breadcrumbs && breadcrumbs.length) {
             return breadcrumbs[breadcrumbs.length - 1].category_url === global.prevPath;
@@ -35,7 +23,7 @@ export const getBreadcrumbsBasedOnPrevPath = (categories: categoriesInterface[])
     }
 );
 
-export const getProductsBreadcrumbs = (categories: categoriesInterface[]) => {
+export const getProductsBreadcrumbs = (categories: CategoryInterface[]) : BreadcrumbInterface[] => {
     if (typeof global !== 'undefined') {
         if (global.prevPath) {
             const cat = getBreadcrumbsBasedOnPrevPath(categories);

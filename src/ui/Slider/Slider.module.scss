@@ -1,5 +1,6 @@
 .slider {
   width: 100%;
+  grid-area: slider;
   overflow-x: hidden;
   :global {
     .react-draggable-dragging {

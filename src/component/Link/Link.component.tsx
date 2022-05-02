@@ -16,15 +16,15 @@ function LinkComponent({
     children
 }: LinkComponentInterface) {
     if (!isAbsoluteUrl(href) && !isSpecialLink(href)) {
-        return <a className={ className } href={ href } title={ title }>{ children }</a>;
+        return (
+            <Link href={ href }>
+                { /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
+                <a className={ className } title={ title || 'link' }>{ children }</a>
+            </Link>
+        );
     }
 
-    return (
-        <Link href={ href }>
-            { /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
-            <a className={ className } title={ title }>{ children }</a>
-        </Link>
-    );
+    return <a className={ className } href={ href } title={ title || 'link' }>{ children }</a>;
 }
 
 LinkComponent.defaultProps = {

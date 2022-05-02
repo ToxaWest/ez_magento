@@ -5,7 +5,9 @@ import { FieldMergeFunction } from '@apollo/client/cache/inmemory/policies';
 import { getContextBasedOnStore } from '@util/SP/sp.helpers';
 import { parse } from 'cookie';
 
-const httpLink = new HttpLink({ uri: `${process.env.NEXT_PUBLIC_API_URL }/graphql` });
+const httpLink = new HttpLink({
+    uri: `${process.env.NEXT_PUBLIC_API_URL }/graphql`
+});
 
 const cacheConfig: InMemoryCacheConfig = {
     typePolicies: {

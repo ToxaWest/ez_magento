@@ -29,8 +29,9 @@ const useUserAddress = ({ fields }: useUserAddressInterface) => {
         region_display_all
     } = useSelector((state: RootState) => state.config.config);
     const [loadRegions] = useLazyQuery(ConfigQuery.country);
-    const { data: { countries } } = useQuery<{ countries: countriesInterface[] }>(ConfigQuery.countries);
-    const [country_id, onCountryChange] = useState(default_country);
+    const { data: { countries } = { countries: [] } } = useQuery<{
+        countries: countriesInterface[] }>(ConfigQuery.countries);
+    const [country_id, onCountryChange] = useState<string>(default_country);
     const [{
         available_regions,
         is_state_required

@@ -36,7 +36,7 @@ function CheckoutPageComponent(props: CheckoutPageComponentInterface) {
     };
 
     const tabHeading = () => (
-        <div>
+        <div role="tablist">
             { Object.entries(tabMap)
                 .filter(([, { include_in_menu }]) => include_in_menu)
                 .map(([key, { label: headingLabel }], index: number) => (

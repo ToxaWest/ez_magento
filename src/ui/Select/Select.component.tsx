@@ -2,7 +2,7 @@ import styles from './Select.module.scss';
 
 import ClickOutside from '@component/ClickOutside';
 import classNames from 'classnames';
-import React from 'react';
+import React, { useId } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -38,6 +38,8 @@ function SelectComponent(props: SelectComponentInterface) {
         label
     } = props;
 
+    const id = useId();
+
     const renderOptions = () => {
         if (!opened) {
             return null;
@@ -45,7 +47,7 @@ function SelectComponent(props: SelectComponentInterface) {
 
         return (
             <div>
-                <ul className={ styles.options } ref={ optionRef }>
+                <ul className={ styles.options } ref={ optionRef } role="listitem">
                     { options.map(({ value, label: optionLabel }, index) => (
                         <li
                           key={ value }
@@ -68,13 +70,14 @@ function SelectComponent(props: SelectComponentInterface) {
         );
     };
 
-    return (
-        <ClickOutside onClick={ () => setOpen(false) }>
-            <div className={ cx(styles.wrapper, className) }>
-                <input type="hidden" { ...inputProps } defaultValue={ defaultValue } />
+    const renderContent = () => (
+        <>
+            <input type="hidden" { ...inputProps } defaultValue={ defaultValue } />
+            <label htmlFor={ id } aria-label="Select input">
                 <input
                   onClick={ () => setOpen(!opened) }
                   value={ label }
+                  id={ id }
                   onChange={ search }
                   onKeyDown={ onKeyDown }
                   ref={ inputRef }
@@ -88,6 +91,14 @@ function SelectComponent(props: SelectComponentInterface) {
                   ) }
                   readOnly={ !autocomplete }
                 />
+            </label>
+        </>
+    );
+
+    return (
+        <ClickOutside onClick={ () => setOpen(false) }>
+            <div className={ cx(styles.wrapper, className) }>
+                { renderContent() }
                 { renderOptions() }
             </div>
         </ClickOutside>

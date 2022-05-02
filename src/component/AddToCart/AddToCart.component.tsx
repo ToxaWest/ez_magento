@@ -1,6 +1,6 @@
 import Button from '@ui/Button';
 import { useTranslations } from 'next-intl';
-import { ChangeEventHandler, MouseEventHandler } from 'react';
+import { ChangeEventHandler, MouseEventHandler, useId } from 'react';
 
 type AddToCartComponentInterface = {
   loading: boolean,
@@ -14,19 +14,24 @@ function AddToCartComponent({
     showQty, qty, setQuantity, submit, loading
 }: AddToCartComponentInterface): JSX.Element {
     const t = useTranslations('AddToCart');
+    const id = useId();
     const renderQtyChanger = () => {
         if (!showQty) {
             return null;
         }
 
         return (
-            <input
-              type="number"
-              value={ qty }
-              onChange={ setQuantity }
-              min={ 1 }
-              step={ 1 }
-            />
+            <label htmlFor={ id } aria-label="Qty">
+                <input
+                  key={ id }
+                  type="number"
+                  value={ qty }
+                  onChange={ setQuantity }
+                  min={ 1 }
+                  step={ 1 }
+                />
+            </label>
+
         );
     };
 

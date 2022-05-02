@@ -4,6 +4,7 @@ import AddToCart from '@component/AddToCart';
 import ProductAttributes from '@component/ProductAttributes';
 import ProductMediaGallery from '@component/ProductMediaGallery';
 import ProductPrice from '@component/ProductPrice';
+import RelatedProducts from '@component/RelatedProducts';
 import { RootState } from '@store/index';
 import { useSelector } from 'react-redux';
 
@@ -23,6 +24,7 @@ function ProductPageComponent() {
               product={ product }
               showQty
             />
+            <RelatedProducts />
         </div>
     );
 }

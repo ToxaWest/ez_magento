@@ -1,7 +1,6 @@
 import styles from './Breadcrumbs.module.scss';
 
 import Link from '@component/Link';
-import { breadcrumbInterface } from '@store/breadcrumbs.store';
 import { RootState } from '@store/index';
 import { useSelector } from 'react-redux';
 
@@ -18,7 +17,7 @@ function BreadcrumbsComponent(): JSX.Element {
         return null;
     }
 
-    const renderLink = ({ url: linkUrl, name: linkName }: breadcrumbInterface, index: number) => (
+    const renderLink = ({ url: linkUrl, name: linkName }: BreadcrumbInterface, index: number) => (
         <li key={ linkName } className={ styles.list_item }>
             <Link href={ linkUrl }>
                 <meta itemProp="item" content={ linkUrl } />

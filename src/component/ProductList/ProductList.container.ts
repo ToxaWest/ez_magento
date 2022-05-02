@@ -1,6 +1,8 @@
-import ProductListComponent from '@component/ProductList/ProductList.component';
 import { RootState } from '@store/index';
+import { createElement } from 'react';
 import { useSelector } from 'react-redux';
+
+import ProductListComponent from './ProductList.component';
 
 function ProductListContainer() {
     const { productList: { items } } = useSelector((state:RootState) => state.products);
@@ -8,9 +10,7 @@ function ProductListContainer() {
         items
     };
 
-    return (
-      <ProductListComponent { ...containerProps } />
-    );
+    return createElement(ProductListComponent, containerProps);
 }
 
 export default ProductListContainer;

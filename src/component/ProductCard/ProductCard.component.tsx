@@ -4,18 +4,17 @@ import AddToCart from '@component/AddToCart';
 import Image from '@component/Image';
 import Link from '@component/Link';
 import ProductPrice from '@component/ProductPrice';
+import { sortedRender } from '@util/Attributes/Attributes';
 import { useTranslations } from 'next-intl';
+import { createElement } from 'react';
 
-interface ProductCardComponentInterface {
-    product: ProductInterface,
-    wrapperTag?
-}
+import { ProductCardComponentInterface } from './ProductCard.types';
 
 function ProductCardComponent({
     wrapperTag,
-    product
+    product,
+    renderSort
 }: ProductCardComponentInterface) {
-    const Tag = wrapperTag;
     const {
         name,
         small_image: {
@@ -29,19 +28,27 @@ function ProductCardComponent({
 
     const t = useTranslations('ProductCard');
 
-    return (
-        <Tag className={ styles.wrapper }>
-            <Image src={ src } alt={ label } height={ 100 } width={ 100 } className={ styles.image } />
-            <Link href={ url }>{ name }</Link>
-            <ProductPrice price_range={ price_range } />
-            <span>{ t('sku') + sku }</span>
-            <AddToCart product={ product } />
-        </Tag>
-    );
+    const renderMap = {
+        image: <Image src={ src } alt={ label } height={ 100 } width={ 100 } className={ styles.image } />,
+        link: <Link href={ url }>{ name }</Link>,
+        price: <ProductPrice price_range={ price_range } />,
+        sku: <span>{ t('sku') + sku }</span>,
+        addToCart: <AddToCart product={ product } />
+    };
+
+    return createElement(wrapperTag, {
+        className: styles.wrapper
+    }, Object.entries(renderSort).map((r) => sortedRender(r, renderMap)));
 }
 
 ProductCardComponent.defaultProps = {
-    wrapperTag: 'div'
+    wrapperTag: 'div',
+    renderSort: {
+        image: true,
+        link: true,
+        price: true,
+        sku: true
+    }
 };
 
 export default ProductCardComponent;

@@ -1,6 +1,5 @@
 import styles from './CategoryPagination.module.scss';
 
-import { PageInfoInterface } from '@store/products.store';
 import classNames from 'classnames';
 import { useTranslations } from 'next-intl';
 

@@ -8,6 +8,19 @@ query product($sku: String){
                     category_name
                 }
             }
+            related_products {
+                sku
+                url
+                id
+                name
+                price_range {
+                    ...price_range
+                }
+                small_image {
+                    label
+                    url
+                }
+            }
             meta_title
             meta_keyword
             only_x_left_in_stock
