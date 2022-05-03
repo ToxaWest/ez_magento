@@ -1,5 +1,6 @@
 import cartFragment from './fragment/Cart.fragment.graphql';
 import categoryMenuFragment from './fragment/categoryMenu.fragment.graphql';
+import postCardFragment from './fragment/postCard.fragment.graphql';
 import price_range from './fragment/PriceRange.fragment.graphql';
 import priceFragment from './fragment/ProductPrice.fragment.graphql';
 import addSimpleProductsToCart from './mutation/addSimpleProductsToCart.graphql';
@@ -14,6 +15,9 @@ import setPaymentMethodOnCart from './mutation/setPaymentMethodOnCart.graphql';
 import setShippingAddressesOnCart from './mutation/setShippingAddressesOnCart.graphql';
 import setShippingMethodsOnCart from './mutation/setShippingMethodsOnCart.graphql';
 import availableStores from './query/availableStores.graphql';
+import blogCategory from './query/blogCategory.graphql';
+import blogPost from './query/blogPost.graphql';
+import blogPosts from './query/blogPosts.graphql';
 import cart from './query/cart.query.graphql';
 import category from './query/category.graphql';
 import cmsPage from './query/cmsPage.graphql';
@@ -30,6 +34,10 @@ import scandiwebSlider from './query/scandiwebSlider.graphql';
 import urlResolver from './query/urlResolver.graphql';
 
 export {
+    blogPost,
+    postCardFragment,
+    blogPosts,
+    blogCategory,
     scandiwebSlider,
     setPaymentMethodOnCart,
     setBillingAddressOnCart,

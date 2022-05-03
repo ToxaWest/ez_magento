@@ -1,0 +1,9 @@
+query blogPosts($filter: BlogPostsFilterInput){
+    blogPosts(filter: $filter){
+        total_count
+        total_pages
+        items {
+            ...postCardFragment
+        }
+    }
+}

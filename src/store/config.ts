@@ -6,6 +6,9 @@ export interface availableStoreInterface {
 }
 
 export interface StoreConfigInterface {
+    mfblog_top_menu_include_categories: number,
+    mfblog_permalink_route: string,
+    mfblog_top_menu_item_text: string,
     content_customization_header_menu?: string,
     logo_alt: string,
     secure_base_url: string,
@@ -38,6 +41,7 @@ export interface StoreConfigInterface {
 
 export interface MenuInterface {
     children: menuItemInterface[],
+    include_in_menu: number,
     item_id: string,
     parent_id: number,
     title: string,

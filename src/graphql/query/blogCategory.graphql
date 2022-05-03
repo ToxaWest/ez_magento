@@ -1,0 +1,16 @@
+query blogCategory($id: String!){
+    blogCategory(id: $id){
+        content
+        title
+        meta_title
+        meta_keywords
+        meta_description
+        content_heading
+        breadcrumbs {
+            category_url_path
+            category_name
+            category_url
+            category_url_key
+        }
+    }
+}

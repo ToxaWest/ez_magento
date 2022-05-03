@@ -1,0 +1,19 @@
+query blogPost($id: String!){
+    blogPost(id: $id){
+        first_image
+        filtered_content
+        creation_time
+        meta_description
+        meta_keywords
+        meta_title
+        title
+        related_products
+        related_posts {
+            ...postCardFragment
+        }
+        author {
+            author_url
+            name
+        }
+    }
+}

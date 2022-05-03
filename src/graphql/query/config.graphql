@@ -15,6 +15,9 @@ query StoreConfig {
         }
     }
     storeConfig {
+        mfblog_top_menu_include_categories
+        mfblog_permalink_route
+        mfblog_top_menu_item_text
         title_prefix
         title_suffix
         title_separator

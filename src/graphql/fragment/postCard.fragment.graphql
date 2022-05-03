@@ -1,0 +1,15 @@
+fragment postCardFragment on BlogPost {
+    first_image
+    title
+    tags {
+        tag_url
+        title
+    }
+    post_url
+    post_id
+    creation_time
+    author {
+        author_url
+        name
+    }
+}

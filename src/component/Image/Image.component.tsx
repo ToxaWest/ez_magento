@@ -9,6 +9,7 @@ interface ImageComponentInterface {
     alt?: string,
     className: string,
     url?: string,
+    variableRatio: boolean,
     wrapperStyle: object,
     setParams: ({ naturalHeight, naturalWidth }: { naturalHeight: number, naturalWidth: number }) => void
 }
@@ -19,7 +20,8 @@ function ImageComponent(props: ImageComponentInterface) {
         alt,
         wrapperStyle,
         className,
-        setParams
+        setParams,
+        variableRatio
     } = props;
 
     const renderImage = () => {
@@ -32,7 +34,11 @@ function ImageComponent(props: ImageComponentInterface) {
             src={ url }
             alt={ alt }
             draggable={ false }
-            onLoadingComplete={ setParams }
+            onLoadingComplete={ ({ naturalHeight, naturalWidth }) => {
+                if (variableRatio) {
+                    setParams({ naturalHeight, naturalWidth });
+                }
+            } }
             layout="fill"
             className={ cx(
                 styles.ImageImage,

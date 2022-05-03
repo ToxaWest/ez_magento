@@ -1,17 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit';
-import accountReducer from '@store/account.store';
-import breadcrumbsReducer from '@store/breadcrumbs.store';
-import cartReducer from '@store/cart.store';
-import categoryReducer from '@store/category.store';
-import cmsReducer from '@store/cms';
-import configReducer from '@store/config';
-import metaReducer from '@store/meta.store';
-import notificationsReducer from '@store/notifiactions';
-import popupReducer from '@store/popup';
-import productsReducer from '@store/products.store';
+
+import accountReducer from './account.store';
+import blogReducer from './blog.store';
+import breadcrumbsReducer from './breadcrumbs.store';
+import cartReducer from './cart.store';
+import categoryReducer from './category.store';
+import cmsReducer from './cms';
+import configReducer from './config';
+import metaReducer from './meta.store';
+import notificationsReducer from './notifiactions';
+import popupReducer from './popup';
+import productsReducer from './products.store';
 
 const store = configureStore({
     reducer: {
+        blog: blogReducer,
         meta: metaReducer,
         account: accountReducer,
         breadcrumbs: breadcrumbsReducer,

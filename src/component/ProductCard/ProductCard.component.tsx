@@ -4,7 +4,7 @@ import AddToCart from '@component/AddToCart';
 import Image from '@component/Image';
 import Link from '@component/Link';
 import ProductPrice from '@component/ProductPrice';
-import { sortedRender } from '@util/Attributes/Attributes';
+import Render from '@ui/Render';
 import { useTranslations } from 'next-intl';
 import { createElement } from 'react';
 
@@ -36,9 +36,12 @@ function ProductCardComponent({
         addToCart: <AddToCart product={ product } />
     };
 
-    return createElement(wrapperTag, {
-        className: styles.wrapper
-    }, Object.entries(renderSort).map((r) => sortedRender(r, renderMap)));
+    return createElement(Render, {
+        className: styles.wrapper,
+        renderSort,
+        renderMap,
+        wrapperTag
+    });
 }
 
 ProductCardComponent.defaultProps = {

@@ -1,0 +1,20 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  &:first-child {
+    grid-area: fPostCard;
+    display: grid;
+    grid-template-columns: .7fr 2fr;
+    grid-template-areas: 'image .' 'image .' 'image .' 'image .' 'image .';
+    grid-auto-rows: max-content;
+    .image {
+      --image-padding-bottom: 30%;
+    }
+  }
+}
+
+.image {
+  grid-gap: 0;
+  grid-area: image;
+  --image-padding-bottom: 60%;
+}

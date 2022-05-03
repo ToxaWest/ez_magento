@@ -88,3 +88,23 @@ export const normalizeCategoryMenu = (categoryMenu: menuChildInterface[]) => {
 
     return [getCategoryItem(item, 0)] as MenuInterface[];
 };
+
+export const addBlogToMenu = (
+    menu: MenuInterface[],
+    {
+        mfblog_top_menu_include_categories,
+        mfblog_permalink_route,
+        mfblog_top_menu_item_text
+    } : {
+        mfblog_top_menu_include_categories: number,
+        mfblog_permalink_route: string,
+        mfblog_top_menu_item_text: string
+    }
+): MenuInterface[] => [...menu, {
+    title: mfblog_top_menu_item_text,
+    url: `/${ mfblog_permalink_route}`,
+    children: [],
+    parent_id: null,
+    item_id: mfblog_permalink_route,
+    include_in_menu: mfblog_top_menu_include_categories
+}];

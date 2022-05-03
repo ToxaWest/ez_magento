@@ -1,7 +1,9 @@
 import { ApolloQueryResult } from '@apollo/client';
+import BlogQuery from '@query/blog.query';
 import categoryQuery from '@query/category.query';
 import productQuery from '@query/product.query';
 import urlQuery from '@query/url.query';
+import { updateBlogCategory, updateBlogPost, updateBlogPosts } from '@store/blog.store';
 import {
     updateCategoryBreadcrumbs,
     updateProductsBreadcrumbs
@@ -52,8 +54,41 @@ class SPUrlResolver extends SPAbstract {
             return;
         }
 
+        if (type === 'MF_BLOG_INDEX') {
+            await this.getBlogCategory({ id });
+            return;
+        }
+
+        if (type === 'MF_BLOG_POST') {
+            await this.getBlogPost({ id });
+            return;
+        }
+
         // eslint-disable-next-line no-console
         console.info(`${type } not configured`);
+    }
+
+    async getBlogPost({ id }: { id: number | string }) {
+        this.container = 'BlogPostPage';
+        const { data: { blogPost } }: ApolloQueryResult<{
+            blogPost: BlogPostInterface
+        }> = await this.request(BlogQuery.blogPost, { id });
+
+        this.store.dispatch(updateBlogPost(blogPost));
+    }
+
+    async getBlogCategory({ id }: { id: number | string }) {
+        this.container = 'BlogCategoryPage';
+        const { data: { blogCategory } }: ApolloQueryResult<{
+            blogCategory: BlogCategoryInterface
+        }> = await this.request(BlogQuery.blogCategory, { id });
+
+        this.store.dispatch(updateBlogCategory(blogCategory));
+        const { data: { blogPosts } }: ApolloQueryResult<{
+            blogPosts: BlogPostsInterface
+        }> = await this.request(BlogQuery.blogPosts, { filter: { category_id: { eq: id } } });
+
+        this.store.dispatch(updateBlogPosts(blogPosts));
     }
 
     async getProduct(sku) {

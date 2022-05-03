@@ -12,6 +12,7 @@ interface ImageContainerInterface {
     height?: number,
     src?: string,
     width?: number,
+    variableRatio?: boolean,
     style?: Record<string, string>
 }
 
@@ -21,20 +22,24 @@ function ImageContainer(props: ImageContainerInterface): ReactElement {
         height,
         alt,
         src: url,
-        className
+        className,
+        variableRatio
     } = props;
 
     const { getUrl } = useUrl();
     const [{ naturalHeight, naturalWidth }, setParams] = useState<
         { naturalHeight: number, naturalWidth: number }>({ naturalWidth: width, naturalHeight: height });
 
-    const _getCorrectUrl = () => {
+    function _getCorrectUrl() {
+        if (url === 'false') {
+            return null;
+        }
         if (isAbsoluteUrl(url)) {
             return url;
         }
 
         return getUrl({ url });
-    };
+    }
 
     const _getWrapperStyle = () => {
         if (naturalHeight && naturalWidth) {
@@ -53,6 +58,7 @@ function ImageContainer(props: ImageContainerInterface): ReactElement {
         className,
         setParams,
         url: _getCorrectUrl(),
+        variableRatio,
         wrapperStyle: _getWrapperStyle()
     };
 
@@ -69,7 +75,8 @@ ImageContainer.defaultProps = {
     height: 0,
     src: '',
     width: 0,
-    style: {}
+    style: {},
+    variableRatio: true
 };
 
 export default ImageContainer;

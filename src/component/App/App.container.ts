@@ -1,12 +1,12 @@
+import useInit from '@hook/useInit';
 import { createElement } from 'react';
 
 import AppComponent, { AppComponentInterface } from './App.component';
-// import useInit from '@hook/useInit';
 
 function AppContainer(props) {
-    // const [loading] = useInit();
+    const [loading] = useInit();
 
-    return createElement(AppComponent, { ...props, loading: false } as AppComponentInterface);
+    return createElement(AppComponent, { ...props, loading } as AppComponentInterface);
 }
 
 export default AppContainer;

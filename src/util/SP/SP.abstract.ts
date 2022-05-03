@@ -13,7 +13,9 @@ import {
     updateConfig, updateMenu, updateStoreList
 } from '@store/config';
 import store, { StateType } from '@store/index';
-import { normalizeCategoryMenu, normalizeMenu, unsortedItemsInterface } from '@util/Menu';
+import {
+    addBlogToMenu, normalizeCategoryMenu, normalizeMenu, unsortedItemsInterface
+} from '@util/Menu';
 import { getErrorMessage } from '@util/Request';
 import client from '@util/Request/apolloClient';
 import { set } from 'cookie-cutter';
@@ -102,7 +104,12 @@ export default class SPAbstract {
             categoryMenu: menuChildInterface[]
         }> = await this.request(configQuery.config);
 
-        const { store_code } = storeConfig;
+        const {
+            store_code,
+            mfblog_top_menu_include_categories,
+            mfblog_permalink_route,
+            mfblog_top_menu_item_text
+        } = storeConfig;
 
         // if (content_customization_header_menu) {
         //     await this.getMenu(content_customization_header_menu);
@@ -113,7 +120,11 @@ export default class SPAbstract {
             lang_prefix: getLangPrefix(store_code)
         }));
 
-        const category_menu = normalizeCategoryMenu(categoryMenu);
+        const category_menu = addBlogToMenu(normalizeCategoryMenu(categoryMenu), {
+            mfblog_top_menu_include_categories,
+            mfblog_permalink_route,
+            mfblog_top_menu_item_text
+        });
 
         this.store.dispatch(updateMenu({ category_menu }));
     }

@@ -1,4 +1,4 @@
-import { childSortInterface } from '@component/ProductCard/ProductCard.types';
+import { childSortInterface } from '@ui/Render/Render.types';
 import { cloneElement, createElement, ReactElement } from 'react';
 
 export const getAttributeValue = ({
@@ -63,6 +63,12 @@ export const sortedRender = (
             Object.entries(childRenderSort)
                 .map((r) => sortedRender(r, renderMap))
         );
+    }
+
+    if (!renderMap[key]) {
+        // eslint-disable-next-line no-console
+        console.warn(`${key } is not found for render`);
+        return null;
     }
 
     return cloneElement(renderMap[key], { key });

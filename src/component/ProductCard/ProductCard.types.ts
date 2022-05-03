@@ -1,12 +1,4 @@
-import { AllHTMLAttributes } from 'react';
-
-export interface childSortInterface extends AllHTMLAttributes<HTMLElement> {
-    renderSort?: renderSortInterface
-}
-
-interface renderSortInterface {
-    [key: string ]: boolean | childSortInterface
-}
+import { renderSortInterface } from '@ui/Render/Render.types';
 
 export interface ProductCardComponentInterface {
     product: ProductInterface,

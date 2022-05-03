@@ -55,6 +55,16 @@ export const metaReducer = createSlice({
             state.meta_title = meta_title;
             state.meta_description = meta_description;
             state.meta_keyword = meta_keyword;
+        },
+        'blog/updateBlogCategory': (state, {
+            payload: {
+                meta_description, meta_title, meta_keyword, title
+            }
+        }) => {
+            state.title = title;
+            state.meta_title = meta_title;
+            state.meta_description = meta_description;
+            state.meta_keyword = meta_keyword;
         }
     }
 });

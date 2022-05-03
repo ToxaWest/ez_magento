@@ -21,7 +21,9 @@ const useUrl = () => {
         return `${ baseUrl }${ subPath }${ url }`;
     };
 
-    return { getUrl };
+    const replaceUrl = (url: string) => url.replace(`${process.env.NEXT_PUBLIC_API_URL}`, '');
+
+    return { getUrl, replaceUrl };
 };
 
 export default useUrl;

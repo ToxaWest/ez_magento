@@ -1,4 +1,6 @@
 import App from '@component/App';
+import BlogCategoryPage from '@route/BlogCategoryPage';
+import BlogPostPage from '@route/BlogPostPage';
 import CategoryPage from '@route/CategoryPage';
 import CmsPage from '@route/CmsPage';
 import ProductPage from '@route/ProductPage';
@@ -15,7 +17,9 @@ const render = ({ container, state }: allPageInterface) => {
     const routes = {
         CategoryPage,
         CmsPage,
-        ProductPage
+        ProductPage,
+        BlogCategoryPage,
+        BlogPostPage
     };
 
     const Component = routes[container] || 'div' as React.ComponentType | React.FC | string;
