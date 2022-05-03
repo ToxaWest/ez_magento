@@ -26,6 +26,12 @@ const useSetBillingAddressOnCart = (): [(values: fieldsInterface) => Promise<boo
                 ? _normalizeAddressAsMagentoStyle(shipping_addresses[0]) as fieldsInterface
                 : billingAddress;
 
+            if (!addressToFix) {
+                setLoading(false);
+                dispatch(setErrorNotification('Address is empty'));
+                return false;
+            }
+
             const address = setAddressesInFormObject(addressToFix, address_lines_quantity);
             const {
                 country_code, region, region_id, same_as_shipping, ...otherAddress

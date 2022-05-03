@@ -33,11 +33,12 @@ export const makeCancelable = (promise: Promise<Awaited<boolean>[]>) => {
 };
 
 export const getErrorMessage = (e: ApolloError) => {
+    // eslint-disable-next-line no-console
+    console.error(e);
     if (e.graphQLErrors?.[0]) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         return e.graphQLErrors[0].message as string;
     }
-    // eslint-disable-next-line no-console
-    console.error(e);
+
     return '';
 };

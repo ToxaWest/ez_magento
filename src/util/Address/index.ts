@@ -59,7 +59,10 @@ export interface _normalizeAddressAsMagentoStyleInterface {
     region?:_normalizeRegionInterface,
 }
 
-export const _normalizeAddressAsMagentoStyle = (initial: _normalizeAddressAsMagentoStyleInterface) => {
+export function _normalizeAddressAsMagentoStyle(initial: _normalizeAddressAsMagentoStyleInterface) {
+    if (!initial) {
+        return null;
+    }
     const {
         selected_shipping_method,
         available_shipping_methods,
@@ -76,4 +79,4 @@ export const _normalizeAddressAsMagentoStyle = (initial: _normalizeAddressAsMage
         ..._normalizeRegion(region),
         ...address
     } as object;
-};
+}

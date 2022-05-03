@@ -86,7 +86,8 @@ const setFilterAttribute = (router: NextRouter, {
     const { query: { customFilters } } = router;
     if (!customFilters) {
         setUrlQuery(router, {
-            customFilters: _getNewSelectedFiltersString(code, [value])
+            customFilters: _getNewSelectedFiltersString(code, [value]),
+            page: null
         });
     } else {
         const uriComponent: string = typeof customFilters === 'string' ? customFilters : customFilters[0];
@@ -103,7 +104,8 @@ const setFilterAttribute = (router: NextRouter, {
             current = [value as string];
         }
         setUrlQuery(router, {
-            customFilters: _getNewSelectedFiltersString(code, current, selected)
+            customFilters: _getNewSelectedFiltersString(code, current, selected),
+            page: null
         });
     }
 };
