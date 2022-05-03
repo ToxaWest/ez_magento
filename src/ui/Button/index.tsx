@@ -1,29 +1,32 @@
 import styles from './Button.module.scss';
 
 import classNames from 'classnames';
-import { ButtonHTMLAttributes } from 'react';
+import {
+    ButtonHTMLAttributes, createElement
+} from 'react';
 
 const cx = classNames.bind(styles);
 
 interface ButtonInterface extends ButtonHTMLAttributes<object> {
-    variant?: 'main' | 'secondary' | 'default',
-    className?: string
+    variant?: 'main' | 'secondary' | 'default' | string
 }
 
 function Button(props: ButtonInterface) {
     const {
         variant,
-        className: initialClassName,
+        className: initialClassName = '',
         ...nativeProps
     } = props;
     const className = cx(initialClassName, styles[variant]);
 
-    return <button { ...nativeProps } className={ className } />;
+    return createElement('button', {
+        ...nativeProps,
+        className
+    });
 }
 
 Button.defaultProps = {
-    variant: 'default',
-    className: ''
+    variant: 'default'
 };
 
 export default Button;

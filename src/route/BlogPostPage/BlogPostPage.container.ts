@@ -1,5 +1,3 @@
-import styles from '@component/PostCard/PostCard.module.scss';
-
 import Html from '@component/Html';
 import Image from '@component/Image';
 import Link from '@component/Link';
@@ -21,7 +19,7 @@ function BlogPostPageContainer() {
         renderMap: {
             title: createElement('h1', {}, title),
             image: createElement(Image, {
-                alt: title, src: first_image, className: styles.image, variableRatio: false
+                alt: title, src: first_image
             }),
             author: createElement(Link, { href: replaceUrl(author_url), title: name }, name),
             created: createElement('span', {}, creation_time),

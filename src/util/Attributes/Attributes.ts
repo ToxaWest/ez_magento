@@ -55,10 +55,13 @@ export const sortedRender = (
     if (!value) {
         return null;
     }
+
     if (typeof value !== 'boolean') {
         const { renderSort: childRenderSort, ...attrs } = value;
+        const tag = key.split('_')[0];
+
         return createElement(
-            key,
+            tag,
             { ...attrs, key },
             Object.entries(childRenderSort)
                 .map((r) => sortedRender(r, renderMap))

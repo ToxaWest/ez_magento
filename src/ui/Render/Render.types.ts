@@ -5,7 +5,7 @@ export interface childSortInterface extends AllHTMLAttributes<HTMLElement> {
 }
 
 export interface renderSortInterface {
-    [key: string ]: boolean | childSortInterface
+    [key: string ]: childSortInterface | boolean
 }
 
 export interface RenderInterface {
