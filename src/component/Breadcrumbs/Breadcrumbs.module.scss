@@ -1,12 +1,23 @@
 .wrapper {
   grid-area: Breadcrumbs;
+  height: var(--breadcrumbs-height);
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  width: 100%;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  background-color: var(--yt-spec-10-percent-layer);
+  z-index: 2;
+  color: var(--yt-spec-text-primary)
 }
 
 .list {
   margin: 5px 0;
   padding: 0;
   display: flex;
-  font-size: .7rem;
+  font-size: 1.1rem;
   grid-gap: 5px;
   &_item {
     list-style: none;

@@ -6,12 +6,11 @@ import Link from '@component/Link';
 import Popup from '@component/Popup';
 import { popupId } from '@component/Popup/Popup.config';
 import { RootState } from '@store/index';
-import { useTranslations } from 'next-intl';
+import Icon from '@ui/Icon';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 function MiniCartComponent() {
-    const t = useTranslations('Header');
     const { cart } = useSelector((state: RootState) => state.cart);
     const [isActive, setActive] = useState<boolean>(false);
     const { total_quantity, items } = cart;
@@ -19,7 +18,8 @@ function MiniCartComponent() {
     const renderContent = () => (
         <div className={ styles.wrapper }>
             <button onClick={ () => setActive(true) }>
-                <span>{ t('items in cart', { total_quantity }) }</span>
+                <Icon name="shopping_bag" />
+                <span>{ total_quantity }</span>
             </button>
             <Popup
               id={ popupId.MINI_CART }

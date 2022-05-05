@@ -1,10 +1,11 @@
 import MyAccountOrders from '@component/MyAccountOrders';
+import MyAccountWishlist from '@component/MyAccountWishlist';
 import AccountPageComponent from '@route/AccountPage/AccountPage.component';
 import {
     ACCOUNT_ROUTE_PATHNAME,
     DASHBOARD,
     DEFAULT_ACCOUNT_TAB,
-    ORDER_LIST
+    ORDER_LIST, WISHLIST
 } from '@route/AccountPage/AccountPage.config';
 import { RootState } from '@store/index';
 import { NextRouter, useRouter } from 'next/router';
@@ -23,6 +24,10 @@ function AccountPageContainer() {
         [ORDER_LIST]: {
             label: 'Orders',
             render: MyAccountOrders
+        },
+        [WISHLIST]: {
+            label: 'Wish List',
+            render: MyAccountWishlist
         }
     };
 

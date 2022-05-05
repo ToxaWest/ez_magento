@@ -1,7 +1,7 @@
 import styles from './ProductList.module.scss';
 
 import ProductCard from '@component/ProductCard';
-import { childSortInterface } from '@component/ProductCard/ProductCard.types';
+import { childSortInterface } from '@ui/Render/Render.types';
 import { createElement } from 'react';
 
 interface ProductListComponentInterface {
@@ -15,6 +15,7 @@ function ProductListComponent({ items }: ProductListComponentInterface) {
         wrapperTag="li"
         renderSort={ {
             image: true,
+            wishlist: true,
             div: {
                 style: { display: 'flex' },
                 renderSort: {

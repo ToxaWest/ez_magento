@@ -40,10 +40,7 @@ const headersMiddleware = new ApolloLink((operation, forward) => {
     );
     const { headers: additional } = getContextBasedOnStore(store_code, current_currency);
     operation.setContext(({ headers = {} }) => ({
-        headers: {
-            ...headers,
-            ...additional
-        }
+        headers: { ...headers, ...additional }
     }));
 
     return forward(operation);

@@ -1,16 +1,26 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface accountReducerInterface {
     customer?: {
-        firstname: string
+        firstname: string,
+        wishlist: {
+            id,
+            items_count: number
+        },
     },
     isSignedIn: boolean,
+
     loading: boolean
 }
 
 export const accountReducer = createSlice({
     initialState: {
-        customer: {},
+        customer: {
+            wishlist: {
+                id: 0,
+                items_count: 0
+            }
+        },
         isSignedIn: false,
         loading: true
     } as accountReducerInterface,
@@ -23,10 +33,13 @@ export const accountReducer = createSlice({
         },
         updateCustomerLoadingStatus: (state, { payload }) => {
             state.loading = payload;
+        },
+        updateWishListItemsCount: (state, { payload }: PayloadAction<number>) => {
+            state.customer.wishlist.items_count = payload;
         }
     }
 });
 
-export const { updateCustomer, updateCustomerLoadingStatus } = accountReducer.actions;
+export const { updateCustomer, updateCustomerLoadingStatus, updateWishListItemsCount } = accountReducer.actions;
 
 export default accountReducer.reducer;

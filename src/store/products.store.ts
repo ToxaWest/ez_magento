@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface productsReducerInterface {
     productList: {
@@ -36,7 +36,10 @@ export const productsReducer = createSlice({
         updateProductList: (state: productsReducerInterface, action) => {
             state.productList = action.payload;
         },
-        updateProductsInformation: (state: productsReducerInterface, { payload }) => {
+        updateProductsInformation: (
+            state: productsReducerInterface,
+            { payload }: PayloadAction<ProductsInformationInterface>
+        ) => {
             state.productsInformation = payload;
         },
         updateSingleProduct: (state: productsReducerInterface, { payload }) => {

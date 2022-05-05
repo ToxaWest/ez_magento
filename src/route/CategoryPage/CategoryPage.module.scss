@@ -1,7 +1,8 @@
 .wrapper {
   grid-area: CategoryPage;
   display: grid;
-  grid-template-columns: minmax(150px,300px) 1fr 1fr;
+  grid-gap: 10px;
+  grid-template-columns: minmax(150px,var(--layerd-navigation-width)) 1fr 1fr;
   grid-template-areas:
           'LayeredNavigation CategoryDescription CategoryDescription'
           'LayeredNavigation count select'

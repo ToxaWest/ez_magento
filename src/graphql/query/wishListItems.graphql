@@ -1,0 +1,26 @@
+query wishListItems($id: ID!, $page: Int){
+    customer {
+        wishlist_v2(id: $id){
+            items_v2(currentPage: $page){
+                items {
+                    id
+                    quantity
+                    added_at
+                    product {
+                        sku
+                        url
+                        id
+                        name
+                        price_range {
+                            ...price_range
+                        }
+                        small_image {
+                            label
+                            url
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

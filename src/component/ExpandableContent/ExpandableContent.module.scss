@@ -1,24 +1,30 @@
 .heading {
+  outline: 0;
   display: flex;
-  width: 100%;
+  align-items: center;
+  color: var(--yt-spec-text-primary);
+  padding: 0 24px;
+  min-width: 0;
   cursor: pointer;
-  padding: 8px 10px;
-  border-width: 0;
-  border-bottom-width: 1px;
-  transition: .3s all ease-in-out;
-  &:after {
-    content: '\203A';
-    margin-left: auto;
-    display: inline-block;
-    transform: rotate(90deg);
-    transition: .3s all ease-in-out;
+  width: 100%;
+  height: var(--paper-item-min-height,48px);
+  font-size: 1.4rem;
+  line-height: 2rem;
+  font-weight: 500;
+  border-bottom: 1px solid var(--theme-color);
+  &:hover {
+    background-color: var(--yt-spec-badge-chip-background);
   }
-
+  span {
+    font-size: 1.4rem;
+    margin-left: auto;
+  }
   &.active {
-    background-color: var(--theme-color-secondary);
-    &:after{
-      transform: rotate(-90deg);
+    background-color: var(--ytd-guide-entry-renderer-active-guide-item-background-color,var(--yt-spec-10-percent-layer));
+    &:hover {
+      background-color: var(--yt-spec-badge-chip-background);
     }
+
   }
 }
 

@@ -9,8 +9,8 @@ import StoreSwitcher from '@component/StoreSwitcher';
 function HeaderComponent() {
     return (
         <header className={ styles.wrapper }>
-            <Logo />
             <Menu identifier="category_menu" />
+            <Logo />
             <HeaderAccount />
             <MiniCart />
             <StoreSwitcher />

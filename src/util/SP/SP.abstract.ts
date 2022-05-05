@@ -79,11 +79,7 @@ export default class SPAbstract {
 
     async request(query, variables = {}) {
         try {
-            return await client.query({
-                context: this.context,
-                query,
-                variables
-            });
+            return await client.query({ context: this.context, query, variables });
         } catch (e) {
             getErrorMessage(e as ApolloError);
             return { data: {} } as ApolloQueryResult<object>;
@@ -95,10 +91,7 @@ export default class SPAbstract {
         await this.getStoreBasedOnLocale(false);
 
         const {
-            data: {
-                storeConfig,
-                categoryMenu
-            }
+            data: { storeConfig, categoryMenu }
         }: ApolloQueryResult<{
             storeConfig: StoreConfigInterface,
             categoryMenu: menuChildInterface[]
@@ -129,10 +122,7 @@ export default class SPAbstract {
         this.store.dispatch(updateMenu({ category_menu }));
     }
 
-    updateClientBasedOnStore({
-        store_code,
-        default_display_currency_code
-    }: {
+    updateClientBasedOnStore({ store_code, default_display_currency_code }: {
         store_code: string,
         default_display_currency_code: string
     }) {
@@ -160,15 +150,10 @@ export default class SPAbstract {
                 lang_prefix: getLangPrefix(data.store_code)
             }));
 
-            const currentStore = storeList.find(
-                ({ lang_prefix }) => lang_prefix === this.locale
-            );
+            const currentStore = storeList.find(({ lang_prefix }) => lang_prefix === this.locale);
 
             if (currentStore) {
-                const {
-                    default_display_currency_code,
-                    store_code
-                } = currentStore;
+                const { default_display_currency_code, store_code } = currentStore;
 
                 if (this.store_code !== store_code) {
                     this.updateClientBasedOnStore({
@@ -177,9 +162,7 @@ export default class SPAbstract {
                     });
                 }
             } else {
-                this.updateClientBasedOnStore(storeList.find(
-                    ({ is_default_store }) => is_default_store
-                ));
+                this.updateClientBasedOnStore(storeList.find(({ is_default_store }) => is_default_store));
             }
 
             this.store.dispatch(updateStoreList(storeList));
@@ -205,8 +188,7 @@ export default class SPAbstract {
                 this.store.dispatch(updateWidget({ [slider_id]: scandiwebSlider }));
             },
             [CATALOG_LINK_LIST]: async ({ id_paths }: WidgetLinkInterface) => {
-                const cat = id_paths.replace(/category\//g, '');
-                const id_list = cat.split(',');
+                const id_list = id_paths.replace(/category\//g, '').split(',');
                 const { data: { categoryList } }: ApolloQueryResult<{
                     categoryList: CategoryInterface[]
                 }> = await this.request(categoryQuery.category, { id_list });
@@ -215,9 +197,7 @@ export default class SPAbstract {
             },
             [CATALOG_PRODUCT_LIST]: async ({ conditions_encoded, page_var_name }: WidgetProductListInterface) => {
                 const { data: { products } } = await this.request(productQuery.productList, {
-                    filter: {
-                        conditions: { eq: conditions_encoded }
-                    }
+                    filter: { conditions: { eq: conditions_encoded } }
                 });
 
                 this.store.dispatch(updateWidget({ [page_var_name]: products }));
@@ -237,16 +217,12 @@ export default class SPAbstract {
         if (!req.length) {
             return;
         }
-        await Promise.all(
-            req.map(
-                (r:WidgetFactoryInterface) => widgetMap[r.type](r) as Promise<void>
-            )
-        );
+        await Promise.all(req.map((r:WidgetFactoryInterface) => widgetMap[r.type](r) as Promise<void>));
     }
 
     async getCmsPage(variables: object) {
-        const { data: { cmsPage } }:
-            ApolloQueryResult<{ cmsPage: CmsPageInterface }> = await this.request(pageQuery.cmsPage, variables);
+        const { data: { cmsPage } }: ApolloQueryResult<{
+            cmsPage: CmsPageInterface }> = await this.request(pageQuery.cmsPage, variables);
         const { content } = cmsPage;
         await this.getWidget(content);
         this.container = 'CmsPage';
@@ -255,14 +231,10 @@ export default class SPAbstract {
 
     async getMenu(identifier: string) {
         const { data: { scandiwebMenu } }:ApolloQueryResult<{
-            scandiwebMenu: {
-                items: unsortedItemsInterface[]
-            }
+            scandiwebMenu: { items: unsortedItemsInterface[] }
         }> = await this.request(configQuery.menu, { identifier });
 
-        this.store.dispatch(updateMenu({
-            [identifier]: [normalizeMenu(scandiwebMenu)]
-        }));
+        this.store.dispatch(updateMenu({ [identifier]: [normalizeMenu(scandiwebMenu)] }));
     }
 
     async getData() {

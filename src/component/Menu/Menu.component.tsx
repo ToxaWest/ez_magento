@@ -1,6 +1,7 @@
 import styles from './Menu.module.scss';
 
 import Link from '@component/Link';
+import Icon from '@ui/Icon';
 import classNames from 'classnames';
 
 const cx = classNames.bind(styles);
@@ -53,7 +54,9 @@ function MenuComponent({ menu, toggle, isActive }: MenuComponentInterface) {
               onClick={ () => toggle(item_id, parent_id) }
               className={ styles.toggle }
               aria-label="toggle"
-            />
+            >
+                <Icon name={ isActive(item_id) ? 'expand_less' : 'expand_more' } />
+            </button>
             <div className={ cx(styles.child_wrapper) }>
                 <ul
                   role="menu"

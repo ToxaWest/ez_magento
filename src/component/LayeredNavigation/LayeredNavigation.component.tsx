@@ -1,6 +1,7 @@
 import styles from './LayeredNavigation.module.scss';
 
 import ExpandableContent from '@component/ExpandableContent';
+import Icon from '@ui/Icon';
 import { notInteractiveClick } from '@util/Events';
 
 interface LayeredNavigationComponentInterface {
@@ -33,7 +34,7 @@ function LayeredNavigationComponent(props: LayeredNavigationComponentInterface) 
               onClick={ () => onSelect(code, value) }
             >
                 { `${label} (${count})` }
-                { isSelected(code, value) && <span> x</span> }
+                { isSelected(code, value) && <Icon name="close" /> }
             </li>
         );
     };

@@ -1,0 +1,14 @@
+query wishListInformation($id: ID!){
+    customer {
+        wishlist_v2(id: $id){
+            sharing_code
+            items_count
+            items_v2 {
+                page_info {
+                    page_size
+                    total_pages
+                }
+            }
+        }
+    }
+}

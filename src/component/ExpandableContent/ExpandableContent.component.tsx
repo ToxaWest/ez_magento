@@ -1,5 +1,6 @@
 import styles from './ExpandableContent.module.scss';
 
+import Icon from '@ui/Icon';
 import classNames from 'classnames';
 import React, { ReactElement, useState } from 'react';
 
@@ -49,6 +50,7 @@ function ExpandableContentComponent(props: ExpandableContentComponentInterface):
           onClick={ onClick }
         >
             { heading }
+            <Icon name={ opened ? 'expand_less' : 'expand_more' } />
         </button>
     );
 

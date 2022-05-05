@@ -1,13 +1,16 @@
 .menu {
   grid-area: Menu;
   display: flex;
-  margin: 0 auto 0 0;
+  margin: 0;
   padding: 0;
+  color: var(--yt-spec-text-primary);
+  background-color: var(--yt-spec-brand-background-primary);
 
   &_child {
     display: none;
     &_active {
-      z-index: 2;
+      background-color: var(--yt-spec-brand-background-primary);
+      z-index: 5;
       margin: 0;
       padding: 0;
       position: absolute;
@@ -22,6 +25,7 @@
 
   &_item {
     display: grid;
+    align-items: center;
     grid-gap: 0;
     grid-template-areas: 'a toggle ' 'child_wrapper child_wrapper';
     padding: 10px 0 10px 10px;

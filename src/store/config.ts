@@ -11,6 +11,7 @@ export interface StoreConfigInterface {
     mfblog_top_menu_item_text: string,
     content_customization_header_menu?: string,
     logo_alt: string,
+    magento_wishlist_general_is_enabled: string,
     secure_base_url: string,
     logo_height: number,
     logo_width: number,

@@ -1,9 +1,9 @@
 import { isAbsoluteUrl, isSpecialLink } from '@util/Link';
 import Link from 'next/link';
-import { ReactElement } from 'react';
+import { ReactNode } from 'react';
 
 interface LinkComponentInterface {
-    children: ReactElement | string | ReactElement[],
+    children?: ReactNode | undefined,
     className: string,
     href: string,
     title?: string
@@ -28,7 +28,8 @@ function LinkComponent({
 }
 
 LinkComponent.defaultProps = {
-    title: ''
+    title: '',
+    children: ''
 };
 
 export default LinkComponent;

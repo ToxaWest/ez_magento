@@ -4,6 +4,7 @@ import AddToCart from '@component/AddToCart';
 import Image from '@component/Image';
 import Link from '@component/Link';
 import ProductPrice from '@component/ProductPrice';
+import WishListButton from '@component/WishListButton';
 import Render from '@ui/Render';
 import { useTranslations } from 'next-intl';
 import { createElement } from 'react';
@@ -17,10 +18,7 @@ function ProductCardComponent({
 }: ProductCardComponentInterface) {
     const {
         name,
-        small_image: {
-            label,
-            url: src
-        },
+        small_image: { label, url: src },
         url,
         sku,
         price_range
@@ -29,6 +27,7 @@ function ProductCardComponent({
     const t = useTranslations('ProductCard');
 
     const renderMap = {
+        wishlist: <WishListButton sku={ sku } />,
         image: <Image src={ src } alt={ label } height={ 100 } width={ 100 } className={ styles.image } />,
         link: <Link href={ url }>{ name }</Link>,
         price: <ProductPrice price_range={ price_range } />,

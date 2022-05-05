@@ -4,6 +4,10 @@ query customer{
         lastname
         email
         id
+        wishlist {
+            id
+            items_count
+        }
         date_of_birth
         confirmation_required
     }

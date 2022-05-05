@@ -37,8 +37,8 @@ export const getPropsBasedOnRequest = (ctx: ctxInterface) => {
         store_code
     };
 };
-export const getLangPrefix = (store_code: string) => store_code;
-// export const getLangPrefix = (store_code: string):string => store_code.split('_')[1];
+// export const getLangPrefix = (store_code: string) => store_code;
+export const getLangPrefix = (store_code: string):string => store_code.split('_')[1];
 
 export const getContextBasedOnStore = (store_code?: string, current_currency?: string) => {
     const isServer: boolean = typeof window === 'undefined';
@@ -71,14 +71,10 @@ export const getProductVariablesBasedOnQuery = (query: QueryInterface, category_
         currentPage: page || 1,
         filter: {
             category_uid: { eq: category_uid },
-            ...(customFilters
-                ? configureAttributesForRequest(customFilters)
-                : {}
+            ...(customFilters ? configureAttributesForRequest(customFilters) : {}
             )
         },
-        ...(sort
-            ? { sort: { [sort]: sort_direction } }
-            : {}
+        ...(sort ? { sort: { [sort]: sort_direction } } : {}
         )
     };
 };

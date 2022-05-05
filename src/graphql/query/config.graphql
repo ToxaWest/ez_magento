@@ -15,6 +15,8 @@ query StoreConfig {
         }
     }
     storeConfig {
+        magento_wishlist_general_is_enabled
+        wishlist_general_active
         mfblog_top_menu_include_categories
         mfblog_permalink_route
         mfblog_top_menu_item_text

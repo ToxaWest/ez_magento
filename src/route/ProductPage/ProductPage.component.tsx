@@ -5,6 +5,7 @@ import ProductAttributes from '@component/ProductAttributes';
 import ProductMediaGallery from '@component/ProductMediaGallery';
 import ProductPrice from '@component/ProductPrice';
 import RelatedProducts from '@component/RelatedProducts';
+import WishListButton from '@component/WishListButton';
 import { RootState } from '@store/index';
 import { useSelector } from 'react-redux';
 
@@ -20,6 +21,7 @@ function ProductPageComponent() {
             <strong>{ sku }</strong>
             <ProductAttributes />
             <ProductPrice price_range={ price_range } />
+            <WishListButton sku={ sku } />
             <AddToCart
               product={ product }
               showQty
