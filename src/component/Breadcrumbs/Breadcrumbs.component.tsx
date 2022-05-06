@@ -19,7 +19,7 @@ function BreadcrumbsComponent(): JSX.Element {
 
     const renderLink = ({ url: linkUrl, name: linkName }: BreadcrumbInterface, index: number) => (
         <li key={ linkName } className={ styles.list_item }>
-            <Link href={ linkUrl }>
+            <Link href={ linkUrl } title={ linkName }>
                 <meta itemProp="item" content={ linkUrl } />
                 <span itemProp="name">{ linkName }</span>
                 <meta itemProp="position" content={ (index + 1).toString() } />

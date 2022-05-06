@@ -8,10 +8,10 @@
   cursor: pointer;
   width: 100%;
   height: var(--paper-item-min-height,48px);
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   line-height: 2rem;
   font-weight: 500;
-  border-bottom: 1px solid var(--theme-color);
+  border-bottom: 1px solid var(--yt-spec-10-percent-layer);
   &:hover {
     background-color: var(--yt-spec-badge-chip-background);
   }

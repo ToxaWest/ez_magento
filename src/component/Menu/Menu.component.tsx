@@ -1,6 +1,7 @@
 import styles from './Menu.module.scss';
 
 import Link from '@component/Link';
+import Button from '@ui/Button';
 import Icon from '@ui/Icon';
 import classNames from 'classnames';
 
@@ -23,10 +24,14 @@ interface MenuComponentInterface {
         title: string,
         url: string
     }[],
-    toggle: (item_id: number, parent_id: number) => void
+    toggle: (item_id: number, parent_id: number) => void,
+    toggleMenu: () => void,
+    menuOpened: boolean
 }
 
-function MenuComponent({ menu, toggle, isActive }: MenuComponentInterface) {
+function MenuComponent({
+    menu, toggle, isActive, toggleMenu, menuOpened
+}: MenuComponentInterface) {
     const renderMenuItem = (item: menuItemInterface, level: number) => {
         const {
             children, title, url, item_id, parent_id
@@ -36,12 +41,13 @@ function MenuComponent({ menu, toggle, isActive }: MenuComponentInterface) {
             <li
               key={ item_id }
               role="menuitem"
+              aria-current={ isActive(parseInt(item_id, 10)) }
               className={ cx(
                   styles.menu_item,
                   styles[`level_${level}`],
               ) }
             >
-                <Link href={ url }>{ title }</Link>
+                <Link href={ url } title={ title }>{ title }</Link>
                 { /* eslint-disable-next-line no-use-before-define,@typescript-eslint/no-use-before-define */ }
                 { hasChild && renderChild(Object.values(children), parseInt(item_id, 10), parent_id, level) }
             </li>
@@ -74,9 +80,16 @@ function MenuComponent({ menu, toggle, isActive }: MenuComponentInterface) {
     );
 
     return (
-        <ul className={ styles.menu } role="menu">
-          { Object.values(menu).map((i) => renderMenuItem(i, 0)) }
-        </ul>
+        <>
+            <Button onClick={ toggleMenu }><Icon name="menu" /></Button>
+            <ul
+              className={ cx(styles.menu, { [styles.opened]: menuOpened }) }
+              role="menu"
+            >
+                { Object.values(menu).map((i) => renderMenuItem(i, 0)) }
+            </ul>
+        </>
+
     );
 }
 

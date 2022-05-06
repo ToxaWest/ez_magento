@@ -1,25 +1,24 @@
 .menu {
-  grid-area: Menu;
-  display: flex;
-  margin: 0;
-  padding: 0;
   color: var(--yt-spec-text-primary);
   background-color: var(--yt-spec-brand-background-primary);
+  position: fixed;
+  transition: .2s left ease-in-out;
+  top: var(--header-height);
+  height: calc(100vh - var(--header-height));
+  width: var(--layerd-navigation-width);
+  left: calc(0px - var(--layerd-navigation-width));
+  overflow-y: auto;
+  &.opened {
+    left:0;
+  }
 
   &_child {
     display: none;
     &_active {
       background-color: var(--yt-spec-brand-background-primary);
-      z-index: 5;
-      margin: 0;
-      padding: 0;
-      position: absolute;
-      left: 1px;
-      top: 0;
       white-space: nowrap;
       min-width: 100%;
       display: block;
-      border: 1px solid black;
     }
   }
 
@@ -28,15 +27,35 @@
     align-items: center;
     grid-gap: 0;
     grid-template-areas: 'a toggle ' 'child_wrapper child_wrapper';
-    padding: 10px 0 10px 10px;
-
-    a {
-      margin-right: 10px;
+    border-bottom: 1px solid var(--yt-spec-10-percent-layer);
+    span {
+      cursor: pointer;
+      font-size: 1.4rem;
+      margin-left: auto;
     }
+    a {
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      min-width: 0;
+      font-size: 1.2rem;
+      line-height: 2rem;
+      font-weight: 500;
+      height: var(--paper-item-min-height,48px);
+    }
+    &:hover {
+      background-color: var(--yt-spec-badge-chip-background);
+    }
+    &[aria-current="true"]{
+      background-color: var(--ytd-guide-entry-renderer-active-guide-item-background-color,var(--yt-spec-10-percent-layer));
+      &:hover {
+        background-color: var(--yt-spec-badge-chip-background);
+      }
 
-    &.level{
-      &_1, &_2{
-        grid-template-areas: 'a toggle child_wrapper';
+    }
+    &.level {
+      &_1, &_2, &_3 {
+        margin-left: 6px;
       }
     }
   }

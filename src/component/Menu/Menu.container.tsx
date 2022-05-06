@@ -8,6 +8,7 @@ function MenuContainer({ identifier }: { identifier: string }) {
     const { [identifier]: menu } = useSelector((state: RootState) => state.config.menu);
 
     const [activeItems, setActive] = useState({});
+    const [menuOpened, toggleMenu] = useState<boolean>(false);
     if (!menu) {
         return null;
     }
@@ -34,6 +35,8 @@ function MenuContainer({ identifier }: { identifier: string }) {
     };
 
     const componentProps = {
+        toggleMenu: () => toggleMenu(!menuOpened),
+        menuOpened,
         identifier,
         isActive,
         menu,

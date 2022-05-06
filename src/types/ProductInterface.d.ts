@@ -52,7 +52,7 @@ declare interface ProductInterface {
 }
 
 declare interface PageInfoInterface {
-  total_pages: number, current_page: number
+  total_pages: number
 }
 
 declare interface ProductsInformationInterface {

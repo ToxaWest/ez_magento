@@ -22,15 +22,12 @@ const useWishList = ({ getWishList }: { getWishList: boolean } = { getWishList: 
     const [pageInfo, setPageInfo] = useState<(WishListInfo & WishListPageInfo)>({
         sharing_code: '',
         items_count: 0,
-        page_info: {
-            page_size: 0,
-            total_pages: 0
-        }
+        page_info: { page_size: 0, total_pages: 0 }
     });
     const [items, setItems] = useState<WishListItem[]>([]);
-    const [addItem] = useMutation(gql`${addProductsToWishlist}`);
-    const [removeItem] = useMutation(gql`${removeProductsFromWishlist}`);
-    const [loadPageInfo] = useLazyQuery(gql`${wishListInformation}`);
+    const [addItem] = useMutation(addProductsToWishlist);
+    const [removeItem] = useMutation(removeProductsFromWishlist);
+    const [loadPageInfo] = useLazyQuery(wishListInformation);
     const [loadItems] = useLazyQuery(gql`
         ${priceFragment}
         ${price_range}
@@ -43,9 +40,7 @@ const useWishList = ({ getWishList }: { getWishList: boolean } = { getWishList: 
             customer: { wishlist_v2: { items_v2: { items: WishListItem[] } } }
         }> = await loadItems({
             variables: { id, page: p || 1 },
-            ...(noCache ? {
-                fetchPolicy: 'network-only'
-            } : {})
+            ...(noCache ? { fetchPolicy: 'network-only' } : {})
         });
 
         setLoading(false);
@@ -58,9 +53,7 @@ const useWishList = ({ getWishList }: { getWishList: boolean } = { getWishList: 
             customer: { wishlist_v2: AssignedWishListPageInfo }
         }> = await loadPageInfo({
             variables: { id },
-            ...(noCache ? {
-                fetchPolicy: 'network-only'
-            } : {})
+            ...(noCache ? { fetchPolicy: 'network-only' } : {})
         });
         const { items_v2, ...info } = wishlist_v2;
 
@@ -107,8 +100,8 @@ const useWishList = ({ getWishList }: { getWishList: boolean } = { getWishList: 
 
     useEffect(() => {
         if (getWishList) {
-            getWishListPageInfo().then(setPageInfo).catch(() => {});
-            getWishListItems(page as string).then(setItems).catch(() => {});
+            getWishListPageInfo(true).then(setPageInfo).catch(() => {});
+            getWishListItems(page as string, true).then(setItems).catch(() => {});
         }
     }, []);
 

@@ -49,7 +49,8 @@ ProductCardComponent.defaultProps = {
         image: true,
         link: true,
         price: true,
-        sku: true
+        sku: true,
+        addToCart: true
     }
 };
 

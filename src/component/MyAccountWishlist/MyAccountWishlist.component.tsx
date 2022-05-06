@@ -1,7 +1,11 @@
+import styles from './MyAccountWishlist.module.scss';
+
 import ProductCard from '@component/ProductCard';
 import Button from '@ui/Button';
 import Icon from '@ui/Icon';
 import Loader from '@ui/Loader';
+import Pagination from '@ui/Pagination';
+import { createElement } from 'react';
 
 interface MyAccountWishlistComponentInterface {
     loading: boolean,
@@ -13,25 +17,32 @@ interface MyAccountWishlistComponentInterface {
 function MyAccountWishlistComponent(props: MyAccountWishlistComponentInterface) {
     const {
         loading, items, removeFromWishList, pageInfo: {
-            sharing_code
+            sharing_code,
+            page_info
         }
     } = props;
+
+    const renderPagination = () => createElement(Pagination, { page_info });
+
+    const renderInfo = (id, added_at) => (
+        <div className={ styles.info }>
+            <span className={ styles.date }>
+                <Icon name="date_range" />
+                { added_at }
+            </span>
+            <Button onClick={ () => removeFromWishList({ id }) }>
+                <Icon name="delete" />
+            </Button>
+        </div>
+    );
 
     const renderProductCard = ({
         product,
         id,
-        quantity,
         added_at
     }: WishListItem) => (
-        <li key={ id }>
-            <span>
-                <Icon name="date_range" />
-                { added_at }
-            </span>
-            <span>
-                { `(${quantity}) item'(s)` }
-            </span>
-            <Button onClick={ () => removeFromWishList({ id }) }><Icon name="delete" /></Button>
+        <li key={ id } className={ styles.item }>
+            { renderInfo(id, added_at) }
             <ProductCard
               product={ product }
             />
@@ -39,7 +50,7 @@ function MyAccountWishlistComponent(props: MyAccountWishlistComponentInterface) 
     );
 
     const renderProducts = () => (
-        <ul>
+        <ul className={ styles.list }>
             { items.map(renderProductCard) }
         </ul>
     );
@@ -49,6 +60,7 @@ function MyAccountWishlistComponent(props: MyAccountWishlistComponentInterface) 
             <div>{ sharing_code }</div>
             <Loader isLoading={ loading } />
             { renderProducts() }
+            { renderPagination() }
         </div>
     );
 }

@@ -32,13 +32,15 @@ function AccountPageComponent(props: AccountPageComponentInterface): ReactElemen
     };
 
     const renderAccountMenu = () => (
-        <ul>
+        <ul className={ styles.list }>
             { Object.entries(tabMap).map(([tabKey, { label }]) => {
                 const isCurrent = tabKey === tab;
                 const Tag = isCurrent ? 'span' : Link;
                 const attributes = {
                     ...(isCurrent ? {} : { href: urlWithAccount(tabKey) }),
-                    children: label
+                    children: label,
+                    className: styles.listItem,
+                    'aria-current': isCurrent
                 };
 
                 return (

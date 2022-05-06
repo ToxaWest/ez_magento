@@ -1,38 +1,50 @@
-import styles from './CategoryPagination.module.scss';
+import styles from './Pagination.module.scss';
 
+import { RootState } from '@store/index';
+import { setUrlQuery } from '@util/Link';
 import classNames from 'classnames';
+import { NextRouter, useRouter } from 'next/router';
 import { useTranslations } from 'next-intl';
+import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
 interface CategoryPaginationComponentInterface {
-    page_info: PageInfoInterface,
-    pagination_frame?: number,
-    anchor_text_for_previous?: string,
-    anchor_text_for_next?: string,
-    onPageSelect: (page: number) => void
+    page_info: PageInfoInterface
 }
 function CategoryPaginationComponent(props: CategoryPaginationComponentInterface) {
     const {
-        page_info: { total_pages, current_page },
-        pagination_frame,
-        anchor_text_for_previous,
-        anchor_text_for_next,
-        onPageSelect
+        page_info: { total_pages }
     } = props;
+
+    const {
+        pagination_frame = 5, anchor_text_for_previous, anchor_text_for_next
+    } = useSelector((state: RootState) => state.config.config);
+
+    const router: NextRouter = useRouter();
+    const { query: { page: p = '1' } } = router;
+
+    const current_page = parseInt(p as string, 10);
+
+    const onPageSelect = (page: number) => {
+        setUrlQuery(router, {
+            page: page === 1 ? null : page
+        });
+    };
+
     const t = useTranslations('CategoryPagination');
 
     const renderPageIcon = (isNext = false) => (
-            <span
-              className={ cx(
-                  styles.CategoryPaginationIcon,
-                  { [styles.CategoryPaginationIcon_isNext]: isNext },
-              ) }
-            >
+        <span
+          className={ cx(
+              styles.CategoryPaginationIcon,
+              { [styles.CategoryPaginationIcon_isNext]: isNext },
+          ) }
+        >
                 { isNext
                     ? <span className={ styles.CategoryPaginationIconLabel }>{ t('Next') }</span>
                     : <span className={ styles.CategoryPaginationIconLabel }>{ t('Prev') }</span> }
-            </span>
+        </span>
     );
 
     const renderPageLink = (
@@ -41,17 +53,17 @@ function CategoryPaginationComponent(props: CategoryPaginationComponentInterface
         isCurrent = false,
         keyOverride?: string
     ): JSX.Element => (
-            <li
-              key={ keyOverride || pageNumber }
-              className={ cx(
-                  styles.CategoryPaginationListItem,
-                  { [styles.current]: isCurrent }
-              ) }
-            >
-                <button onClick={ () => onPageSelect(pageNumber) } disabled={ isCurrent }>
-                    { children }
-                </button>
-            </li>
+        <li
+          key={ keyOverride || pageNumber }
+          className={ cx(
+              styles.CategoryPaginationListItem,
+              { [styles.current]: isCurrent }
+          ) }
+        >
+            <button onClick={ () => onPageSelect(pageNumber) } disabled={ isCurrent }>
+                { children }
+            </button>
+        </li>
     );
 
     const renderPreviousPageLink = () => {
@@ -137,11 +149,5 @@ function CategoryPaginationComponent(props: CategoryPaginationComponentInterface
         </nav>
     );
 }
-
-CategoryPaginationComponent.defaultProps = {
-    anchor_text_for_next: '',
-    anchor_text_for_previous: '',
-    pagination_frame: 5
-};
 
 export default CategoryPaginationComponent;

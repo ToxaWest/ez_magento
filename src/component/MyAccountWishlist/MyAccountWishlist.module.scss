@@ -1,0 +1,31 @@
+.wrapper {
+
+}
+
+.list {
+  grid-area: productList;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: max-content;
+  grid-gap: 10px;
+}
+
+.info {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 12px;
+  background-color: var(--yt-spec-10-percent-layer);
+}
+
+.item {
+  list-style: none;
+
+  .date {
+    display: inline-flex;
+    align-items: center;
+  }
+}
