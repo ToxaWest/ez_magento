@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { cmsPage, scandiwebSlider } from '@gql/index';
+import { cmsPage, scandiwebSlider } from '@graphql/index';
 
 const pageQuery = {
     cmsPage: gql`

@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 import {
     price_range, priceFragment, product, productList, productListInformation
-} from '@gql/index';
+} from '@graphql/index';
 
 const productQuery = {
     product: gql`

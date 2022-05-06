@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { urlResolver } from '@gql/index';
+import { urlResolver } from '@graphql/index';
 
 const urlQuery = {
     urlResolver: gql`

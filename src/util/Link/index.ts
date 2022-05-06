@@ -90,8 +90,7 @@ const setFilterAttribute = (router: NextRouter, {
             page: null
         });
     } else {
-        const uriComponent: string = typeof customFilters === 'string' ? customFilters : customFilters[0];
-        const selected: object = getSelectedFiltersFromUrl(decodeURIComponent(uriComponent));
+        const selected: object = getSelectedFiltersFromUrl(decodeURIComponent(customFilters as string));
         let current = selected[code] as string[];
         if (current) {
             const active: number = current.indexOf(value as string);

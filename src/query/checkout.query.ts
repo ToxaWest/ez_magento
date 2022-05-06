@@ -9,7 +9,7 @@ import {
     setPaymentMethodOnCart,
     setShippingAddressesOnCart,
     setShippingMethodsOnCart
-} from '@gql/index';
+} from '@graphql/index';
 
 const CheckoutQuery = {
     estimateShippingCosts: gql`

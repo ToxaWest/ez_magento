@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 import {
     availableStores, categoryMenuFragment, config, countries, country, menu
-} from '@gql/index';
+} from '@graphql/index';
 
 const configQuery = {
     availableStores: gql`

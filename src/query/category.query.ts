@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { category } from '@gql/index';
+import { category } from '@graphql/index';
 
 const categoryQuery = {
     category: gql`

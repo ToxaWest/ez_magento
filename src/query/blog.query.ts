@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 import {
     blogCategory, blogPost, blogPosts, postCardFragment
-} from '@gql/index';
+} from '@graphql/index';
 
 const BlogQuery = {
     blogCategory: gql`

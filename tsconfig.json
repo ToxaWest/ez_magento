@@ -17,7 +17,7 @@
       "@store/*": [
         "store/*"
       ],
-      "@gql/*": [
+      "@graphql/*": [
         "graphql/*"
       ],
       "@style/*": [

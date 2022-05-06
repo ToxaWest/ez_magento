@@ -8,7 +8,7 @@ import {
     price_range,
     priceFragment,
     removeItemFromCart
-} from '@gql/index';
+} from '@graphql/index';
 
 const cartQuery = {
     addSimpleProductsToCart: gql`

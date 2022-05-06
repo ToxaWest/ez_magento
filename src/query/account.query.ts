@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { customer, customerOrders, generateCustomerToken } from '@gql/index';
+import { customer, customerOrders, generateCustomerToken } from '@graphql/index';
 
 const accountQuery = {
     customer: gql`

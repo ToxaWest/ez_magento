@@ -1,10 +1,10 @@
 import {
     ApolloQueryResult, gql, useLazyQuery, useMutation
 } from '@apollo/client';
-import { addProductsToWishlist, price_range, priceFragment } from '@gql/index';
-import removeProductsFromWishlist from '@gql/mutation/removeProductsFromWishlist.graphql';
-import wishListInformation from '@gql/query/wishListInformation.graphql';
-import wishListItems from '@gql/query/wishListItems.graphql';
+import { addProductsToWishlist, price_range, priceFragment } from '@graphql/index';
+import removeProductsFromWishlist from '@graphql/mutation/removeProductsFromWishlist.graphql';
+import wishListInformation from '@graphql/query/wishListInformation.graphql';
+import wishListItems from '@graphql/query/wishListItems.graphql';
 import { updateWishListItemsCount } from '@store/account.store';
 import { RootState } from '@store/index';
 import { setInfoNotification, setSuccessNotification } from '@store/notifiactions';
