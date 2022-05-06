@@ -4,6 +4,7 @@ import Link from '@component/Link';
 import {
     urlWithAccount
 } from '@route/AccountPage/AccountPage.config';
+import Icon from '@ui/Icon';
 import Loader from '@ui/Loader';
 import {
     ComponentType, createElement, FC, ReactElement
@@ -15,6 +16,7 @@ interface AccountPageComponentInterface {
     tabMap: {
         [key: string]: {
             label: string,
+            icon: string,
             render: FC | string | ComponentType
         }
     }
@@ -33,12 +35,17 @@ function AccountPageComponent(props: AccountPageComponentInterface): ReactElemen
 
     const renderAccountMenu = () => (
         <ul className={ styles.list }>
-            { Object.entries(tabMap).map(([tabKey, { label }]) => {
+            { Object.entries(tabMap).map(([tabKey, { label, icon }]) => {
                 const isCurrent = tabKey === tab;
                 const Tag = isCurrent ? 'span' : Link;
                 const attributes = {
                     ...(isCurrent ? {} : { href: urlWithAccount(tabKey) }),
-                    children: label,
+                    children: (
+                        <>
+                            <Icon name={ icon } />
+                            { label }
+                        </>
+                    ),
                     className: styles.listItem,
                     'aria-current': isCurrent
                 };

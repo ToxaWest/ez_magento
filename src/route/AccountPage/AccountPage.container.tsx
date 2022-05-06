@@ -19,14 +19,17 @@ function AccountPageContainer() {
     const tabMap = {
         [DASHBOARD]: {
             label: 'Dashboard',
+            icon: 'person',
             render: 'div'
         },
         [ORDER_LIST]: {
             label: 'Orders',
+            icon: 'list_alt',
             render: MyAccountOrders
         },
         [WISHLIST]: {
             label: 'Wish List',
+            icon: 'favorite',
             render: MyAccountWishlist
         }
     };
