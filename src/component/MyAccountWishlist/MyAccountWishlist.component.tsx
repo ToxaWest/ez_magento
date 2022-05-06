@@ -30,9 +30,9 @@ function MyAccountWishlistComponent(props: MyAccountWishlistComponentInterface) 
                 <Icon name="date_range" />
                 { added_at }
             </span>
-            <Button onClick={ () => removeFromWishList({ id }) }>
+            <button aria-label="remove" onClick={ () => removeFromWishList({ id }) }>
                 <Icon name="delete" />
-            </Button>
+            </button>
         </div>
     );
 

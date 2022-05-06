@@ -1,21 +1,3 @@
-.popup {
-  &Content{
-    width: 100%;
-    max-width: 100%;
-    min-height: 100%;
-    height: 50rem;
-    overflow-y: auto;
-  }
-  &Wrapper {
-    --popup-wrapper-position: absolute;
-    --popup-wrapper-top: 2rem;
-    --popup-wrapper-left: initial;
-    --popup-wrapper-width: 30rem;
-    --popup-wrapper-height: 50rem;
-    right: 0;
-  }
-}
-
 .count {
   display: flex;
   width: 1.7rem;
@@ -34,3 +16,8 @@
   border: 2px solid var(--yt-spec-brand-background-primary);
 }
 
+.wishlist {
+  display: inline-block;
+  max-width: 2.5rem;
+  margin: 0 1.2rem;
+}

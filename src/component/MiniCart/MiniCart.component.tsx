@@ -19,7 +19,7 @@ function MiniCartComponent() {
         <div className={ styles.wrapper }>
             <button onClick={ () => setActive(true) }>
                 <Icon name="shopping_bag" />
-                <span>{ total_quantity }</span>
+                <span className={ styles.count }>{ total_quantity }</span>
             </button>
             <Popup
               id={ popupId.MINI_CART }

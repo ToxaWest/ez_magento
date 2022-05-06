@@ -3,7 +3,7 @@
   grid-template-columns: var(--cartItem-image-width) 1fr;
   grid-template-areas: 'i .' 'i .' 'i .' 'i .' 'i .';
   max-width: 100%;
-  grid-column-gap: 10px;
+  grid-column-gap: 1rem;
   .image {
     grid-area: i;
   }

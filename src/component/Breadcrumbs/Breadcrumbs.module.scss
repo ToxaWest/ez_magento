@@ -5,7 +5,7 @@
   top: var(--header-height);
   left: 0;
   width: 100%;
-  padding: 0 24px;
+  padding: 0 2.4rem;
   display: flex;
   align-items: center;
   background-color: var(--yt-spec-10-percent-layer);
@@ -14,18 +14,18 @@
 }
 
 .list {
-  margin: 5px 0;
+  margin: .5rem 0;
   padding: 0;
   display: flex;
   font-size: 1.1rem;
-  grid-gap: 5px;
+  grid-gap: .5rem;
   &_item {
     list-style: none;
     margin: 0;
     padding: 0;
     &:after{
       content: '/';
-      padding-left: 5px;
+      padding-left: .5rem;
     }
   }
   &_current {

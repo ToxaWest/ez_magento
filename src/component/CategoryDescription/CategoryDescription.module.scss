@@ -1,7 +1,7 @@
 .wrapper {
   display: grid;
   grid-area: CategoryDescription;
-  grid-template-columns: 150px 1fr;
+  grid-template-columns: 15rem 1fr;
   grid-template-areas:
                     'image .'
                     'image .';

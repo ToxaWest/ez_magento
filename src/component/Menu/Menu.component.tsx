@@ -81,7 +81,7 @@ function MenuComponent({
 
     return (
         <>
-            <Button onClick={ toggleMenu }><Icon name="menu" /></Button>
+            <button onClick={ toggleMenu } aria-label="menu"><Icon name="menu" /></button>
             <ul
               className={ cx(styles.menu, { [styles.opened]: menuOpened }) }
               role="menu"

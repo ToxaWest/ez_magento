@@ -21,7 +21,32 @@ a {
 body {
   background: var(--yt-spec-general-background-a);
   color: var(--yt-spec-text-primary);
+}
+
+main {
   padding-top: calc(var(--header-height) + var(--breadcrumbs-height));
+}
+
+input {
+  -webkit-font-smoothing: antialiased;
+  background-color: transparent;
+  box-shadow: none;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  font-weight: 400;
+  max-width: 100%;
+  border-radius: .3rem;
+  outline: none;
+  border: 1px solid var(--yt-spec-10-percent-layer);
+  &:not([type="checkbox"]){
+    -webkit-appearance: none;
+    width: 100%;
+    padding: .6rem 1.2rem;
+  }
+}
+
+button {
+  cursor: pointer;
 }
 
 * {
