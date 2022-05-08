@@ -14,9 +14,10 @@ function MyAccountOrdersComponent(): ReactElement {
         return <span>No items</span>;
     }
 
-    const data = items.map((i) => ({
-        ...i,
-        grand_total: getFinalPrice(i.total.grand_total, locale)
+    const data = items.map(({ order_date, status, total: { grand_total } }) => ({
+        order_date,
+        status,
+        grand_total: getFinalPrice(grand_total, locale)
     }));
 
     return (

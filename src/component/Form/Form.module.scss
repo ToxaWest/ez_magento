@@ -1,7 +1,12 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  max-width: 30rem;
+  max-width: 40rem;
+}
+
+.button {
+  text-align: center;
+  margin: .6rem auto;
 }
 
 .field{
@@ -11,11 +16,16 @@
     &:after {
       content: ':';
     }
+    padding: .6rem 0;
+    font-size: 1.2rem;
+    font-weight: 500;
   }
   &.checkbox{
     flex-direction: row-reverse;
+    align-items: center;
     label {
       margin-right: auto;
+      margin-left: 1.2rem;
       &:after{
         content: '';
       }
@@ -25,9 +35,13 @@
 
 
 
-.fieldset{
+.fieldset {
   display: grid;
   grid-template-columns: repeat(2,1fr);
+  grid-gap: 1rem;
+  margin-bottom: .6rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--yt-spec-10-percent-layer);
 
   &.checkbox_fieldset {
     grid-template-columns: repeat(1,1fr);

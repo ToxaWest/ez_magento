@@ -11,7 +11,7 @@ function RelatedProductsComponent() {
     }
 
     return (
-        <div style={ { gridArea: 'relatedProducts' } }>
+        <div>
             <span>related products</span>
             <Slider
               settings={ {

@@ -5,7 +5,7 @@ import classNames from 'classnames';
 const cx = classNames.bind(styles);
 interface TableInterface {
     data: {
-        [key: string]: string | number
+        [key: string | null]: string | number
     }[],
     head: {
         key: string,

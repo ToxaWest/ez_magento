@@ -1,8 +1,10 @@
 .error {
-  font-size: .75em;
-  color: #fd4444;
+  font-size: .8em;
+  line-height: 1rem;
+  color: var(--yt-spec-brand-button-background);
   text-align: right;
   width: 100%;
   position: absolute;
-  top: -1rem;
+  right: .3rem;
+  top: -1.3rem;
 }

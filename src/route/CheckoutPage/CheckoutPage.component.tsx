@@ -1,3 +1,5 @@
+import styles from './CheckoutPage.module.scss';
+
 import { notInteractiveClick } from '@util/Events';
 import { ComponentType, createElement, FC } from 'react';
 
@@ -36,7 +38,7 @@ function CheckoutPageComponent(props: CheckoutPageComponentInterface) {
     };
 
     const tabHeading = () => (
-        <div role="tablist">
+        <div role="tablist" className={ styles.tabList }>
             { Object.entries(tabMap)
                 .filter(([, { include_in_menu }]) => include_in_menu)
                 .map(([key, { label: headingLabel }], index: number) => (
@@ -46,18 +48,21 @@ function CheckoutPageComponent(props: CheckoutPageComponentInterface) {
                       tabIndex={ 0 }
                       aria-current={ tab === key }
                       onKeyDown={ notInteractiveClick }
+                      title={ headingLabel.toUpperCase() }
                       onClick={ () => onClick(key) }
                     >
-                        { `${headingLabel} ${index + 1}` }
+                        { index + 1 }
                     </div>
                 )) }
         </div>
     );
 
     return (
-        <div>
-            { tabHeading() }
-            <h1>{ label }</h1>
+        <div className={ styles.wrapper }>
+            <div className={ styles.heading }>
+                { tabHeading() }
+                <h1>{ label }</h1>
+            </div>
             { renderTab() }
         </div>
     );

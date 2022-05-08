@@ -5,6 +5,7 @@ import { ACCOUNT_ROUTE_PATHNAME } from '@route/AccountPage/AccountPage.config';
 import { BILLING } from '@route/CheckoutPage/CheckoutPage.config';
 import { SelectedShippingMethodInterface } from '@store/cart.store';
 import { RootState } from '@store/index';
+import Button from '@ui/Button';
 import Loader from '@ui/Loader';
 import { getFinalPrice } from '@util/Price/price';
 import classNames from 'classnames';
@@ -80,7 +81,7 @@ function CheckoutShippingMethodsComponent() {
             <ul className={ styles.wrapper }>
                 { renderShippingMethods() }
             </ul>
-            <button onClick={ onClick } disabled={ !selected_shipping_method }>submit</button>
+            <Button onClick={ onClick } disabled={ !selected_shipping_method }>submit</Button>
         </>
     );
 }

@@ -37,8 +37,8 @@ export const getPropsBasedOnRequest = (ctx: ctxInterface) => {
         store_code
     };
 };
-// export const getLangPrefix = (store_code: string) => store_code;
-export const getLangPrefix = (store_code: string):string => store_code.split('_')[1];
+export const getLangPrefix = (store_code: string) => store_code;
+// export const getLangPrefix = (store_code: string):string => store_code.split('_')[1];
 
 export const getContextBasedOnStore = (store_code?: string, current_currency?: string) => {
     const isServer: boolean = typeof window === 'undefined';

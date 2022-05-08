@@ -25,8 +25,10 @@ function ProductPageComponent() {
               product={ product }
               showQty
             />
-            <ProductAttributes />
-            <RelatedProducts />
+            <div className={ styles.content }>
+                <ProductAttributes />
+                <RelatedProducts />
+            </div>
         </div>
     );
 }

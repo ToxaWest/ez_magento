@@ -3,6 +3,7 @@ import styles from './CheckoutPaymentMethods.module.scss';
 import usePlaceOrder from '@hook/usePlaceOrder';
 import useSetPaymentMethodOnCart from '@hook/useSetPaymentMethodOnCart';
 import { RootState } from '@store/index';
+import Button from '@ui/Button';
 import Loader from '@ui/Loader';
 import { notInteractiveClick } from '@util/Events';
 import classNames from 'classnames';
@@ -40,13 +41,13 @@ function CheckoutPaymentMethodsComponent() {
     );
 
     return (
-        <div>
+        <>
             <Loader isLoading={ loading || orderLoading } />
             <ul className={ styles.wrapper }>
                 { available_payment_methods.map(renderPaymentMethod) }
             </ul>
-            <button onClick={ placeOrder } disabled={ !selected_payment_method?.code }>Place order</button>
-        </div>
+            <Button onClick={ placeOrder } disabled={ !selected_payment_method?.code }>Place order</Button>
+        </>
     );
 }
 

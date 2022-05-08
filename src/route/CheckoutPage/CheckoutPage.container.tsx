@@ -7,6 +7,7 @@ import {
     BILLING, CHECKOUT_ROUTE_PATHNAME, DELIVERY, PAYMENT, SHIPPING
 } from '@route/CheckoutPage/CheckoutPage.config';
 import { AppDispatch, RootState } from '@store/index';
+import { updateMeta } from '@store/meta.store';
 import { setErrorNotification, setInfoNotification } from '@store/notifiactions';
 import { showPopup } from '@store/popup';
 import { NextRouter, useRouter } from 'next/router';
@@ -34,26 +35,33 @@ function CheckoutPageContainer() {
     const { query: { tab } } = router as { query: { tab?:string } };
     const tabMap = {
         [SHIPPING]: {
-            label: 'shipping',
+            label: 'Shipping address',
             include_in_menu: !isVirtual,
             render: CheckoutShipping
         },
         [DELIVERY]: {
-            label: 'delivery',
+            label: 'Delivery method',
             include_in_menu: !isVirtual,
             render: CheckoutShippingMethods
         },
         [BILLING]: {
-            label: 'billing',
+            label: 'Billing address',
             include_in_menu: true,
             render: CheckoutBilling
         },
         [PAYMENT]: {
-            label: 'payment',
+            label: 'Payment method',
             include_in_menu: true,
             render: CheckoutPaymentMethods
         }
     };
+
+    useEffect(() => {
+        if (tabMap[tab]) {
+            const { label: title } = tabMap[tab];
+            dispatch(updateMeta({ title }));
+        }
+    }, [tab]);
 
     useEffect(() => {
         if (!loading) {

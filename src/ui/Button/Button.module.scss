@@ -28,6 +28,9 @@
   flex-direction: row;
   align-items: center;
   display: inline-flex;
+  &:disabled {
+    opacity: .4;
+  }
   &:hover {
     background-color: var(--yt-spec-button-chip-background-hover);
   }

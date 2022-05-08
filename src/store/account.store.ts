@@ -3,6 +3,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface accountReducerInterface {
     customer?: {
         firstname: string,
+        lastname?: string,
+        date_of_birth?: string,
+        email: string,
         wishlist: {
             id,
             items_count: number
@@ -17,6 +20,9 @@ export const accountReducer = createSlice({
     initialState: {
         customer: {
             firstname: '',
+            lastname: '',
+            date_of_birth: '',
+            email: '',
             wishlist: {
                 id: 0,
                 items_count: 0
@@ -35,6 +41,9 @@ export const accountReducer = createSlice({
         logOutCustomer: (state) => {
             state.customer = {
                 firstname: '',
+                lastname: '',
+                date_of_birth: '',
+                email: '',
                 wishlist: {
                     id: 0,
                     items_count: 0
@@ -53,7 +62,10 @@ export const accountReducer = createSlice({
 });
 
 export const {
-    updateCustomer, updateCustomerLoadingStatus, updateWishListItemsCount, logOutCustomer
+    updateCustomer,
+    updateCustomerLoadingStatus,
+    updateWishListItemsCount,
+    logOutCustomer
 } = accountReducer.actions;
 
 export default accountReducer.reducer;

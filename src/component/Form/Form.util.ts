@@ -1,15 +1,21 @@
 import { fieldsInterface } from '@util/Address';
 
+export interface sortedFieldInterface {
+    id: string,
+    name: string,
+    validation?: string[],
+    label: string,
+    type: 'text' | 'select' | 'hidden' | 'tel' | 'checkbox',
+    group?: string
+}
+
 interface sortFieldsByGroupInterface {
-    [group: string]: {
-        id: string,
-        name: string
-    }[]
+    [group: string]: sortedFieldInterface[]
 }
 
 // eslint-disable-next-line import/prefer-default-export
 export const sortFieldsByGroup = (fields: fieldsInterface) => Object.entries(fields)
-    .reduce((acc, [name, data]: [string, { group?: string }]) => {
+    .reduce((acc, [name, data]: [string, sortedFieldInterface]) => {
         const { group } = data;
         if (group) {
             if (!acc[group]) {

@@ -1,32 +1,42 @@
 .wrapper {
-  max-width: 50rem;
+  padding: 0 2.4rem;
   h1 {
     text-transform: uppercase;
-    margin: 0;
+    margin-left: 1.2rem;
   }
 }
 
-.tabHeading {
-  grid-area: heading;
-  display: inline-flex;
-  margin: 1rem;
-  justify-content: space-evenly;
+.heading {
+  display: flex;
+  align-items: center;
+  padding: 1.2rem 0;
+  margin-bottom: 1.2rem;
+  border-bottom: 1px solid var(--yt-spec-10-percent-layer);
 }
 
-.tab {
-  width: 3rem;
-  height: 3rem;
-  line-height: 2.6rem;
-  border: 2px solid var(--theme-color-secondary);
-  background-color: var(--theme-color);
-  text-align: center;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: .3s all ease-in-out;
-  &_active {
-    background-color: var(--theme-color-secondary);
-  }
-  &:hover{
-    background-color: var(--theme-color-secondary);
+.tabList {
+  display: flex;
+  div {
+    margin-right: 1.2rem;
+    display: flex;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--yt-spec-badge-chip-background);
+    border: 1px solid var(--yt-spec-10-percent-layer);
+    color: var(--yt-spec-text-primary);
+    cursor: pointer;
+    transition: background-color 0.5s cubic-bezier(0.05,0,0,1);
+    &:hover {
+      background-color: var(--yt-spec-10-percent-layer);
+    }
+    &[aria-current="true"]{
+      background-color: var(--yt-spec-brand-background-primary);
+      &:hover {
+        background-color: var(--yt-spec-10-percent-layer);
+      }
+    }
   }
 }

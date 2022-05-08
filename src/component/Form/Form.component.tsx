@@ -2,7 +2,8 @@ import styles from './Form.module.scss';
 
 import Field from '@component/Field';
 import { HIDDEN_TYPE } from '@component/Field/Field.config';
-import { sortFieldsByGroup } from '@component/Form/Form.util';
+import { sortedFieldInterface, sortFieldsByGroup } from '@component/Form/Form.util';
+import Button from '@ui/Button';
 import { fieldsInterface } from '@util/Address';
 import classNames from 'classnames';
 import { FormState } from 'final-form';
@@ -34,18 +35,22 @@ function FormComponent(props: FormComponentInterface) {
             return actionsRender();
         }
 
-        return <button type="submit">Submit</button>;
+        return <Button type="submit" variant="default" className={ styles.button }>Submit</Button>;
     };
 
-    const renderLabel = (field, children: ReactElement) => {
-        const { type, name, label } = field as { type: string, name: string, label: string };
+    const renderLabel = (field: sortedFieldInterface, children: ReactElement) => {
+        const {
+            type, name, label, validation = []
+        } = field;
+
         if (type === HIDDEN_TYPE) {
             return cloneElement(children, { key: name });
         }
+        const isRequired = validation.indexOf('notEmpty') !== -1;
 
         return (
             <div key={ name } className={ cx(styles.field, styles[type]) }>
-                <label htmlFor={ name }>{ label }</label>
+                <label htmlFor={ name } aria-required={ isRequired }>{ label }</label>
                 { children }
             </div>
         );

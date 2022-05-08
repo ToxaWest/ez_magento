@@ -26,7 +26,7 @@ function SliderComponent(props: SliderComponentInterface) {
         dots, children, current, goTo, nav, className, draggable, sliderRef, transition, setX, x
     } = props;
     const renderDots = () => {
-        if (!dots) {
+        if (!dots || children.length === 1) {
             return null;
         }
 
@@ -48,7 +48,7 @@ function SliderComponent(props: SliderComponentInterface) {
     };
 
     const renderNav = () => {
-        if (!nav) {
+        if (!nav || children.length === 1) {
             return null;
         }
 
@@ -78,7 +78,7 @@ function SliderComponent(props: SliderComponentInterface) {
                   x,
                   y: 0
               } }
-              disabled={ !draggable }
+              disabled={ !draggable || children.length === 1 }
               defaultClassNameDragging={ styles.Dragging }
               nodeRef={ sliderRef }
               onStop={ (e, { x: posX }) => setX(posX) }

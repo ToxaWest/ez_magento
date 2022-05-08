@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface MetaInterface {
     meta_title?: string,
@@ -24,7 +24,21 @@ const getInitialState = () => {
 export const metaReducer = createSlice({
     initialState: getInitialState(),
     name: 'meta',
-    reducers: {},
+    reducers: {
+        updateMeta: (state, {
+            payload: {
+                title,
+                meta_title,
+                meta_description,
+                meta_keyword
+            }
+        }: PayloadAction<MetaInterface>) => {
+            state.title = title;
+            state.meta_title = meta_title;
+            state.meta_description = meta_description;
+            state.meta_keyword = meta_keyword;
+        }
+    },
     extraReducers: {
         'products/updateSingleProduct': (state, {
             payload: {
@@ -68,5 +82,6 @@ export const metaReducer = createSlice({
         }
     }
 });
+export const { updateMeta } = metaReducer.actions;
 
 export default metaReducer.reducer;
