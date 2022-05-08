@@ -1,36 +1,20 @@
 import { RootState } from '@store/index';
+import Table from '@ui/Table';
 import { getAttributeValue } from '@util/Attributes/Attributes';
 import { useSelector } from 'react-redux';
 
 function ProductAttributesComponent() {
     const { singleProduct: { s_attributes } } = useSelector((state: RootState) => state.products);
 
-    const renderAttribute = (item: SAttributesInterface) => {
-        const { attribute_label, attribute_code } = item;
-        return (
-          <tr key={ attribute_code }>
-            <td><strong>{ attribute_label }</strong></td>
-            <td>{ getAttributeValue(item) }</td>
-          </tr>
-        );
-    };
+    const data = s_attributes.reduce((acc, item) => ({ ...acc, [item.attribute_code]: getAttributeValue(item) }), {});
 
-    const renderHead = () => (
-        <tr>
-            <td>Attribute</td>
-            <td>Value</td>
-        </tr>
-    );
+    const head = s_attributes.map(({ attribute_label, attribute_code }) => ({
+        key: attribute_code,
+        label: attribute_label
+    }));
 
     return (
-      <table>
-        <thead>
-        { renderHead() }
-        </thead>
-        <tbody>
-          { s_attributes.map(renderAttribute) }
-        </tbody>
-      </table>
+      <Table head={ head } data={ [data] } isVertical />
     );
 }
 

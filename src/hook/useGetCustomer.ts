@@ -1,4 +1,5 @@
 import { ApolloError, useLazyQuery } from '@apollo/client';
+import useLogout from '@hook/useLogout';
 import accountQuery from '@query/account.query';
 import { updateCustomer, updateCustomerLoadingStatus } from '@store/account.store';
 import { AppDispatch } from '@store/index';
@@ -11,6 +12,7 @@ import { useDispatch } from 'react-redux';
 const useGetCustomer = () => {
     const [loadGreeting] = useLazyQuery(accountQuery.customer, { ssr: false });
     const dispatch = useDispatch<AppDispatch>();
+    const logout = useLogout();
 
     return async () => {
         const token = BrowserDatabase.getItem(TOKEN_ID) as string;
@@ -24,8 +26,7 @@ const useGetCustomer = () => {
             if (customer) {
                 dispatch(updateCustomer(customer));
             } else {
-                // need implement logout hook
-                BrowserDatabase.deleteItem(TOKEN_ID);
+                await logout();
             }
 
             return true;

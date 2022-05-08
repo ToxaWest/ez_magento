@@ -1,5 +1,7 @@
+import MyAccountDashboard from '@component/MyAccountDashboard';
 import MyAccountOrders from '@component/MyAccountOrders';
 import MyAccountWishlist from '@component/MyAccountWishlist';
+import useLogout from '@hook/useLogout';
 import AccountPageComponent from '@route/AccountPage/AccountPage.component';
 import {
     ACCOUNT_ROUTE_PATHNAME,
@@ -15,12 +17,13 @@ import { useSelector } from 'react-redux';
 function AccountPageContainer() {
     const router: NextRouter = useRouter();
     const { query: { tab } } = router as { query: { tab?: string } };
+    const logout = useLogout();
     const { isSignedIn, loading } = useSelector((state: RootState) => state.account);
     const tabMap = {
         [DASHBOARD]: {
             label: 'Dashboard',
             icon: 'person',
-            render: 'div'
+            render: MyAccountDashboard
         },
         [ORDER_LIST]: {
             label: 'Orders',
@@ -31,6 +34,12 @@ function AccountPageContainer() {
             label: 'Wish List',
             icon: 'favorite',
             render: MyAccountWishlist
+        },
+        logout: {
+            label: 'Logout',
+            icon: 'logout',
+            onClick: logout,
+            render: null
         }
     };
 

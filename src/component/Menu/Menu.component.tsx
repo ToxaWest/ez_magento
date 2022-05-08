@@ -1,7 +1,6 @@
 import styles from './Menu.module.scss';
 
 import Link from '@component/Link';
-import Button from '@ui/Button';
 import Icon from '@ui/Icon';
 import classNames from 'classnames';
 

@@ -19,13 +19,13 @@ function ProductPageComponent() {
             <ProductMediaGallery className={ styles.gallery } />
             <h1>{ name }</h1>
             <strong>{ sku }</strong>
-            <ProductAttributes />
             <ProductPrice price_range={ price_range } />
             <WishListButton sku={ sku } />
             <AddToCart
               product={ product }
               showQty
             />
+            <ProductAttributes />
             <RelatedProducts />
         </div>
     );

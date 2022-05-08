@@ -16,6 +16,7 @@ interface accountReducerInterface {
 export const accountReducer = createSlice({
     initialState: {
         customer: {
+            firstname: '',
             wishlist: {
                 id: 0,
                 items_count: 0
@@ -31,6 +32,17 @@ export const accountReducer = createSlice({
             state.isSignedIn = true;
             state.loading = false;
         },
+        logOutCustomer: (state) => {
+            state.customer = {
+                firstname: '',
+                wishlist: {
+                    id: 0,
+                    items_count: 0
+                }
+            };
+            state.isSignedIn = false;
+            state.loading = false;
+        },
         updateCustomerLoadingStatus: (state, { payload }) => {
             state.loading = payload;
         },
@@ -40,6 +52,8 @@ export const accountReducer = createSlice({
     }
 });
 
-export const { updateCustomer, updateCustomerLoadingStatus, updateWishListItemsCount } = accountReducer.actions;
+export const {
+    updateCustomer, updateCustomerLoadingStatus, updateWishListItemsCount, logOutCustomer
+} = accountReducer.actions;
 
 export default accountReducer.reducer;

@@ -1,6 +1,7 @@
 import useCustomerOrders from '@hook/useCustomerOrders';
 import { RootState } from '@store/index';
 import Loader from '@ui/Loader';
+import Table from '@ui/Table';
 import { getFinalPrice } from '@util/Price/price';
 import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
@@ -13,37 +14,22 @@ function MyAccountOrdersComponent(): ReactElement {
         return <span>No items</span>;
     }
 
-    const renderThead = () => (
-            <thead>
-                <tr>
-                    <td>Status</td>
-                    <td>date</td>
-                    <td>total</td>
-                </tr>
-            </thead>
-    );
-
-    const renderTbody = () => (
-        <tbody>
-            { items.map(({
-                order_date, id, status, total
-            }) => (
-                <tr key={ id }>
-                    <td>{ status }</td>
-                    <td>{ order_date }</td>
-                    <td>{ getFinalPrice(total.grand_total, locale) }</td>
-                </tr>
-            )) }
-        </tbody>
-    );
+    const data = items.map((i) => ({
+        ...i,
+        grand_total: getFinalPrice(i.total.grand_total, locale)
+    }));
 
     return (
         <div>
             <Loader isLoading={ loading } />
-            <table>
-                { renderThead() }
-                { renderTbody() }
-            </table>
+            <Table
+              data={ data }
+              head={ [
+                  { key: 'status', label: 'Status' },
+                  { key: 'order_date', label: 'Date' },
+                  { key: 'grand_total', label: 'Total' }
+              ] }
+            />
         </div>
     );
 }

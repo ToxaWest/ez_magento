@@ -39,6 +39,10 @@ export const getErrorMessage = (e: ApolloError) => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         return e.graphQLErrors[0].message as string;
     }
+    if (e.networkError) {
+        // eslint-disable-next-line no-console
+        console.error(e.networkError.cause);
+    }
 
     return '';
 };

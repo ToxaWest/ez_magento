@@ -17,6 +17,7 @@ interface AccountPageComponentInterface {
         [key: string]: {
             label: string,
             icon: string,
+            onClick?: () => void,
             render: FC | string | ComponentType
         }
     }
@@ -35,9 +36,9 @@ function AccountPageComponent(props: AccountPageComponentInterface): ReactElemen
 
     const renderAccountMenu = () => (
         <ul className={ styles.list }>
-            { Object.entries(tabMap).map(([tabKey, { label, icon }]) => {
+            { Object.entries(tabMap).map(([tabKey, { label, icon, onClick }]) => {
                 const isCurrent = tabKey === tab;
-                const Tag = isCurrent ? 'span' : Link;
+                const Tag = (isCurrent || onClick) ? 'span' : Link;
                 const attributes = {
                     ...(isCurrent ? {} : { href: urlWithAccount(tabKey) }),
                     children: (
@@ -46,6 +47,7 @@ function AccountPageComponent(props: AccountPageComponentInterface): ReactElemen
                             { label }
                         </>
                     ),
+                    onClick,
                     className: styles.listItem,
                     'aria-current': isCurrent
                 };

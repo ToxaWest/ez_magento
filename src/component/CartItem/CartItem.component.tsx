@@ -4,7 +4,6 @@ import Image from '@component/Image';
 import Link from '@component/Link';
 import ProductPrice from '@component/ProductPrice';
 import useRemoveItemFromCart from '@hook/useRemoveItemFromCart';
-import Button from '@ui/Button';
 import Icon from '@ui/Icon';
 import Loader from '@ui/Loader';
 import { ReactElement, useState } from 'react';
@@ -43,7 +42,9 @@ function CartItemComponent(props: CartItemComponentInterface): ReactElement {
             <span>{ sku }</span>
             <ProductPrice price_range={ price_range } />
             { `${quantity} items` }
-            <Button onClick={ () => remove(id) } className={ styles.removeBtn }><Icon name="delete" /></Button>
+            <button onClick={ () => remove(id) } className={ styles.removeBtn }>
+                <Icon name="delete" />
+            </button>
         </div>
     );
 }

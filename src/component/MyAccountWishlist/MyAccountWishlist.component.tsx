@@ -1,7 +1,6 @@
 import styles from './MyAccountWishlist.module.scss';
 
 import ProductCard from '@component/ProductCard';
-import Button from '@ui/Button';
 import Icon from '@ui/Icon';
 import Loader from '@ui/Loader';
 import Pagination from '@ui/Pagination';

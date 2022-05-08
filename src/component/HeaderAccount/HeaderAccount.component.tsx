@@ -47,7 +47,7 @@ function HeaderAccountComponent() {
     };
 
     const renderWishListButton = () => {
-        if (!(magento_wishlist_general_is_enabled === '1')) {
+        if (!(magento_wishlist_general_is_enabled === '1') || !isSignedIn) {
             return null;
         }
 

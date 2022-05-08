@@ -4,6 +4,7 @@ query customer{
         lastname
         email
         id
+        is_subscribed
         wishlist {
             id
             items_count
