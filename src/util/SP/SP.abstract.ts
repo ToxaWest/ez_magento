@@ -27,12 +27,12 @@ import { AbstractIntlMessages } from 'use-intl';
 import { getContextBasedOnStore, getLangPrefix } from './sp.helpers';
 
 export interface SPAbstractInterface {
-    store_code?: string,
-    current_currency?: string,
     asPath?: NextRouter['asPath'],
-    query?: NextRouter['query'],
+    current_currency?: string,
     isServer?: boolean,
-    locale?: NextRouter['locale']
+    locale?: NextRouter['locale'],
+    query?: NextRouter['query'],
+    store_code?: string
 }
 
 export default class SPAbstract {
@@ -93,8 +93,8 @@ export default class SPAbstract {
         const {
             data: { categoryMenu, storeConfig }
         }: ApolloQueryResult<{
-            storeConfig: StoreConfigInterface,
             categoryMenu: menuChildInterface[]
+            storeConfig: StoreConfigInterface
         }> = await this.request(configQuery.config);
 
         const {
@@ -123,8 +123,8 @@ export default class SPAbstract {
     }
 
     updateClientBasedOnStore({ default_display_currency_code, store_code }: {
-        store_code: string,
-        default_display_currency_code: string
+        default_display_currency_code: string,
+        store_code: string
     }) {
         this.store_code = store_code;
         this.current_currency = default_display_currency_code;
@@ -139,9 +139,9 @@ export default class SPAbstract {
         try {
             const { data: { availableStores: initialStoreList } }: ApolloQueryResult<{
                 availableStores: {
-                    store_code: string,
                     default_display_currency_code: string,
-                    is_default_store: boolean
+                    is_default_store: boolean,
+                    store_code: string
                 }[]
             }> = await this.request(configQuery.availableStores);
 

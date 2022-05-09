@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 const useSetShippingMethodsOnCart = (): [
-    ({ carrier_code, method_code }: { method_code: string, carrier_code: string }) => void,
+    ({ carrier_code, method_code }: { carrier_code: string, method_code: string }) => void,
     boolean
 ] => {
     const [loading, setLoading] = useState(false);

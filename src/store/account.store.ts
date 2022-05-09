@@ -2,10 +2,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface accountReducerInterface {
     customer?: {
-        firstname: string,
-        lastname?: string,
         date_of_birth?: string,
         email: string,
+        firstname: string,
+        lastname?: string,
         wishlist: {
             id,
             items_count: number

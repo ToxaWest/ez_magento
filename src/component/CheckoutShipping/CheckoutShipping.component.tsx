@@ -5,8 +5,8 @@ import { fieldsInterface } from '@util/Address';
 interface CheckoutShippingComponentInterface {
     defaultValues?: initialValuesForm,
     fields: fieldsInterface,
-    onSubmit: onSubmitForm,
-    loading: boolean
+    loading: boolean,
+    onSubmit: onSubmitForm
 }
 
 function CheckoutShippingComponent(props: CheckoutShippingComponentInterface) {

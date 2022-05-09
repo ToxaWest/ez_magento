@@ -35,8 +35,8 @@ export const _normalizeStreetFields = (street:
 ), {});
 
 interface _normalizeRegionInterface {
-    region_id?:number,
-    label:string
+    label:string,
+    region_id?:number
 }
 
 export const _normalizeRegion = (region: _normalizeRegionInterface = { region_id: null, label: '' }) => {
@@ -49,14 +49,14 @@ export const _normalizeRegion = (region: _normalizeRegionInterface = { region_id
 };
 
 export interface _normalizeAddressAsMagentoStyleInterface {
-    selected_shipping_method?,
-    available_shipping_methods?,
     __typename?: string,
-    street?: _normalizeStreetFieldsInterface[],
+    available_shipping_methods?,
     country?:{
         code: string
     },
     region?:_normalizeRegionInterface,
+    selected_shipping_method?,
+    street?: _normalizeStreetFieldsInterface[]
 }
 
 export function _normalizeAddressAsMagentoStyle(initial: _normalizeAddressAsMagentoStyleInterface) {

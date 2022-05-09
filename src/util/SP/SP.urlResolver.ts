@@ -10,7 +10,7 @@ import SPAbstract from '@util/SP/SP.abstract';
 import { getProductVariablesBasedOnQuery } from '@util/SP/sp.helpers';
 
 interface urlResolverInterface {
-    type: string, sku?: string, id?: string | number
+    id?: string | number, sku?: string, type: string
 }
 
 class SPUrlResolver extends SPAbstract {

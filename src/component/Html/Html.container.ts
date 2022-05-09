@@ -13,8 +13,8 @@ function HtmlContainer({ content }: { content?: string }) {
     }
 
     const parserOptions: {
-        options: HTMLReactParserOptions,
-        nameMap: { [key: string]: { render: (Element: Element) => ReactElement | null } }
+        nameMap: { [key: string]: { render: (Element: Element) => ReactElement | null } },
+        options: HTMLReactParserOptions
     } = {
         nameMap: {
             widget: {

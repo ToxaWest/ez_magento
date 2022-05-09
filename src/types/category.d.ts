@@ -1,6 +1,6 @@
 declare interface BreadcrumbInterface {
-    url: string,
-    name: string
+    name: string,
+    url: string
 }
 
 declare interface CategoryBreadcrumbsInterface {
@@ -8,11 +8,11 @@ declare interface CategoryBreadcrumbsInterface {
 }
 
 declare interface CategoryInterface {
+    breadcrumbs: CategoryBreadcrumbsInterface[],
     description: string,
-    name: string,
     image: string,
-    url: string,
+    name: string,
     title: string,
     uid: string,
-    breadcrumbs: CategoryBreadcrumbsInterface[]
+    url: string
 }

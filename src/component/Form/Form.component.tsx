@@ -13,6 +13,7 @@ import { Form, FormSpy } from 'react-final-form';
 const cx = classNames.bind(styles);
 
 interface FormComponentInterface {
+    className?: string,
     fields?: fieldsInterface,
     id?: string,
     initialValues?: initialValuesForm,
@@ -21,7 +22,6 @@ interface FormComponentInterface {
     ) => void,
     onSubmit?: onSubmitForm,
     renderActions?: () => ReactElement | null,
-    className?: string,
     subscription?: string[]
 }
 

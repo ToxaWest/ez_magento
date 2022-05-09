@@ -12,7 +12,7 @@ function PostCardComponent({
     post,
     renderSort,
     wrapperTag
-}: { renderSort?: renderSortInterface, wrapperTag?: string, post: BlogPostInterface }): ReactElement {
+}: { post: BlogPostInterface, renderSort?: renderSortInterface, wrapperTag?: string }): ReactElement {
     const {
         author: {
             author_url,

@@ -4,9 +4,9 @@ declare interface SelectOptions {
 }
 
 declare interface SelectAbstractInterface {
+    autocomplete?: boolean,
     className?: string,
     defaultValue?: number | string,
-    autocomplete?: boolean,
-    placeholder?: string,
-    options: SelectOptions[]
+    options: SelectOptions[],
+    placeholder?: string
 }

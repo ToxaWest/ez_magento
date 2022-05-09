@@ -11,12 +11,16 @@ const getInitialState = () => {
     }
 
     return {
-        current: {}
+        current: {
+            description: '',
+            image: null,
+            name: ''
+        }
     };
 };
 
 export const categoryReducer = createSlice({
-    initialState: getInitialState() as categoryReducerInterface,
+    initialState: getInitialState(),
     name: 'category',
     reducers: {
         updateCategory: (state, action) => {

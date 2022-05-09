@@ -5,24 +5,24 @@ declare interface BlogCategoryBreadcrumbsInterface {
 
 declare interface BlogCategoryInterface {
     breadcrumbs: BlogCategoryBreadcrumbsInterface[]
-    title: string,
     content?: string,
-    content_heading?:string
+    content_heading?:string,
+    title: string
 }
 
 declare interface BlogAuthorInterface {
-    name: string,
-    author_url: string
+    author_url: string,
+    name: string
 }
 
 declare interface BlogPostInterface {
-    first_image: string,
-    filtered_content: string,
-    title: string,
-    post_url: string,
-    post_id: number,
+    author: BlogAuthorInterface,
     creation_time: string,
-    author: BlogAuthorInterface
+    filtered_content: string,
+    first_image: string,
+    post_id: number,
+    post_url: string,
+    title: string
 }
 
 declare interface BlogPostsInterface {

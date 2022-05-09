@@ -9,8 +9,8 @@ export interface renderSortInterface {
 }
 
 export interface RenderInterface {
-    wrapperTag?: string,
-    renderSort?: renderSortInterface,
+    className?: string,
     renderMap?: { [key: string]: ReactElement },
-    className?: string
+    renderSort?: renderSortInterface,
+    wrapperTag?: string
 }

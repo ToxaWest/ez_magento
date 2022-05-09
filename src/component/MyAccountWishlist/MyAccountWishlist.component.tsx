@@ -7,10 +7,10 @@ import Pagination from '@ui/Pagination';
 import { createElement } from 'react';
 
 interface MyAccountWishlistComponentInterface {
-    loading: boolean,
-    removeFromWishList: ({ id }: { id: number }) => void,
     items: WishListItem[],
-    pageInfo: WishListInfo & WishListPageInfo
+    loading: boolean,
+    pageInfo: WishListInfo & WishListPageInfo,
+    removeFromWishList: ({ id }: { id: number }) => void
 }
 
 function MyAccountWishlistComponent(props: MyAccountWishlistComponentInterface) {

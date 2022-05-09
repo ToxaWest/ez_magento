@@ -4,17 +4,17 @@ import { notInteractiveClick } from '@util/Events';
 import { ComponentType, createElement, FC } from 'react';
 
 interface tabInterface {
-    render: FC | ComponentType,
+    include_in_menu?: boolean,
     label: string,
-    include_in_menu?: boolean
+    render: FC | ComponentType
 }
 
 interface CheckoutPageComponentInterface {
+    onClick: (tab: string) => void,
+    tab: string,
     tabMap: {
         [key: string]: tabInterface
-    },
-    onClick: (tab: string) => void,
-    tab: string
+    }
 }
 
 function CheckoutPageComponent(props: CheckoutPageComponentInterface) {

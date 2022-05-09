@@ -2,9 +2,9 @@ import { RootState } from '@store/index';
 import { useSelector } from 'react-redux';
 
 interface getUrlInterface {
+    isMediaPath?: boolean,
     subPath?: string,
-    url?: string,
-    isMediaPath?: boolean
+    url?: string
 }
 
 const useUrl = () => {

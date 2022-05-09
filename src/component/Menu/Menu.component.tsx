@@ -23,9 +23,9 @@ interface MenuComponentInterface {
         title: string,
         url: string
     }[],
+    menuOpened: boolean,
     toggle: (item_id: number, parent_id: number) => void,
-    toggleMenu: () => void,
-    menuOpened: boolean
+    toggleMenu: () => void
 }
 
 function MenuComponent({

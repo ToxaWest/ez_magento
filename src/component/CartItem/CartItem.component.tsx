@@ -9,14 +9,14 @@ import Loader from '@ui/Loader';
 import { ReactElement, useState } from 'react';
 
 interface CartItemComponentInterface {
-    id: string,
-    product: ProductInterface,
-    quantity: number,
+    __typename: 'SimpleCartItem' | 'ConfigurableCartItem',
     configurable_options?: {
         option_label: string
         value_label: string
-    }[]
-    __typename: 'SimpleCartItem' | 'ConfigurableCartItem'
+    }[],
+    id: string,
+    product: ProductInterface,
+    quantity: number
 }
 
 function CartItemComponent(props: CartItemComponentInterface): ReactElement {

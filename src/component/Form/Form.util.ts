@@ -1,12 +1,12 @@
 import { fieldsInterface } from '@util/Address';
 
 export interface sortedFieldInterface {
+    group?: string,
     id: string,
-    name: string,
-    validation?: string[],
     label: string,
+    name: string,
     type: 'text' | 'select' | 'hidden' | 'tel' | 'checkbox',
-    group?: string
+    validation?: string[]
 }
 
 interface sortFieldsByGroupInterface {

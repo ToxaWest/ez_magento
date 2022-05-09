@@ -6,15 +6,15 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 export interface countryInterface {
-    is_state_required: boolean,
     available_regions: {
         id: string, name: string
-    }[]
+    }[],
+    is_state_required: boolean
 }
 
 export interface countriesInterface {
-    id: number,
-    full_name_locale: string
+    full_name_locale: string,
+    id: number
 }
 
 export interface useUserAddressInterface {

@@ -9,12 +9,12 @@ interface SliderContainerInterface {
     children: ReactElement[],
     className?: string,
     settings?: {
-        slidesToShow?: number,
+        dots?: boolean,
         draggable?: boolean,
         infinity?: boolean,
-        transition?: number,
-        dots?: boolean,
-        nav?: boolean
+        nav?: boolean,
+        slidesToShow?: number,
+        transition?: number
     }
 }
 const defaultSettings = {

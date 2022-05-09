@@ -8,8 +8,8 @@ import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
 export interface AppComponentInterface {
-    loading: boolean,
-    children?: ReactElement
+    children?: ReactElement,
+    loading: boolean
 }
 
 function AppComponent(props: AppComponentInterface): JSX.Element {

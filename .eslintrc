@@ -14,7 +14,8 @@
     "plugin:@typescript-eslint/recommended",
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:typescript-sort-keys/recommended"
   ],
   "settings": {
     "next": {
@@ -26,7 +27,8 @@
     "sort-destructure-keys",
     "simple-import-sort",
     "react",
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "typescript-sort-keys"
   ],
   "env": {
     "browser": true,
@@ -34,6 +36,8 @@
     "es2021": true
   },
   "rules": {
+    "typescript-sort-keys/interface": "error",
+    "typescript-sort-keys/string-enum": "error",
     "sort-destructure-keys/sort-destructure-keys": 2,
     "@typescript-eslint/no-misused-promises": "off",
     "fp/no-arguments": "error",

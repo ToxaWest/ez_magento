@@ -11,9 +11,9 @@ interface ImageContainerInterface {
     className?: string,
     height?: number,
     src?: string,
-    width?: number,
+    style?: Record<string, string>,
     variableRatio?: boolean,
-    style?: Record<string, string>
+    width?: number
 }
 
 function ImageContainer(props: ImageContainerInterface): ReactElement {

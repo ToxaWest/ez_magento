@@ -5,13 +5,13 @@ declare interface SmallImageInterface {
 
 declare interface MediaGalleryInterface {
   disabled: boolean,
-  url: string,
-  label: string
+  label: string,
+  url: string
 }
 
 declare interface FinalPriceInterface {
-  value: number,
-  currency: string
+  currency: string,
+  value: number
 }
 
 declare interface ProductPriceRangeInterface {
@@ -27,30 +27,19 @@ declare interface ProductPriceRangeInterface {
 }
 
 declare interface SAttributesInterface {
-  attribute_label: string,
   attribute_code: string,
-  attribute_type: string,
-  attribute_value: string,
+  attribute_label: string,
   attribute_options: {
+    label: string,
     value: string
-    label: string
-  }[]
+  }[],
+  attribute_type: string,
+  attribute_value: string
 }
 
 declare interface ProductInterface {
-  name: string,
-  id: number,
-  price_range: ProductPriceRangeInterface,
-  sku: string,
-  s_attributes: SAttributesInterface[],
-  media_gallery: MediaGalleryInterface[],
-  small_image: SmallImageInterface,
-  selected_options?: string[],
-  url: string,
-  parent_sku?: string,
   __typename: 'SimpleProduct' | 'ConfigurableProduct',
   categories: CategoryInterface[],
-  related_products: ProductInterface[],
   configurable_options?: {
     attribute_code: string
     label: string
@@ -58,7 +47,18 @@ declare interface ProductInterface {
       store_label: string
       uid: string
     }[]
-  }[]
+  }[],
+  id: number,
+  media_gallery: MediaGalleryInterface[],
+  name: string,
+  parent_sku?: string,
+  price_range: ProductPriceRangeInterface,
+  related_products: ProductInterface[],
+  s_attributes: SAttributesInterface[],
+  selected_options?: string[],
+  sku: string,
+  small_image: SmallImageInterface,
+  url: string,
   variants?: {
     product: ProductInterface
   }[]
@@ -71,9 +71,9 @@ declare interface PageInfoInterface {
 declare interface ProductsInformationInterface {
   aggregations: AggregationsInterface[],
   page_info: PageInfoInterface,
-  total_count: number,
   sort_fields: {
     default: string,
-    options: { value: string, label: string }[]
-  }
+    options: { label: string, value: string }[]
+  },
+  total_count: number
 }

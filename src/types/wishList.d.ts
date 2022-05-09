@@ -1,13 +1,13 @@
 declare interface WishListItem {
-    id: number
+    added_at: string,
+    id: number,
+    product: ProductInterface,
     quantity: number
-    added_at: string
-    product: ProductInterface
 }
 
 declare interface WishListInfo {
+    items_count: number,
     sharing_code: string
-    items_count: number
 }
 
 declare interface WishListPageInfo {

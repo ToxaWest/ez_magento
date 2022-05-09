@@ -11,11 +11,11 @@ import {
 } from 'react-final-form';
 
 interface FieldComponentInterface {
+    name: string,
     onChange?: (e: string | number) => void,
     options?: SelectOptions[],
-    validation?: string[],
-    name: string,
-    type?: 'text' | 'select' | 'hidden' | 'tel' | 'checkbox'
+    type?: 'text' | 'select' | 'hidden' | 'tel' | 'checkbox',
+    validation?: string[]
 }
 
 function FieldComponent(props:FieldComponentInterface): ReactElement {

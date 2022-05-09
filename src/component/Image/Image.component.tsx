@@ -8,10 +8,10 @@ const cx = classNames.bind(styles);
 interface ImageComponentInterface {
     alt?: string,
     className: string,
+    setParams: ({ naturalHeight, naturalWidth }: { naturalHeight: number, naturalWidth: number }) => void,
     url?: string,
     variableRatio: boolean,
-    wrapperStyle: object,
-    setParams: ({ naturalHeight, naturalWidth }: { naturalHeight: number, naturalWidth: number }) => void
+    wrapperStyle: object
 }
 
 function ImageComponent(props: ImageComponentInterface) {

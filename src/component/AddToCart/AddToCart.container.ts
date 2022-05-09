@@ -46,8 +46,6 @@ function AddToCartContainer(props: AddToCartContainerInterface) {
         };
 
         if (__typename === 'ConfigurableProduct') {
-            console.log(selected_options);
-            console.log(configurable_options);
             if (!selected_options || (selected_options.length < configurable_options.length)) {
                 dispatch(setInfoNotification('Please select options'));
                 return;

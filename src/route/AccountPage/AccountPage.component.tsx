@@ -11,12 +11,12 @@ import {
 } from 'react';
 
 interface AccountPageComponentInterface {
-    tab: string,
     loading: boolean,
+    tab: string,
     tabMap: {
         [key: string]: {
-            label: string,
             icon: string,
+            label: string,
             onClick?: () => void,
             render: FC | string | ComponentType
         }
