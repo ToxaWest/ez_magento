@@ -10,7 +10,7 @@ interface getUrlInterface {
 const useUrl = () => {
     const { secure_base_media_url, secure_base_url } = useSelector((state: RootState) => state.config.config);
 
-    const getUrl = ({ url, subPath = '', isMediaPath }: getUrlInterface) => {
+    const getUrl = ({ isMediaPath, subPath = '', url }: getUrlInterface) => {
         if (!url) {
             return url;
         }

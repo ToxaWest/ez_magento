@@ -13,8 +13,8 @@ interface ButtonInterface extends ButtonHTMLAttributes<object> {
 
 function Button(props: ButtonInterface) {
     const {
-        variant,
         className: initialClassName = '',
+        variant,
         ...nativeProps
     } = props;
     const className = cx(initialClassName, styles[variant]);

@@ -45,6 +45,7 @@ declare interface ProductInterface {
   s_attributes: SAttributesInterface[],
   media_gallery: MediaGalleryInterface[],
   small_image: SmallImageInterface,
+  selected_options?: string[],
   url: string,
   parent_sku?: string,
   __typename: 'SimpleProduct' | 'ConfigurableProduct',
@@ -52,6 +53,11 @@ declare interface ProductInterface {
   related_products: ProductInterface[],
   configurable_options?: {
     attribute_code: string
+    label: string
+    values: {
+      store_label: string
+      uid: string
+    }[]
   }[]
   variants?: {
     product: ProductInterface

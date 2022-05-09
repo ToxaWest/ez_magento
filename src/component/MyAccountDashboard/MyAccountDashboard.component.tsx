@@ -5,10 +5,10 @@ import { useSelector } from 'react-redux';
 function MyAccountDashboardComponent() {
     const {
         customer: {
-            firstname,
-            lastname,
             date_of_birth,
-            email
+            email,
+            firstname,
+            lastname
         }
     } = useSelector((state: RootState) => state.account);
     const tHead = [

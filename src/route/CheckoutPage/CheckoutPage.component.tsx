@@ -19,9 +19,9 @@ interface CheckoutPageComponentInterface {
 
 function CheckoutPageComponent(props: CheckoutPageComponentInterface) {
     const {
-        tabMap,
         onClick,
-        tab
+        tab,
+        tabMap
     } = props;
 
     const {

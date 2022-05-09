@@ -5,7 +5,7 @@ import { NextRouter, useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 
 function CategorySortContainer() {
-    const { sort_fields: { options, default: default_sort } } = useSelector(
+    const { sort_fields: { default: default_sort, options } } = useSelector(
         (state: RootState) => state.products.productsInformation,
     );
 

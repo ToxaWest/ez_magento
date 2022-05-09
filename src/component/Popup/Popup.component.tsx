@@ -28,7 +28,7 @@ interface PopupComponentInterface {
 
 function PopupComponent(props: PopupComponentInterface) {
     const {
-        isStatic, children, isActive, outsideClick, onClose, id, classNames: classNamesObj
+        children, classNames: classNamesObj, id, isActive, isStatic, onClose, outsideClick
     } = props;
     const [isBrowser, setIsBrowser] = useState<boolean>(false);
 

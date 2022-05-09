@@ -15,10 +15,10 @@ interface MyAccountWishlistComponentInterface {
 
 function MyAccountWishlistComponent(props: MyAccountWishlistComponentInterface) {
     const {
-        loading, items, removeFromWishList, pageInfo: {
-            sharing_code,
-            page_info
-        }
+        items, loading, pageInfo: {
+            page_info,
+            sharing_code
+        }, removeFromWishList
     } = props;
 
     const renderPagination = () => createElement(Pagination, { page_info });
@@ -36,9 +36,9 @@ function MyAccountWishlistComponent(props: MyAccountWishlistComponentInterface) 
     );
 
     const renderProductCard = ({
-        product,
+        added_at,
         id,
-        added_at
+        product
     }: WishListItem) => (
         <li key={ id } className={ styles.item }>
             { renderInfo(id, added_at) }

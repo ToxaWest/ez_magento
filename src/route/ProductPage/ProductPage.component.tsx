@@ -12,7 +12,7 @@ import useCurrentProduct from '@hook/useCurrentProduct';
 function ProductPageComponent() {
     const product = useCurrentProduct();
 
-    const { name, sku, price_range } = product;
+    const { name, price_range, sku } = product;
 
     return (
         <div className={ styles.wrapper }>

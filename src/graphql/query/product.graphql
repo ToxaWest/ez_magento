@@ -11,10 +11,31 @@ query product($sku: String){
             ...on ConfigurableProduct {
                 configurable_options {
                     attribute_code
+                    attribute_uid
+                    values {
+                        store_label
+                        uid
+                    }
                 }
                 variants {
                     product {
+                        media_gallery {
+                            disabled
+                            label
+                            url
+                            position
+                            ... on ProductVideo {
+                                video_content {
+                                    video_description
+                                    video_url
+                                    video_title
+                                }
+                            }
+                        }
                         sku
+                        price_range {
+                            ...price_range
+                        }
                         s_attributes {
                             attribute_code
                             attribute_label

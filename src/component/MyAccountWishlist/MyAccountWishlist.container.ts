@@ -5,7 +5,7 @@ import MyAccountWishlistComponent from './MyAccountWishlist.component';
 
 function MyAccountWishlistContainer() {
     const {
-        pageInfo, items, removeFromWishList, loading
+        items, loading, pageInfo, removeFromWishList
     } = useWishList({ getWishList: true });
 
     return createElement(MyAccountWishlistComponent, {

@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 function MiniCartComponent() {
     const { cart } = useSelector((state: RootState) => state.cart);
     const [isActive, setActive] = useState<boolean>(false);
-    const { total_quantity, items } = cart;
+    const { items, total_quantity } = cart;
 
     const renderContent = () => (
         <div className={ styles.wrapper }>

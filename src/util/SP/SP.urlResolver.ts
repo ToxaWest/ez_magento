@@ -35,7 +35,7 @@ class SPUrlResolver extends SPAbstract {
         }
     }
 
-    async getPageByType({ type, sku, id }: urlResolverInterface) {
+    async getPageByType({ id, sku, type }: urlResolverInterface) {
         if (type === 'CATEGORY') {
             await this.getCategory(id);
             return;

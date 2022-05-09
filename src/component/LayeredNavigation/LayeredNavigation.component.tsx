@@ -13,15 +13,15 @@ interface LayeredNavigationComponentInterface {
 function LayeredNavigationComponent(props: LayeredNavigationComponentInterface) {
     const {
         aggregations,
-        onSelect,
-        isSelected
+        isSelected,
+        onSelect
     } = props;
 
     const renderOption = (option: AggregationOptionInterface, code: string) => {
         const {
-            value,
+            count,
             label,
-            count
+            value
         } = option;
 
         return (
@@ -41,9 +41,9 @@ function LayeredNavigationComponent(props: LayeredNavigationComponentInterface) 
 
     const renderAttribute = (item: AggregationsInterface) => {
         const {
-            label,
-            count,
             attribute_code,
+            count,
+            label,
             options
         } = item;
 

@@ -15,7 +15,7 @@ interface ExpandableContentComponentInterface {
 
 function ExpandableContentComponent(props: ExpandableContentComponentInterface): ReactElement {
     const {
-        children, isExpanded, contentWrapperTag, heading
+        children, contentWrapperTag, heading, isExpanded
     } = props;
     const [opened, setOpened] = useState(isExpanded);
 

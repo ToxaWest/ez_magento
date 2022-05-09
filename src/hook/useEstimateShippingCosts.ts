@@ -17,7 +17,7 @@ const useEstimateShippingCosts = ():(v: fieldsInterface)=> Promise<object[]> => 
         const guestCartId = await cartId();
 
         const {
-            country_code, region_id, region, city, email, customer_id, street, postcode
+            city, country_code, customer_id, email, postcode, region, region_id, street
         } = setAddressesInFormObject(shippingAddress, address_lines_quantity);
 
         const address = {

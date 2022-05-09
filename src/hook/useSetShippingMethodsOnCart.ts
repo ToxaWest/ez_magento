@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 const useSetShippingMethodsOnCart = (): [
-    ({ method_code, carrier_code }: { method_code: string, carrier_code: string }) => void,
+    ({ carrier_code, method_code }: { method_code: string, carrier_code: string }) => void,
     boolean
 ] => {
     const [loading, setLoading] = useState(false);
@@ -17,7 +17,7 @@ const useSetShippingMethodsOnCart = (): [
     const [mutateFunction] = useMutation(CheckoutQuery.setShippingMethodsOnCart);
 
     return [
-        async ({ method_code, carrier_code }) => {
+        async ({ carrier_code, method_code }) => {
             setLoading(true);
             try {
                 const cart_id = await cartId();

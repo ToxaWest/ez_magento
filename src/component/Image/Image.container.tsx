@@ -18,12 +18,12 @@ interface ImageContainerInterface {
 
 function ImageContainer(props: ImageContainerInterface): ReactElement {
     const {
-        width,
-        height,
         alt,
-        src: url,
         className,
-        variableRatio
+        height,
+        src: url,
+        variableRatio,
+        width
     } = props;
 
     const { getUrl } = useUrl();

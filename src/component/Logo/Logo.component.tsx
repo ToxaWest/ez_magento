@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 const LogoComponent = () => {
     const {
-        logo_alt, logo_height, logo_width, header_logo_src, name, secure_base_media_url
+        header_logo_src, logo_alt, logo_height, logo_width, name, secure_base_media_url
     } = useSelector((state: RootState) => state.config.config);
 
     const router = useRouter();

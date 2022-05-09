@@ -7,7 +7,7 @@ interface CategorySortComponentInterface {
 }
 
 function CategorySortComponent(props: CategorySortComponentInterface) {
-    const { options, onSortChange, defaultSort } = props;
+    const { defaultSort, onSortChange, options } = props;
     return (
         <Select
           options={ options }

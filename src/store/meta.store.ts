@@ -27,10 +27,10 @@ export const metaReducer = createSlice({
     reducers: {
         updateMeta: (state, {
             payload: {
-                title,
-                meta_title,
                 meta_description,
-                meta_keyword
+                meta_keyword,
+                meta_title,
+                title
             }
         }: PayloadAction<MetaInterface>) => {
             state.title = title;
@@ -42,7 +42,7 @@ export const metaReducer = createSlice({
     extraReducers: {
         'products/updateSingleProduct': (state, {
             payload: {
-                meta_description, meta_title, meta_keyword, name
+                meta_description, meta_keyword, meta_title, name
             }
         }) => {
             state.title = name;
@@ -52,7 +52,7 @@ export const metaReducer = createSlice({
         },
         'category/updateCategory': (state, {
             payload: {
-                meta_description, meta_title, meta_keyword, name
+                meta_description, meta_keyword, meta_title, name
             }
         }) => {
             state.title = name;
@@ -62,7 +62,7 @@ export const metaReducer = createSlice({
         },
         'cms/updatePage': (state, {
             payload: {
-                meta_description, meta_title, meta_keyword, title
+                meta_description, meta_keyword, meta_title, title
             }
         }) => {
             state.title = title;
@@ -72,7 +72,7 @@ export const metaReducer = createSlice({
         },
         'blog/updateBlogCategory': (state, {
             payload: {
-                meta_description, meta_title, meta_keyword, title
+                meta_description, meta_keyword, meta_title, title
             }
         }) => {
             state.title = title;

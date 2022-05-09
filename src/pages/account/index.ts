@@ -18,7 +18,7 @@ function Render({ router }: { router: NextRouter }) {
 
 Render.getInitialProps = (ctx : ctxInterface) => {
     const {
-        res, locale, defaultLocale
+        defaultLocale, locale, res
     } = ctx;
 
     const withLocale = (l:string) => (locale === defaultLocale ? l : `/${locale}${l}`);

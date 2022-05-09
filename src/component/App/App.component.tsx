@@ -14,8 +14,8 @@ export interface AppComponentInterface {
 
 function AppComponent(props: AppComponentInterface): JSX.Element {
     const {
-        loading,
-        children
+        children,
+        loading
     } = props;
 
     const getRouteByPage = () => {

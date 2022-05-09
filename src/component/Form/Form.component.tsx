@@ -27,7 +27,7 @@ interface FormComponentInterface {
 
 function FormComponent(props: FormComponentInterface) {
     const {
-        onSubmit, fields, renderActions: actionsRender, initialValues, subscription, onChange, id, className
+        className, fields, id, initialValues, onChange, onSubmit, renderActions: actionsRender, subscription
     } = props;
 
     const renderActions = () => {

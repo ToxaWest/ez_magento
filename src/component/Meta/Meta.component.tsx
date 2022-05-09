@@ -4,15 +4,15 @@ import { useSelector } from 'react-redux';
 
 function MetaComponent() {
     const {
-        meta_title, meta_description, meta_keyword, title
+        meta_description, meta_keyword, meta_title, title
     } = useSelector((state: RootState) => state.meta);
     const {
-        title_prefix,
-        title_suffix,
-        title_separator,
-        default_title,
         default_description,
-        default_keywords
+        default_keywords,
+        default_title,
+        title_prefix,
+        title_separator,
+        title_suffix
     } = useSelector((state: RootState) => state.config.config);
 
     const getTitle = () => {

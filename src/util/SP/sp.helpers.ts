@@ -12,10 +12,10 @@ export interface ctxInterface extends NextRouter {
 
 export const getPropsBasedOnRequest = (ctx: ctxInterface) => {
     const {
-        locale,
-        req,
         asPath,
+        locale,
         query,
+        req,
         res
     } = ctx;
     const isServer = !!req;
@@ -23,8 +23,8 @@ export const getPropsBasedOnRequest = (ctx: ctxInterface) => {
     const cookie = isServer ? req.headers.cookie : document.cookie;
 
     const {
-        store_code,
-        current_currency
+        current_currency,
+        store_code
     } = parse<string>(cookie || '');
 
     return {
@@ -61,10 +61,10 @@ interface QueryInterface {
 
 export const getProductVariablesBasedOnQuery = (query: QueryInterface, category_uid: number | string) => {
     const {
-        sort,
-        sort_direction = 'ASC',
         customFilters,
-        page
+        page,
+        sort,
+        sort_direction = 'ASC'
     } = query;
 
     return {

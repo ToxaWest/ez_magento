@@ -13,7 +13,7 @@ export class BrowserDatabase {
     getItem(location: string) {
         try {
             const entryObject = JSON.parse(localStorage.getItem(location));
-            const { data, expiration, createdAt } = entryObject;
+            const { createdAt, data, expiration } = entryObject;
             const MILLISECONDS_TO_SECONDS = 1000;
 
             if (expiration && Date.now() - createdAt > expiration * MILLISECONDS_TO_SECONDS) {

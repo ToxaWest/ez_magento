@@ -29,11 +29,11 @@ interface MenuComponentInterface {
 }
 
 function MenuComponent({
-    menu, toggle, isActive, toggleMenu, menuOpened
+    isActive, menu, menuOpened, toggle, toggleMenu
 }: MenuComponentInterface) {
     const renderMenuItem = (item: menuItemInterface, level: number) => {
         const {
-            children, title, url, item_id, parent_id
+            children, item_id, parent_id, title, url
         } = item;
         const hasChild = Object.keys(children).length > 0;
         return (

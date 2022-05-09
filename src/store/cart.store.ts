@@ -8,7 +8,12 @@ interface cartReducerInterface {
         items: {
             id: string,
             product: ProductInterface,
-            quantity: number
+            quantity: number,
+            configurable_options?: {
+                option_label: string
+                value_label: string
+            }[]
+            __typename: 'SimpleCartItem' | 'ConfigurableCartItem'
         }[],
         prices: {
             grand_total: {

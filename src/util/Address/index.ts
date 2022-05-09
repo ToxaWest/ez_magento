@@ -40,7 +40,7 @@ interface _normalizeRegionInterface {
 }
 
 export const _normalizeRegion = (region: _normalizeRegionInterface = { region_id: null, label: '' }) => {
-    const { region_id, label } = region;
+    const { label, region_id } = region;
     if (region_id) {
         return { region_id };
     }
@@ -64,12 +64,12 @@ export function _normalizeAddressAsMagentoStyle(initial: _normalizeAddressAsMage
         return null;
     }
     const {
-        selected_shipping_method,
-        available_shipping_methods,
         __typename,
-        street,
+        available_shipping_methods,
         country,
         region,
+        selected_shipping_method,
+        street,
         ...address
     } = initial;
 

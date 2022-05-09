@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 function NotificationsComponent() {
-    const { type, message } = useSelector((state: RootState) => state.notifications);
+    const { message, type } = useSelector((state: RootState) => state.notifications);
     const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {

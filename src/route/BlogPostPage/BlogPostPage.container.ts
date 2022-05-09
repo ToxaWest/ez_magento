@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 
 function BlogPostPageContainer() {
     const {
-        title, first_image, author: { author_url, name }, creation_time, filtered_content
+        author: { author_url, name }, creation_time, filtered_content, first_image, title
     } = useSelector((state: RootState) => state.blog.blogPost);
 
     const { replaceUrl } = useUrl();

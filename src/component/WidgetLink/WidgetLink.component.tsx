@@ -8,7 +8,7 @@ function WidgetLinkComponent(props:WidgetLinkInterface) {
     const { id_paths } = props;
     const categories = useSelector((state: RootState) => state.cms.widget[id_paths]) as CategoryInterface[];
     const renderCategory = ({
-        image, url, name, uid
+        image, name, uid, url
     }: CategoryInterface) => (
         <div key={ uid }>
             <Image src={ image } alt={ name } />

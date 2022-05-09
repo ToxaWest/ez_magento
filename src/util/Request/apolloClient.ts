@@ -35,7 +35,7 @@ const cacheConfig: InMemoryCacheConfig = {
 const headersMiddleware = new ApolloLink((operation, forward) => {
     const isServer = typeof window === 'undefined';
 
-    const { store_code, current_currency }: { store_code?: string, current_currency?: string } = parse(
+    const { current_currency, store_code }: { store_code?: string, current_currency?: string } = parse(
         isServer ? '' : document.cookie
     );
     const { headers: additional } = getContextBasedOnStore(store_code, current_currency);

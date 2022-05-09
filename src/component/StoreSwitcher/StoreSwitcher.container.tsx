@@ -8,7 +8,7 @@ import StoreSwitcherComponent from './StoreSwitcher.component';
 
 function StoreSwitcherContainer() {
     const _normalizeStoreList = (list:availableStoreInterface[]) => list.map(
-        ({ lang_prefix, store_name, default_display_currency_code }) => ({
+        ({ default_display_currency_code, lang_prefix, store_name }) => ({
             currency_code: default_display_currency_code, label: store_name, value: lang_prefix
         })
     );

@@ -23,6 +23,7 @@
   },
   "plugins": [
     "fp",
+    "sort-destructure-keys",
     "simple-import-sort",
     "react",
     "@typescript-eslint"
@@ -33,6 +34,7 @@
     "es2021": true
   },
   "rules": {
+    "sort-destructure-keys/sort-destructure-keys": 2,
     "@typescript-eslint/no-misused-promises": "off",
     "fp/no-arguments": "error",
     "fp/no-loops": "error",

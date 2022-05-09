@@ -61,8 +61,8 @@ export const getCategoryItem = ({ children, item_id, ...item } : menuChildInterf
     const _normalizeCategoryChild = (n_children: menuChildInterface[], n_parent_id: number) => n_children
         .reduce((acc, n_item) => {
             const {
-                item_id: n_item_id,
-                include_in_menu
+                include_in_menu,
+                item_id: n_item_id
             } = n_item;
 
             if (!include_in_menu) {
@@ -92,8 +92,8 @@ export const normalizeCategoryMenu = (categoryMenu: menuChildInterface[]) => {
 export const addBlogToMenu = (
     menu: MenuInterface[],
     {
-        mfblog_top_menu_include_categories,
         mfblog_permalink_route,
+        mfblog_top_menu_include_categories,
         mfblog_top_menu_item_text
     } : {
         mfblog_top_menu_include_categories: number,

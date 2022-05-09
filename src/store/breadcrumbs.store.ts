@@ -36,7 +36,7 @@ export const breadcrumbsReducer = createSlice({
     },
     extraReducers: {
         'products/updateSingleProduct': (state, {
-            payload: { name, categories, url }
+            payload: { categories, name, url }
         }: PayloadAction<ProductInterface>) => {
             state.breadcrumbs = getProductsBreadcrumbs(categories);
             state.showBreadcrumbs = true;
@@ -46,7 +46,7 @@ export const breadcrumbsReducer = createSlice({
             };
         },
         'category/updateCategory': (state, {
-            payload: { name, breadcrumbs, url }
+            payload: { breadcrumbs, name, url }
         }: PayloadAction<CategoryInterface>) => {
             state.breadcrumbs = _normalizeBreadcrumb(breadcrumbs);
             state.showBreadcrumbs = true;

@@ -7,8 +7,8 @@ import WishListButtonComponent from './WishListButton.component';
 
 function WishListButtonContainer({ sku }: { sku: string }) {
     const {
-        disabled,
-        addToWishList
+        addToWishList,
+        disabled
     } = useWishList();
     const { isSignedIn } = useSelector((state: RootState) => state.account);
     const { magento_wishlist_general_is_enabled } = useSelector((state: RootState) => state.config.config);

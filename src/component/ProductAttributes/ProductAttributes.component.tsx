@@ -9,7 +9,7 @@ function ProductAttributesComponent() {
 
     const data = s_attributes.reduce((acc, item) => ({ ...acc, [item.attribute_code]: getAttributeValue(item) }), {});
 
-    const head = s_attributes.map(({ attribute_label, attribute_code }) => ({
+    const head = s_attributes.map(({ attribute_code, attribute_label }) => ({
         key: attribute_code,
         label: attribute_label
     }));

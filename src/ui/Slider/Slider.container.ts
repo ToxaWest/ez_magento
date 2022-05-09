@@ -29,17 +29,17 @@ const defaultSettings = {
 export function SliderContainer(props: SliderContainerInterface): ReactElement {
     const {
         children,
-        settings,
-        className
+        className,
+        settings
     } = props;
 
     const {
-        slidesToShow,
+        dots,
         draggable,
         infinity,
-        transition,
-        dots,
-        nav
+        nav,
+        slidesToShow,
+        transition
     } = { ...defaultSettings, ...settings };
 
     const sliderRef = useRef<HTMLDivElement>();

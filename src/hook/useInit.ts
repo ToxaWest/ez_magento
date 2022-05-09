@@ -23,7 +23,7 @@ const useInit = () => {
         router.events.on('routeChangeStart', handleRouteChangeStart);
         router.events.on('routeChangeComplete', handleRouteChangeComplete);
 
-        const { promise, cancel } = makeCancelable(Promise.all([
+        const { cancel, promise } = makeCancelable(Promise.all([
             update(),
             getCustomerData()
         ]));

@@ -54,10 +54,10 @@ export const productsReducer = createSlice({
 });
 
 export const {
+    updateConfigurableIndex,
     updateProductList,
     updateProductsInformation,
-    updateSingleProduct,
-    updateConfigurableIndex
+    updateSingleProduct
 } = productsReducer.actions;
 
 export default productsReducer.reducer;

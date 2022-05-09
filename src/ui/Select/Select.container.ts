@@ -12,10 +12,10 @@ interface SelectContainerInterface extends SelectAbstractInterface {
 }
 function SelectContainer(props: SelectContainerInterface): ReactElement {
     const {
-        options: selectOptions,
-        onChange,
-        className = '',
         autocomplete = false,
+        className = '',
+        onChange,
+        options: selectOptions,
         placeholder = '',
         ...inputProps
     } = props;
@@ -45,6 +45,8 @@ function SelectContainer(props: SelectContainerInterface): ReactElement {
         if (d) {
             const { label: l } = d;
             setLabel(l);
+        } else {
+            setLabel('');
         }
     }, [defaultValue, selectOptions]);
 

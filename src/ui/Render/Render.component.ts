@@ -3,7 +3,7 @@ import { sortedRender } from '@util/Attributes/Attributes';
 import { cloneElement, createElement } from 'react';
 
 function RenderComponent({
-    wrapperTag, renderSort, renderMap, className
+    className, renderMap, renderSort, wrapperTag
 }: RenderInterface) {
     if (!renderMap) {
         throw new Error('renderMap is required');

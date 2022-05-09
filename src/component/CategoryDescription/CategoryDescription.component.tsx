@@ -9,8 +9,8 @@ function CategoryDescriptionComponent() {
     const {
         current: {
             description,
-            name,
-            image
+            image,
+            name
         }
     } = useSelector((state: RootState) => state.category);
 

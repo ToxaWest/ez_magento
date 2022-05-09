@@ -62,10 +62,10 @@ export const accountReducer = createSlice({
 });
 
 export const {
+    logOutCustomer,
     updateCustomer,
     updateCustomerLoadingStatus,
-    updateWishListItemsCount,
-    logOutCustomer
+    updateWishListItemsCount
 } = accountReducer.actions;
 
 export default accountReducer.reducer;

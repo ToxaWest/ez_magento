@@ -49,6 +49,9 @@ input {
 button {
   color: inherit;
   cursor: pointer;
+  &:disabled {
+    opacity: .6;
+  }
 }
 
 * {

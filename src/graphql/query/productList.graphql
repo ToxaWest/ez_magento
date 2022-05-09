@@ -5,6 +5,16 @@ query ProductList($filter: ProductAttributeFilterInput, $sort: ProductAttributeS
             url
             id
             name
+            ...on ConfigurableProduct {
+                configurable_options {
+                    attribute_code
+                    label
+                    values {
+                        uid
+                        store_label
+                    }
+                }
+            }
             price_range {
                 ...price_range
             }

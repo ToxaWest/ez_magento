@@ -2,13 +2,17 @@ import { childSortInterface } from '@ui/Render/Render.types';
 import { cloneElement, createElement, ReactElement } from 'react';
 
 export const getAttributeValue = ({
-    attribute_type, attribute_value, attribute_options
+    attribute_options, attribute_type, attribute_value
 }: SAttributesInterface): string | ReactElement => {
     if (attribute_type === 'text') {
         return attribute_value;
     }
 
     if (attribute_type === 'select') {
+        if (!attribute_options) {
+            return '';
+        }
+
         return attribute_options.find(({ value }) => value === attribute_value)?.label;
     }
 

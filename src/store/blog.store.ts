@@ -35,5 +35,5 @@ const blogReducer = createSlice({
     }
 });
 
-export const { updateBlogCategory, updateBlogPosts, updateBlogPost } = blogReducer.actions;
+export const { updateBlogCategory, updateBlogPost, updateBlogPosts } = blogReducer.actions;
 export default blogReducer.reducer;

@@ -58,12 +58,12 @@ export default class SPAbstract {
 
     constructor(props: SPAbstractInterface) {
         const {
-            store_code,
-            current_currency,
             asPath,
-            query,
+            current_currency,
             isServer,
-            locale
+            locale,
+            query,
+            store_code
         } = props;
 
         this.store = store;
@@ -91,17 +91,17 @@ export default class SPAbstract {
         await this.getStoreBasedOnLocale(false);
 
         const {
-            data: { storeConfig, categoryMenu }
+            data: { categoryMenu, storeConfig }
         }: ApolloQueryResult<{
             storeConfig: StoreConfigInterface,
             categoryMenu: menuChildInterface[]
         }> = await this.request(configQuery.config);
 
         const {
-            store_code,
-            mfblog_top_menu_include_categories,
             mfblog_permalink_route,
-            mfblog_top_menu_item_text
+            mfblog_top_menu_include_categories,
+            mfblog_top_menu_item_text,
+            store_code
         } = storeConfig;
 
         // if (content_customization_header_menu) {
@@ -122,7 +122,7 @@ export default class SPAbstract {
         this.store.dispatch(updateMenu({ category_menu }));
     }
 
-    updateClientBasedOnStore({ store_code, default_display_currency_code }: {
+    updateClientBasedOnStore({ default_display_currency_code, store_code }: {
         store_code: string,
         default_display_currency_code: string
     }) {

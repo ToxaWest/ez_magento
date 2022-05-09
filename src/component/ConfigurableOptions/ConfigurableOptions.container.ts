@@ -1,5 +1,8 @@
 import { AppDispatch, RootState } from '@store/index';
 import { updateConfigurableIndex } from '@store/products.store';
+import Icon from '@ui/Icon';
+import Render from '@ui/Render';
+import { RenderInterface } from '@ui/Render/Render.types';
 import Select from '@ui/Select';
 import { getSelectedFiltersFromUrl, setFilterAttribute } from '@util/Link';
 import { NextRouter, useRouter } from 'next/router';
@@ -10,14 +13,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function ConfigurableOptionsContainer() {
     const {
-        singleProduct: {
-            configurable_options, s_attributes, variants, sku
+        configurableIndex, singleProduct: {
+            configurable_options, s_attributes, sku, variants
         }
     } = useSelector((state: RootState) => state.products);
     const router: NextRouter = useRouter();
     const dispatch = useDispatch<AppDispatch>();
 
-    const { query: { customFilters }, asPath } = router;
+    const { asPath, query: { customFilters } } = router;
     const f = Object.entries(getSelectedFiltersFromUrl(customFilters as string))
         .reduce((acc, [name, [value]]) => ({ ...acc, [name]: value }), {});
 
@@ -60,11 +63,29 @@ function ConfigurableOptionsContainer() {
         });
     }, [sku, asPath]);
 
-    return createElement(
+    const options = createElement(
         'div',
         {},
         getAttributes
     );
+
+    const reset = createElement(
+        'button',
+        {
+            disabled: configurableIndex === -1,
+            onClick: () => {
+                router.push(asPath.split('?')[0]).then(() => {}).catch(() => {});
+            }
+        },
+        createElement(Icon, { name: 'restart_alt' })
+    );
+
+    return createElement(Render, {
+        renderMap: {
+            options,
+            reset
+        }
+    } as RenderInterface);
 }
 
 export default ConfigurableOptionsContainer;

@@ -27,10 +27,10 @@ export const notificationsReducer = createSlice({
 });
 
 export const {
+    resetNotification,
     setErrorNotification,
     setInfoNotification,
-    setSuccessNotification,
-    resetNotification
+    setSuccessNotification
 } = notificationsReducer.actions;
 
 export default notificationsReducer.reducer;

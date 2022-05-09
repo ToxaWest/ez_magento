@@ -9,7 +9,7 @@ import { createElement } from 'react';
 import { useSelector } from 'react-redux';
 
 function BlogCategoryPageComponent() {
-    const { title, content, content_heading } = useSelector((state:RootState) => state.blog.currentCategory);
+    const { content, content_heading, title } = useSelector((state:RootState) => state.blog.currentCategory);
 
     return createElement(Render, {
         className: styles.wrapper,

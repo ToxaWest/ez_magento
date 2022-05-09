@@ -21,21 +21,21 @@ interface SelectComponentInterface extends SelectAbstractInterface {
 
 function SelectComponent(props: SelectComponentInterface) {
     const {
+        autocomplete,
+        className,
+        defaultValue,
+        inputProps,
+        inputRef,
+        label,
+        onClick,
+        onKeyDown,
+        onKeyOptionDown,
         opened,
         optionRef,
         options,
-        onClick,
-        defaultValue,
-        onKeyDown,
-        onKeyOptionDown,
-        setOpen,
-        autocomplete,
         placeholder,
         search,
-        inputRef,
-        inputProps,
-        className,
-        label
+        setOpen
     } = props;
 
     const id = useId();
@@ -48,7 +48,7 @@ function SelectComponent(props: SelectComponentInterface) {
         return (
             <div>
                 <ul className={ styles.options } ref={ optionRef } role="listitem">
-                    { options.map(({ value, label: optionLabel }, index) => (
+                    { options.map(({ label: optionLabel, value }, index) => (
                         <li
                           key={ value }
                           aria-label="option"

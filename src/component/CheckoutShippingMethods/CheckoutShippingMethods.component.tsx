@@ -46,7 +46,7 @@ function CheckoutShippingMethodsComponent() {
     };
 
     const renderShippingMethods = () => available_shipping_methods.map(({
-        method_code, method_title, carrier_title, amount, carrier_code
+        amount, carrier_code, carrier_title, method_code, method_title
     }) => (
         <li
           key={ method_code }

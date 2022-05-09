@@ -24,7 +24,7 @@ interface SliderComponentInterface {
 
 function SliderComponent(props: SliderComponentInterface) {
     const {
-        dots, children, current, goTo, nav, className, draggable, sliderRef, transition, setX, x
+        children, className, current, dots, draggable, goTo, nav, setX, sliderRef, transition, x
     } = props;
     const renderDots = () => {
         if (!dots || children.length === 1) {

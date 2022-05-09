@@ -16,12 +16,12 @@ interface ImageComponentInterface {
 
 function ImageComponent(props: ImageComponentInterface) {
     const {
-        url,
         alt,
-        wrapperStyle,
         className,
         setParams,
-        variableRatio
+        url,
+        variableRatio,
+        wrapperStyle
     } = props;
 
     const renderImage = () => {

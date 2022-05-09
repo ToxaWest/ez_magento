@@ -18,10 +18,10 @@ import CheckoutPageComponent from './CheckoutPage.component';
 
 function CheckoutPageContainer() {
     const {
-        cart: { items, isVirtual }, account: { isSignedIn, loading: accountLoading }, loading, guest_checkout
+        account: { isSignedIn, loading: accountLoading }, cart: { isVirtual, items }, guest_checkout, loading
     } = useSelector(({
-        cart: { cart, loading: cartLoading },
         account,
+        cart: { cart, loading: cartLoading },
         config: { config: { guest_checkout: guestCheckout } }
     }: RootState) => ({
         cart,

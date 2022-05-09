@@ -11,13 +11,13 @@ function WidgetSliderComponent(props: WidgetSliderInterface) {
     const { slider_id } = props;
     const { getUrl } = useUrl();
     const {
-        slides, show_menu,
-        show_navigation,
+        show_menu, show_navigation,
         slide_speed,
+        slides,
         slides_to_display
     } = useSelector((state: RootState) => state.cms.widget[slider_id]) as SliderInterface;
 
-    const renderSlide = ({ desktop_image: url, slide_text, slide_id }: SlideInterface): ReactElement => (
+    const renderSlide = ({ desktop_image: url, slide_id, slide_text }: SlideInterface): ReactElement => (
         <div key={ slide_id }>
             <Html content={ slide_text } />
             <Image src={ getUrl({ url }) } />

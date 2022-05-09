@@ -18,8 +18,10 @@ export interface AddToCartContainerInterface {
 }
 
 function AddToCartContainer(props: AddToCartContainerInterface) {
-    const { showQty, product } = props;
-    const { __typename, sku, parent_sku } = product;
+    const { product, showQty } = props;
+    const {
+        __typename, configurable_options, parent_sku, selected_options, sku
+    } = product;
     const [quantity, setQty] = useState<number>(1);
     const [loading, setLoading] = useState<boolean>(false);
     const id = useId();
@@ -37,11 +39,20 @@ function AddToCartContainer(props: AddToCartContainerInterface) {
     const onClick: MouseEventHandler<object> = (e) => {
         e.preventDefault();
 
+        const data = {
+            quantity,
+            sku,
+            selected_options
+        };
+
         if (__typename === 'ConfigurableProduct') {
-            if (!parent_sku) {
+            console.log(selected_options);
+            console.log(configurable_options);
+            if (!selected_options || (selected_options.length < configurable_options.length)) {
                 dispatch(setInfoNotification('Please select options'));
                 return;
             }
+            data.sku = parent_sku;
         }
 
         if (!quantity) {
@@ -50,12 +61,6 @@ function AddToCartContainer(props: AddToCartContainerInterface) {
         }
 
         setLoading(true);
-
-        const data = {
-            quantity,
-            sku,
-            parent_sku
-        };
 
         addProductsToCart([data]).then((ok) => {
             if (ok) {

@@ -24,8 +24,8 @@ export interface useUserAddressInterface {
 
 const useUserAddress = ({ fields }: useUserAddressInterface) => {
     const {
-        default_country,
         address_lines_quantity,
+        default_country,
         region_display_all
     } = useSelector((state: RootState) => state.config.config);
     const [loadRegions] = useLazyQuery(ConfigQuery.country);
@@ -112,12 +112,12 @@ const useUserAddress = ({ fields }: useUserAddressInterface) => {
                 onChange: onCountryChange,
                 options: countries
                     .filter(({
-                        id,
-                        full_name_locale
+                        full_name_locale,
+                        id
                     }) => id && full_name_locale)
                     .map(({
-                        id,
-                        full_name_locale
+                        full_name_locale,
+                        id
                     }) => ({
                         id,
                         label: full_name_locale,

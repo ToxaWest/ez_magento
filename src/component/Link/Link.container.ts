@@ -11,7 +11,7 @@ interface LinkContainerInterface {
 }
 
 function LinkContainer({
-    href, className, children, title
+    children, className, href, title
 }: LinkContainerInterface) {
     const componentProps = {
         className,

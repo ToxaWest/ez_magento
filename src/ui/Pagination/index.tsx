@@ -18,7 +18,7 @@ function CategoryPaginationComponent(props: CategoryPaginationComponentInterface
     } = props;
 
     const {
-        pagination_frame = 5, anchor_text_for_previous, anchor_text_for_next
+        anchor_text_for_next, anchor_text_for_previous, pagination_frame = 5
     } = useSelector((state: RootState) => state.config.config);
 
     const router: NextRouter = useRouter();

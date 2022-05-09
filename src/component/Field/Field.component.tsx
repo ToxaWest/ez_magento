@@ -20,11 +20,11 @@ interface FieldComponentInterface {
 
 function FieldComponent(props:FieldComponentInterface): ReactElement {
     const {
-        type, onChange: onFieldChange, validation, options
+        onChange: onFieldChange, options, type, validation
     } = props;
 
     const getField = (field) => {
-        const { input, input: { name, value, onChange } } = field as FieldInputProps<object>;
+        const { input, input: { name, onChange, value } } = field as FieldInputProps<object>;
         switch (type) {
         case SELECT_TYPE:
             const {

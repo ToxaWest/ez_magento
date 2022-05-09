@@ -1,15 +1,15 @@
 import styles from './ProductMediaGallery.module.scss';
 
 import Image from '@component/Image';
-import { RootState } from '@store/index';
+import useCurrentProduct from '@hook/useCurrentProduct';
 import Slider from '@ui/Slider';
 import { ReactElement } from 'react';
-import { useSelector } from 'react-redux';
 
 function ProductMediaGalleryComponent({ className }: { className?: string }) {
-    const { singleProduct: { media_gallery, name } } = useSelector((state: RootState) => state.products);
+    const product = useCurrentProduct();
+    const { media_gallery, name } = product;
 
-    const renderSlide = ({ disabled, url, label }: MediaGalleryInterface, index: number) => {
+    const renderSlide = ({ disabled, label, url }: MediaGalleryInterface, index: number) => {
         if (disabled) {
             return null;
         }

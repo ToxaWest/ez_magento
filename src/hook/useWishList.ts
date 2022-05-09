@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const useWishList = ({ getWishList }: { getWishList: boolean } = { getWishList: false }) => {
-    const { isSignedIn, customer: { wishlist: { id } } } = useSelector((state: RootState) => state.account);
+    const { customer: { wishlist: { id } }, isSignedIn } = useSelector((state: RootState) => state.account);
 
     const dispatch = useDispatch();
     const router: NextRouter = useRouter();

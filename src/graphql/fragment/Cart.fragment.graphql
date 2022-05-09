@@ -8,6 +8,14 @@ fragment cart on Cart {
                 currency
             }
         }
+        ... on ConfigurableCartItem {
+            configurable_options {
+                configurable_product_option_uid
+                option_label
+                configurable_product_option_value_uid
+                value_label
+            }
+        }
         product {
             sku
             url

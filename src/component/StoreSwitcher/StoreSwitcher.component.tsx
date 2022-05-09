@@ -9,7 +9,7 @@ interface StoreSwitcherComponentInterface {
 }
 
 function StoreSwitcherComponent(props: StoreSwitcherComponentInterface) {
-    const { storeList, handleChange, currentStore } = props;
+    const { currentStore, handleChange, storeList } = props;
     return (
         <Select
           className={ styles.wrapper }

@@ -11,7 +11,7 @@ interface CheckoutShippingComponentInterface {
 
 function CheckoutShippingComponent(props: CheckoutShippingComponentInterface) {
     const {
-        fields, onSubmit, loading, defaultValues
+        defaultValues, fields, loading, onSubmit
     } = props;
 
     return (

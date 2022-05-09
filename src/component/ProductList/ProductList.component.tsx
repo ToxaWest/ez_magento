@@ -1,7 +1,6 @@
 import styles from './ProductList.module.scss';
 
 import ProductCard from '@component/ProductCard';
-import { childSortInterface } from '@ui/Render/Render.types';
 import { createElement } from 'react';
 
 interface ProductListComponentInterface {
@@ -13,19 +12,6 @@ function ProductListComponent({ items }: ProductListComponentInterface) {
       <ProductCard
         key={ item.id }
         wrapperTag="li"
-        renderSort={ {
-            image: true,
-            wishlist: true,
-            div: {
-                style: { display: 'flex' },
-                renderSort: {
-                    price: true,
-                    sku: true
-                }
-            } as childSortInterface,
-            link: true,
-            addToCart: true
-        } }
         product={ item }
       />
     );

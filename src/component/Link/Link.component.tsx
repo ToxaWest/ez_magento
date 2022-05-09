@@ -11,10 +11,10 @@ interface LinkComponentInterface {
 }
 
 function LinkComponent({
-    href,
-    title,
+    children,
     className,
-    children
+    href,
+    title
 }: LinkComponentInterface) {
     if (typeof href !== 'string' || (!isAbsoluteUrl(href) && !isSpecialLink(href))) {
         return (

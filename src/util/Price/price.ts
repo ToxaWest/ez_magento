@@ -11,6 +11,6 @@ export const formatPrice = (price: number, currency: string, locale: string): st
 };
 
 export const getFinalPrice = ({
-    value,
-    currency
+    currency,
+    value
 }: FinalPriceInterface, locale?: string) => formatPrice(value, currency, locale);

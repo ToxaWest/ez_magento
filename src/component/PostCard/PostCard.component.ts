@@ -9,19 +9,19 @@ import { createElement, ReactElement } from 'react';
 import useUrl from '../../hook/useUrl';
 
 function PostCardComponent({
-    wrapperTag,
     post,
-    renderSort
+    renderSort,
+    wrapperTag
 }: { renderSort?: renderSortInterface, wrapperTag?: string, post: BlogPostInterface }): ReactElement {
     const {
-        first_image,
-        title,
-        post_url,
-        creation_time,
         author: {
             author_url,
             name
-        }
+        },
+        creation_time,
+        first_image,
+        post_url,
+        title
     } = post;
 
     const { replaceUrl } = useUrl();

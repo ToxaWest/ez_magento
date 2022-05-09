@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux';
 const cx = classNames.bind(styles);
 
 function CheckoutPaymentMethodsComponent() {
-    const { selected_payment_method, available_payment_methods } = useSelector(
+    const { available_payment_methods, selected_payment_method } = useSelector(
         (state: RootState) => state.cart.cart,
     );
 
