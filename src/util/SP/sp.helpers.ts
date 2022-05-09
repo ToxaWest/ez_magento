@@ -53,10 +53,10 @@ export const getContextBasedOnStore = (store_code?: string, current_currency?: s
 };
 
 interface QueryInterface {
-    sort?: string,
-    sort_direction?: string,
     customFilters?: string,
-    page?: string
+    page?: string,
+    sort?: string,
+    sort_direction?: string
 }
 
 export const getProductVariablesBasedOnQuery = (query: QueryInterface, category_uid: number | string) => {

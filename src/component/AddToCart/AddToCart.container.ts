@@ -13,14 +13,21 @@ import {
 import { useDispatch } from 'react-redux';
 
 export interface AddToCartContainerInterface {
-  product: ProductInterface,
-  showQty?: boolean | null
+    product: ProductInterface,
+    showQty?: boolean | null
 }
 
 function AddToCartContainer(props: AddToCartContainerInterface) {
-    const { product, showQty } = props;
     const {
-        __typename, configurable_options, parent_sku, selected_options, sku
+        product,
+        showQty
+    } = props;
+    const {
+        __typename,
+        configurable_options,
+        parent_sku,
+        selected_options,
+        sku
     } = product;
     const [quantity, setQty] = useState<number>(1);
     const [loading, setLoading] = useState<boolean>(false);
@@ -60,14 +67,16 @@ function AddToCartContainer(props: AddToCartContainerInterface) {
 
         setLoading(true);
 
-        addProductsToCart([data]).then((ok) => {
-            if (ok) {
-                dispatch(setSuccessNotification(t('added success')));
-            }
-            setLoading(false);
-        }).catch(() => {
-            setLoading(false);
-        });
+        addProductsToCart([data])
+            .then((ok) => {
+                if (ok) {
+                    dispatch(setSuccessNotification(t('added success')));
+                }
+                setLoading(false);
+            })
+            .catch(() => {
+                setLoading(false);
+            });
     };
 
     return createElement(Render, {
@@ -75,14 +84,25 @@ function AddToCartContainer(props: AddToCartContainerInterface) {
         renderMap: {
             button: createElement(
                 Button,
-                { disabled: loading, onClick },
+                {
+                    disabled: loading,
+                    onClick
+                },
                 loading ? t('adding') : t('add')
             ),
             qtyCounter: createElement(
                 'label',
-                { htmlFor: id, 'aria-label': 'Qty' },
+                {
+                    htmlFor: id,
+                    'aria-label': 'Qty'
+                },
                 createElement('input', {
-                    id, type: 'number', value: quantity, onChange, min: 1, step: 1
+                    id,
+                    type: 'number',
+                    value: quantity,
+                    onChange,
+                    min: 1,
+                    step: 1
                 })
             )
         },

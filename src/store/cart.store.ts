@@ -4,38 +4,38 @@ export interface SelectedShippingMethodInterface { carrier_code: string, method_
 
 interface cartReducerInterface {
     cart: {
+        available_payment_methods: object[],
+        billing_address?: object,
         isVirtual: boolean,
         items: {
-            id: string,
-            product: ProductInterface,
-            quantity: number,
+            __typename: 'SimpleCartItem' | 'ConfigurableCartItem',
             configurable_options?: {
                 option_label: string
                 value_label: string
-            }[]
-            __typename: 'SimpleCartItem' | 'ConfigurableCartItem'
+            }[],
+            id: string,
+            product: ProductInterface,
+            quantity: number
         }[],
         prices: {
             grand_total: {
                 currency: string
             }
         },
-        shipping_addresses?: {
-            selected_shipping_method?: SelectedShippingMethodInterface,
-            available_shipping_methods?: {
-                method_code: string,
-                method_title: string,
-                carrier_title: string,
-                amount: {
-                    value: number,
-                    currency: string
-                },
-                carrier_code: string
-            }[]
-        }[],
         selected_payment_method?: { code: string },
-        available_payment_methods: object[],
-        billing_address?: object,
+        shipping_addresses?: {
+            available_shipping_methods?: {
+                amount: {
+                    currency: string,
+                    value: number
+                },
+                carrier_code: string,
+                carrier_title: string,
+                method_code: string,
+                method_title: string
+            }[],
+            selected_shipping_method?: SelectedShippingMethodInterface
+        }[],
         total_quantity: number
     },
     loading: boolean

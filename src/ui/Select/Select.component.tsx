@@ -7,16 +7,16 @@ import React, { useId } from 'react';
 const cx = classNames.bind(styles);
 
 interface SelectComponentInterface extends SelectAbstractInterface {
-    opened: boolean,
-    optionRef: React.LegacyRef<HTMLUListElement>
+    inputProps: object,
     inputRef: React.LegacyRef<HTMLInputElement>,
+    label?: string,
     onClick: (value: number | string) => void,
     onKeyDown: React.KeyboardEventHandler<HTMLInputElement>,
     onKeyOptionDown: (e: React.KeyboardEvent<HTMLLIElement>, index: number, value: number | string) => void,
-    setOpen: (open: boolean) => void,
+    opened: boolean,
+    optionRef: React.LegacyRef<HTMLUListElement>,
     search: React.ChangeEventHandler,
-    inputProps: object,
-    label?: string
+    setOpen: (open: boolean) => void
 }
 
 function SelectComponent(props: SelectComponentInterface) {

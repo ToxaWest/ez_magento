@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface MetaInterface {
-    meta_title?: string,
-    title?: string,
     meta_description?: string,
-    meta_keyword?: string
+    meta_keyword?: string,
+    meta_title?: string,
+    title?: string
 }
 
 const getInitialState = () => {

@@ -2,42 +2,42 @@ import { menuItemInterface } from '@component/Menu/Menu.component';
 import { createSlice } from '@reduxjs/toolkit';
 
 export interface availableStoreInterface {
- lang_prefix: string, store_name: string, default_display_currency_code: string
+ default_display_currency_code: string, lang_prefix: string, store_name: string
 }
 
 export interface StoreConfigInterface {
-    mfblog_top_menu_include_categories: number,
-    mfblog_permalink_route: string,
-    mfblog_top_menu_item_text: string,
+    address_lines_quantity: number,
+    anchor_text_for_next?: string,
+    anchor_text_for_previous?: string,
+    base_url: string,
+    cms_home_page?: string | undefined | null,
     content_customization_header_menu?: string,
+    default_country: string,
+    default_description: string,
+    default_keywords: string,
+    default_title: string,
+    guest_checkout: boolean,
+    header_logo_src: string,
+    lang_prefix: string,
+    locale: string,
     logo_alt: string,
-    magento_wishlist_general_is_enabled: string,
-    secure_base_url: string,
     logo_height: number,
     logo_width: number,
-    header_logo_src: string,
+    magento_wishlist_general_is_enabled: string,
+    mfblog_permalink_route: string,
+    mfblog_top_menu_include_categories: number,
+    mfblog_top_menu_item_text: string,
     name: string,
-    lang_prefix: string,
     pagination_frame: number,
     pagination_frame_skip: number,
-    anchor_text_for_previous?: string,
-    anchor_text_for_next?: string
-    show_cms_breadcrumbs: boolean,
-    cms_home_page?: string | undefined | null,
-    guest_checkout: boolean,
-    default_country: string,
-    address_lines_quantity: number,
     region_display_all: boolean,
-    store_code: string,
     secure_base_media_url: string,
-    base_url: string,
-    locale: string,
+    secure_base_url: string,
+    show_cms_breadcrumbs: boolean,
+    store_code: string,
     title_prefix: string,
-    title_suffix: string,
     title_separator: string,
-    default_title: string,
-    default_description: string,
-    default_keywords: string
+    title_suffix: string
 }
 
 export interface MenuInterface {
@@ -73,9 +73,9 @@ const getInitialState = () => {
 };
 
 export interface menuChildInterface {
-    item_id: number,
     children: menuChildInterface[],
-    include_in_menu: boolean
+    include_in_menu: boolean,
+    item_id: number
 }
 
 export const configReducer = createSlice({

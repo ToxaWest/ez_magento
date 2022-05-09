@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface productsReducerInterface {
+    configurableIndex: number,
     productList: {
         items: ProductInterface[]
     },
     productsInformation: ProductsInformationInterface,
-    configurableIndex: number,
     singleProduct: ProductInterface
 }
 

@@ -1,6 +1,6 @@
 import { menuChildInterface, MenuInterface } from '@store/config';
 
-export interface unsortedItemsInterface { parent_id: number, position: number, item_id: number }
+export interface unsortedItemsInterface { item_id: number, parent_id: number, position: number }
 
 export const getSortedItems = (unsortedItems: unsortedItemsInterface[]) => Array.from(unsortedItems)
     .sort((
@@ -96,8 +96,8 @@ export const addBlogToMenu = (
         mfblog_top_menu_include_categories,
         mfblog_top_menu_item_text
     } : {
-        mfblog_top_menu_include_categories: number,
         mfblog_permalink_route: string,
+        mfblog_top_menu_include_categories: number,
         mfblog_top_menu_item_text: string
     }
 ): MenuInterface[] => [...menu, {

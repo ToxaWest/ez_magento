@@ -6,12 +6,12 @@ import { useSelector } from 'react-redux';
 
 interface customerOrdersInterface {
     items: {
-        order_date: string,
         id: number,
+        order_date: string,
         status: string,
         total: {
             grand_total: {
-                value: number, currency: string
+                currency: string, value: number
             }
         }
     }[],

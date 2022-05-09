@@ -9,17 +9,17 @@ import Draggable from 'react-draggable';
 const cx = classNames.bind(styles);
 
 interface SliderComponentInterface {
-    dots: boolean
-    current: number
-    nav: boolean
-    className: string
+    children: ReactElement[],
+    className: string,
+    current: number,
+    dots: boolean,
     draggable: boolean
-    sliderRef
-    transition: number
-    x: number
-    setX: (x: number) => void
     goTo: (index: number) => void,
-    children: ReactElement[]
+    nav: boolean,
+    setX: (x: number) => void,
+    sliderRef,
+    transition: number,
+    x: number
 }
 
 function SliderComponent(props: SliderComponentInterface) {

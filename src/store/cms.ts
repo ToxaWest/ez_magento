@@ -4,13 +4,13 @@ export interface CmsPageInterface {
     content?: string
 }
 
-export interface SlideInterface { desktop_image: string, slide_text: string, slide_id: string }
+export interface SlideInterface { desktop_image: string, slide_id: string, slide_text: string }
 
 export interface SliderInterface {
-    slides: SlideInterface[],
     show_menu: boolean,
     show_navigation: boolean,
     slide_speed: number,
+    slides: SlideInterface[],
     slides_to_display: number
 }
 
@@ -20,8 +20,8 @@ export interface WidgetInterface {
 
 interface cmsReducerInterface {
     block: object,
-    widget: WidgetInterface,
-    page: CmsPageInterface
+    page: CmsPageInterface,
+    widget: WidgetInterface
 }
 
 const getInitialState = () => {
