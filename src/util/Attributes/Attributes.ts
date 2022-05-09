@@ -9,7 +9,7 @@ export const getAttributeValue = ({
     }
 
     if (attribute_type === 'select') {
-        return attribute_options.find(({ value }) => value === attribute_value).label;
+        return attribute_options.find(({ value }) => value === attribute_value)?.label;
     }
 
     if (attribute_type === 'boolean') {

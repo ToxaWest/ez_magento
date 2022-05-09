@@ -32,18 +32,10 @@ export const breadcrumbsReducer = createSlice({
     reducers: {
         hideBreadcrumbs: (state) => {
             state.showBreadcrumbs = false;
-        },
-        updateCategoryBreadcrumbs: (state, {
-            payload: { name, breadcrumbs, url }
-        }: PayloadAction<CategoryInterface>) => {
-            state.breadcrumbs = _normalizeBreadcrumb(breadcrumbs);
-            state.showBreadcrumbs = true;
-            state.current = {
-                name,
-                url
-            };
-        },
-        updateProductsBreadcrumbs: (state, {
+        }
+    },
+    extraReducers: {
+        'products/updateSingleProduct': (state, {
             payload: { name, categories, url }
         }: PayloadAction<ProductInterface>) => {
             state.breadcrumbs = getProductsBreadcrumbs(categories);
@@ -52,13 +44,36 @@ export const breadcrumbsReducer = createSlice({
                 name,
                 url
             };
+        },
+        'category/updateCategory': (state, {
+            payload: { name, breadcrumbs, url }
+        }: PayloadAction<CategoryInterface>) => {
+            state.breadcrumbs = _normalizeBreadcrumb(breadcrumbs);
+            state.showBreadcrumbs = true;
+            state.current = {
+                name,
+                url
+            };
         }
+        // 'blog/updateBlogCategory': (state, {
+        //     payload: {
+        //         breadcrumbs, title: name, category_url: url
+        //     }
+        // }: PayloadAction<object>) => {
+        //     state.breadcrumbs = breadcrumbs.map(({ category_name, category_url_path }) => ({
+        //         name: category_name,
+        //         url: category_url_path
+        //     }));
+        //     state.showBreadcrumbs = true;
+        //     state.current = {
+        //         name,
+        //         url
+        //     };
+        // }
     }
 });
 
 export const {
-    updateProductsBreadcrumbs,
-    updateCategoryBreadcrumbs,
     hideBreadcrumbs
 } = breadcrumbsReducer.actions;
 

@@ -5,6 +5,7 @@ interface productsReducerInterface {
         items: ProductInterface[]
     },
     productsInformation: ProductsInformationInterface,
+    configurableIndex: number,
     singleProduct: ProductInterface
 }
 
@@ -25,6 +26,7 @@ const getInitialState = () => {
                 options: []
             }
         },
+        configurableIndex: -1,
         singleProduct: {}
     };
 };
@@ -44,6 +46,9 @@ export const productsReducer = createSlice({
         },
         updateSingleProduct: (state: productsReducerInterface, { payload }) => {
             state.singleProduct = payload;
+        },
+        updateConfigurableIndex: (state, { payload }: PayloadAction<number>) => {
+            state.configurableIndex = payload;
         }
     }
 });
@@ -51,7 +56,8 @@ export const productsReducer = createSlice({
 export const {
     updateProductList,
     updateProductsInformation,
-    updateSingleProduct
+    updateSingleProduct,
+    updateConfigurableIndex
 } = productsReducer.actions;
 
 export default productsReducer.reducer;

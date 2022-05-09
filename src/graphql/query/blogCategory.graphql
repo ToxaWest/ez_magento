@@ -6,6 +6,7 @@ query blogCategory($id: String!){
         meta_keywords
         meta_description
         content_heading
+        category_url
         breadcrumbs {
             category_url_path
             category_name

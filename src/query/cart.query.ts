@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 import {
-    addSimpleProductsToCart,
+    addProductsToCart,
     cart,
     cartFragment,
     createEmptyCart,
@@ -11,11 +11,11 @@ import {
 } from '@graphql/index';
 
 const cartQuery = {
-    addSimpleProductsToCart: gql`
+    addProductsToCart: gql`
         ${priceFragment}
         ${price_range}
         ${cartFragment}
-        ${addSimpleProductsToCart}
+        ${addProductsToCart}
     `,
     cart: gql`
         ${priceFragment}

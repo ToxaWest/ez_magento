@@ -1,8 +1,8 @@
 import {
     ChangeEvent, createElement,
     KeyboardEvent,
-    KeyboardEventHandler, ReactElement,
-    useEffect, useRef, useState
+    KeyboardEventHandler, ReactElement, useEffect,
+    useRef, useState
 } from 'react';
 
 import SelectComponent from './Select.component';
@@ -23,8 +23,11 @@ function SelectContainer(props: SelectContainerInterface): ReactElement {
     const { defaultValue = '' } = props;
     const [opened, setOpen] = useState<boolean>(false);
     const [label, setLabel] = useState<string>('');
-    const [options, setOptions] = useState<SelectOptions[]>(selectOptions);
+    const [options, setOptions] = useState<SelectOptions[]>([]);
 
+    useEffect(() => {
+        setOptions(selectOptions);
+    }, [selectOptions]);
     const optionRef = useRef<HTMLUListElement>(null);
     const inputRef = useRef<HTMLInputElement>();
 
@@ -38,17 +41,12 @@ function SelectContainer(props: SelectContainerInterface): ReactElement {
     };
 
     useEffect(() => {
-        const d = options.find(({ value }) => value === defaultValue);
+        const d = selectOptions.find(({ value }) => value === defaultValue);
         if (d) {
-            const {
-                label: l,
-                value
-            } = d;
-
+            const { label: l } = d;
             setLabel(l);
-            onChange(value);
         }
-    }, [defaultValue]);
+    }, [defaultValue, selectOptions]);
 
     const onClick = (e: string | number) => {
         setOpen(false);

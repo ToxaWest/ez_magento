@@ -8,6 +8,31 @@ query product($sku: String){
                     category_name
                 }
             }
+            ...on ConfigurableProduct {
+                configurable_options {
+                    attribute_code
+                }
+                variants {
+                    product {
+                        sku
+                        s_attributes {
+                            attribute_code
+                            attribute_label
+                            attribute_type
+                            attribute_value
+                            attribute_id
+                            attribute_options {
+                                label
+                                value
+                                swatch_data {
+                                    type
+                                    value
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             related_products {
                 sku
                 url
@@ -67,16 +92,6 @@ query product($sku: String){
             url
             id
             name
-            ... on ConfigurableProduct {
-                configurable_options {
-                    attribute_code
-                    label
-                    values {
-                        label
-                        default_label
-                    }
-                }
-            }
         }
     }
 }

@@ -7,6 +7,7 @@ import { SelectedShippingMethodInterface } from '@store/cart.store';
 import { RootState } from '@store/index';
 import Button from '@ui/Button';
 import Loader from '@ui/Loader';
+import { notInteractiveClick } from '@util/Events';
 import { getFinalPrice } from '@util/Price/price';
 import classNames from 'classnames';
 import { NextRouter, useRouter } from 'next/router';
@@ -49,16 +50,16 @@ function CheckoutShippingMethodsComponent() {
     }) => (
         <li
           key={ method_code }
+          tabIndex={ 0 }
+          role="option"
+          onKeyDown={ notInteractiveClick }
+          aria-selected={ isSelected({ carrier_code, method_code }) }
+          onClick={ () => onSelectShipping({ carrier_code, method_code }) }
           className={ cx(
-              styles.item,
-              { [styles.item_active]: isSelected({ carrier_code, method_code }) },
+              styles.item
           ) }
         >
-            <button onClick={ () => onSelectShipping({ carrier_code, method_code }) }>
-                { `${carrier_title } ${ method_title} ${
-                    getFinalPrice({ ...amount })
-                }` }
-            </button>
+            { `${carrier_title } ${ method_title}  ${getFinalPrice({ ...amount })}` }
         </li>
     ));
 

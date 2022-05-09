@@ -17,16 +17,16 @@ query StoreConfig {
     storeConfig {
         magento_wishlist_general_is_enabled
         wishlist_general_active
-        mfblog_top_menu_include_categories
-        mfblog_permalink_route
-        mfblog_top_menu_item_text
+#        mfblog_top_menu_include_categories
+#        mfblog_permalink_route
+#        mfblog_top_menu_item_text
         title_prefix
         title_suffix
         title_separator
         default_title
         default_description
         default_keywords
-        content_customization_header_menu
+#        content_customization_header_menu
         cms_home_page
         secure_base_media_url
         base_url

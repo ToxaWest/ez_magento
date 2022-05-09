@@ -37,6 +37,7 @@ input {
   max-width: 100%;
   border-radius: .3rem;
   outline: none;
+  color: inherit;
   border: 1px solid var(--yt-spec-10-percent-layer);
   &:not([type="checkbox"]){
     -webkit-appearance: none;
@@ -46,6 +47,7 @@ input {
 }
 
 button {
+  color: inherit;
   cursor: pointer;
 }
 

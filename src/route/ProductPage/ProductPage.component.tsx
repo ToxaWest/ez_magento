@@ -1,16 +1,16 @@
 import styles from './ProductPage.module.scss';
 
 import AddToCart from '@component/AddToCart';
+import ConfigurableOptions from '@component/ConfigurableOptions';
 import ProductAttributes from '@component/ProductAttributes';
 import ProductMediaGallery from '@component/ProductMediaGallery';
 import ProductPrice from '@component/ProductPrice';
 import RelatedProducts from '@component/RelatedProducts';
 import WishListButton from '@component/WishListButton';
-import { RootState } from '@store/index';
-import { useSelector } from 'react-redux';
+import useCurrentProduct from '@hook/useCurrentProduct';
 
 function ProductPageComponent() {
-    const { singleProduct: product } = useSelector((state: RootState) => state.products);
+    const product = useCurrentProduct();
 
     const { name, sku, price_range } = product;
 
@@ -20,6 +20,7 @@ function ProductPageComponent() {
             <h1>{ name }</h1>
             <strong>{ sku }</strong>
             <ProductPrice price_range={ price_range } />
+            <ConfigurableOptions />
             <WishListButton sku={ sku } />
             <AddToCart
               product={ product }

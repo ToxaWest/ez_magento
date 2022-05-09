@@ -1,10 +1,11 @@
-import { RootState } from '@store/index';
+import useCurrentProduct from '@hook/useCurrentProduct';
 import Table from '@ui/Table';
 import { getAttributeValue } from '@util/Attributes/Attributes';
-import { useSelector } from 'react-redux';
 
 function ProductAttributesComponent() {
-    const { singleProduct: { s_attributes } } = useSelector((state: RootState) => state.products);
+    const product = useCurrentProduct();
+
+    const { s_attributes } = product;
 
     const data = s_attributes.reduce((acc, item) => ({ ...acc, [item.attribute_code]: getAttributeValue(item) }), {});
 

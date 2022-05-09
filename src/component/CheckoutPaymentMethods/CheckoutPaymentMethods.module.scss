@@ -1,23 +1,31 @@
 .wrapper {
   margin: 1.2rem 0;
-  padding: 0;
   max-width: 30rem;
-  border: 1px solid var(--theme-color-secondary);
+  border-bottom: 1px solid var(--yt-spec-10-percent-layer);
+  background: var(--yt-spec-brand-background-solid);
 }
 .item{
-  margin: 0;
-  padding: .6rem 1.2rem;
-  border-bottom: 2px solid var(--theme-color-secondary);
-  display: flex;
-  flex-direction: column;
-  background-color: transparent;
   cursor: pointer;
-  &:hover{
-    background-color: var(--theme-color);
+  list-style: none;
+  outline: 0;
+  display: flex;
+  align-items: center;
+  color: var(--yt-spec-text-primary);
+  padding: 0 2.4rem;
+  min-width: 0;
+  height: var(--paper-item-min-height,4.8rem);
+  font-size: 1.2rem;
+  line-height: 2rem;
+  font-weight: 500;
+  border-bottom: 1px solid var(--yt-spec-10-percent-layer);
+  &:hover {
+    background-color: var(--yt-spec-badge-chip-background);
   }
-
   &[aria-selected="true"]{
-    border-color: var(--theme-color);
-    background-color: var(--theme-color-secondary);
+    font-size: 1.4rem;
+    background-color: var(--ytd-guide-entry-renderer-active-guide-item-background-color,var(--yt-spec-10-percent-layer));
+    &:hover {
+      background-color: var(--yt-spec-badge-chip-background);
+    }
   }
 }

@@ -1,11 +1,12 @@
 import LinkComponent from '@component/Link/Link.component';
 import { hrefDoctor } from '@util/Link';
 import { createElement, ReactNode } from 'react';
+import { UrlObject } from 'url';
 
 interface LinkContainerInterface {
     children?: ReactNode | undefined,
     className?: string,
-    href?: string,
+    href?: string | UrlObject
     title?: string
 }
 
@@ -15,7 +16,7 @@ function LinkContainer({
     const componentProps = {
         className,
         title,
-        href: hrefDoctor(href)
+        href: typeof href === 'string' ? hrefDoctor(href) : href
     };
 
     return createElement(LinkComponent, componentProps, children);

@@ -26,7 +26,7 @@ const nextConfig = {
         localeDetection: false
     },
     images: {
-        domains: [process.env.NEXT_PUBLIC_API_URL.replace('https://', '')]
+        domains: [process.env.NEXT_PUBLIC_API_URL.replace('https://', ''), 'luma-demo.scandipwa.com']
     },
     webpack: (config) => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access

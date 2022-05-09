@@ -46,9 +46,16 @@ declare interface ProductInterface {
   media_gallery: MediaGalleryInterface[],
   small_image: SmallImageInterface,
   url: string,
-  __typename: 'SimpleProduct',
+  parent_sku?: string,
+  __typename: 'SimpleProduct' | 'ConfigurableProduct',
   categories: CategoryInterface[],
-  related_products: ProductInterface[]
+  related_products: ProductInterface[],
+  configurable_options?: {
+    attribute_code: string
+  }[]
+  variants?: {
+    product: ProductInterface
+  }[]
 }
 
 declare interface PageInfoInterface {

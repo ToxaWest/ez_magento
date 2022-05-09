@@ -1,6 +1,6 @@
 import styles from './AddToCart.module.scss';
 
-import useAddSimpleProductToCart from '@hook/useAddSimpleProductToCart';
+import useAddProductsToCart from '@hook/useAddProductsToCart';
 import { AppDispatch } from '@store/index';
 import { setInfoNotification, setSuccessNotification } from '@store/notifiactions';
 import Button from '@ui/Button';
@@ -19,13 +19,13 @@ export interface AddToCartContainerInterface {
 
 function AddToCartContainer(props: AddToCartContainerInterface) {
     const { showQty, product } = props;
-    const { __typename, sku } = product;
+    const { __typename, sku, parent_sku } = product;
     const [quantity, setQty] = useState<number>(1);
     const [loading, setLoading] = useState<boolean>(false);
     const id = useId();
     const dispatch = useDispatch<AppDispatch>();
     const t = useTranslations<string>('AddToCart');
-    const addSimpleProductToCart = useAddSimpleProductToCart();
+    const addProductsToCart = useAddProductsToCart();
 
     const onChange: ChangeEventHandler<HTMLInputElement> = ({ target: { value } }) => {
         if (quantity < 1) {
@@ -36,27 +36,35 @@ function AddToCartContainer(props: AddToCartContainerInterface) {
 
     const onClick: MouseEventHandler<object> = (e) => {
         e.preventDefault();
-        setLoading(true);
+
+        if (__typename === 'ConfigurableProduct') {
+            if (!parent_sku) {
+                dispatch(setInfoNotification('Please select options'));
+                return;
+            }
+        }
+
         if (!quantity) {
             dispatch(setInfoNotification('qty is required'));
-            setLoading(false);
             return;
         }
-        if (__typename === 'SimpleProduct') {
-            addSimpleProductToCart([{
-                data: {
-                    quantity,
-                    sku
-                }
-            }]).then((ok) => {
-                if (ok) {
-                    dispatch(setSuccessNotification(t('added success')));
-                }
-                setLoading(false);
-            }).catch(() => {
-                setLoading(false);
-            });
-        }
+
+        setLoading(true);
+
+        const data = {
+            quantity,
+            sku,
+            parent_sku
+        };
+
+        addProductsToCart([data]).then((ok) => {
+            if (ok) {
+                dispatch(setSuccessNotification(t('added success')));
+            }
+            setLoading(false);
+        }).catch(() => {
+            setLoading(false);
+        });
     };
 
     return createElement(Render, {

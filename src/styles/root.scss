@@ -24,9 +24,6 @@
 
   --theme-color-main: #ececec;
   --theme-color: #f3faff;
-  --theme-color-secondary: #bad4ff;
-  --theme-color-text: #282828;
-  --theme-border-radius: 5px; // not percent
 
 
   --popup-wrapper-position: fixed;
@@ -44,6 +41,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
+    --yt-spec-10-percent-layer: rgba(255, 255, 255, 0.1);
+    --yt-spec-badge-chip-background: rgba(255, 255, 255, 0.1);
     --yt-spec-text-primary: #fff;
     --yt-spec-text-secondary: #aaa;
     --yt-spec-text-disabled: #717171;
@@ -53,12 +52,12 @@
     --yt-spec-general-background-a: #181818;
     --yt-spec-general-background-b: #0f0f0f;
     --yt-spec-general-background-c: #030303;
+    --yt-spec-error-background: #f9f9f9;
+    --yt-spec-text-primary-inverse: #030303;
 
 
     --theme-color-main: #1a1a1a;
     --theme-color: #2a2a2a;
-    --theme-color-secondary: #4b4b4b;
-    --theme-color-text: #cecece;
 
     --image-default-background: #1e1e1e;
     --image-content-color: #575757;

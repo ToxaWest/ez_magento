@@ -6,6 +6,7 @@ import Link from '@component/Link';
 import ProductPrice from '@component/ProductPrice';
 import WishListButton from '@component/WishListButton';
 import Render from '@ui/Render';
+import { NextRouter, useRouter } from 'next/router';
 import { useTranslations } from 'next-intl';
 import { createElement } from 'react';
 
@@ -24,12 +25,26 @@ function ProductCardComponent({
         price_range
     } = product;
 
+    const router: NextRouter = useRouter();
+
+    const { query: { customFilters } } = router;
+
     const t = useTranslations('ProductCard');
 
     const renderMap = {
         wishlist: <WishListButton sku={ sku } />,
         image: <Image src={ src } alt={ label } height={ 100 } width={ 100 } className={ styles.image } />,
-        link: <Link href={ url }>{ name }</Link>,
+        link: <Link
+          href={ {
+              pathname: url,
+              query: customFilters ? {
+                  customFilters
+              } : {}
+          } }
+          title={ name }
+        >
+                { name }
+              </Link>,
         price: <ProductPrice price_range={ price_range } />,
         sku: <span>{ t('sku') + sku }</span>,
         addToCart: <AddToCart product={ product } />

@@ -43,7 +43,7 @@ const setUrlQuery = (router: NextRouter, params: object = {}): void => {
     ).catch(() => {});
 };
 
-export const getSelectedFiltersFromUrl = (customFilters: string): object => {
+export const getSelectedFiltersFromUrl = (customFilters: string): { [key: string]: string[] } => {
     const selectedFiltersString = (customFilters || '').split(';');
 
     return selectedFiltersString.reduce((acc, filter) => {
@@ -82,7 +82,7 @@ const _getNewSelectedFiltersString = (filterName: string, filterArray: (string |
 const setFilterAttribute = (router: NextRouter, {
     code,
     value
-}: { code: string, value: string | number }): void => {
+}: { code: string, value: string | number }, replace = false): void => {
     const { query: { customFilters } } = router;
     if (!customFilters) {
         setUrlQuery(router, {
@@ -92,7 +92,7 @@ const setFilterAttribute = (router: NextRouter, {
     } else {
         const selected: object = getSelectedFiltersFromUrl(decodeURIComponent(customFilters as string));
         let current = selected[code] as string[];
-        if (current) {
+        if (current && !replace) {
             const active: number = current.indexOf(value as string);
             if (active !== -1) {
                 current.splice(active, 1);
@@ -126,7 +126,7 @@ const getIsFilterSelected = (router: NextRouter, {
     }
     const selected = getSelectedFiltersFromUrl(decodeURIComponent(customFilters));
 
-    const current = selected[code] as string[];
+    const current = selected[code];
 
     if (current) {
         return current.indexOf(value as string) !== -1;

@@ -1,11 +1,12 @@
 import { isAbsoluteUrl, isSpecialLink } from '@util/Link';
 import Link from 'next/link';
 import { ReactNode } from 'react';
+import { UrlObject } from 'url';
 
 interface LinkComponentInterface {
     children?: ReactNode | undefined,
     className: string,
-    href: string,
+    href: string | UrlObject,
     title?: string
 }
 
@@ -15,7 +16,7 @@ function LinkComponent({
     className,
     children
 }: LinkComponentInterface) {
-    if (!isAbsoluteUrl(href) && !isSpecialLink(href)) {
+    if (typeof href !== 'string' || (!isAbsoluteUrl(href) && !isSpecialLink(href))) {
         return (
             <Link href={ href }>
                 { /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }

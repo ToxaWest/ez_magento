@@ -8,6 +8,14 @@ query blogPost($id: String!){
         meta_title
         title
         related_products
+        categories {
+            breadcrumbs {
+                category_url
+                category_name
+                category_url_path
+                category_url_key
+            }
+        }
         related_posts {
             ...postCardFragment
         }

@@ -1,5 +1,6 @@
 import styles from '@ui/Slider/Slider.module.scss';
 
+import Icon from '@ui/Icon';
 import { notInteractiveClick } from '@util/Events';
 import classNames from 'classnames';
 import { ReactElement } from 'react';
@@ -53,20 +54,22 @@ function SliderComponent(props: SliderComponentInterface) {
         }
 
         return (
-            <div>
+            <>
                 <button
                   disabled={ current === 0 }
+                  className={ styles.arrow_left }
                   onClick={ () => goTo(current - 1) }
                 >
-                    prev
+                    <Icon name="arrow_left" />
                 </button>
                 <button
                   disabled={ current === children.length - 1 }
                   onClick={ () => goTo(current + 1) }
+                  className={ styles.arrow_right }
                 >
-                    next
+                    <Icon name="arrow_right" />
                 </button>
-            </div>
+            </>
         );
     };
 

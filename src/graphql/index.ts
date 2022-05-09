@@ -3,8 +3,8 @@ import categoryMenuFragment from './fragment/categoryMenu.fragment.graphql';
 import postCardFragment from './fragment/postCard.fragment.graphql';
 import price_range from './fragment/PriceRange.fragment.graphql';
 import priceFragment from './fragment/ProductPrice.fragment.graphql';
+import addProductsToCart from './mutation/addProductsToCart.graphql';
 import addProductsToWishlist from './mutation/addProductsToWishlist.graphql';
-import addSimpleProductsToCart from './mutation/addSimpleProductsToCart.graphql';
 import createEmptyCart from './mutation/createEmptyCart.graphql';
 import estimateShippingCosts from './mutation/estimateShippingCosts.graphql';
 import generateCustomerToken from './mutation/generateCustomerToken.graphql';
@@ -57,7 +57,7 @@ export {
     removeItemFromCart,
     cartFragment,
     price_range,
-    addSimpleProductsToCart,
+    addProductsToCart,
     createEmptyCart,
     cart,
     category,

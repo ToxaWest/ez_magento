@@ -7,15 +7,15 @@ import { cartErrorResolver } from '@util/Cart';
 import { getErrorMessage } from '@util/Request';
 import { useDispatch } from 'react-redux';
 
-const useAddSimpleProductToCart = () => {
+const useAddProductsToCart = () => {
     const dispatch = useDispatch();
-    const cartId = useGetCartId();
-    const [mutateFunction] = useMutation(cartQuery.addSimpleProductsToCart);
-    const update = async (cart_items) => {
-        const cart_id = await cartId();
+    const cart_Id = useGetCartId();
+    const [mutateFunction] = useMutation(cartQuery.addProductsToCart);
+    const update = async (cartItems) => {
+        const cartId = await cart_Id();
         try {
-            const { data: { addSimpleProductsToCart: { cart } } } = await mutateFunction({
-                variables: { input: { cart_id, cart_items } }
+            const { data: { addProductsToCart: { cart } } } = await mutateFunction({
+                variables: { cartId, cartItems }
             });
 
             dispatch(updateCart(cart));
@@ -30,4 +30,4 @@ const useAddSimpleProductToCart = () => {
     return update;
 };
 
-export default useAddSimpleProductToCart;
+export default useAddProductsToCart;

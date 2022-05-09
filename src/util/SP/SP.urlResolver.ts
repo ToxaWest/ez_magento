@@ -4,17 +4,13 @@ import categoryQuery from '@query/category.query';
 import productQuery from '@query/product.query';
 import urlQuery from '@query/url.query';
 import { updateBlogCategory, updateBlogPost, updateBlogPosts } from '@store/blog.store';
-import {
-    updateCategoryBreadcrumbs,
-    updateProductsBreadcrumbs
-} from '@store/breadcrumbs.store';
 import { updateCategory } from '@store/category.store';
 import { updateProductList, updateProductsInformation, updateSingleProduct } from '@store/products.store';
 import SPAbstract from '@util/SP/SP.abstract';
 import { getProductVariablesBasedOnQuery } from '@util/SP/sp.helpers';
 
 interface urlResolverInterface {
-    type:string, sku?: string, id?: string | number
+    type: string, sku?: string, id?: string | number
 }
 
 class SPUrlResolver extends SPAbstract {
@@ -100,7 +96,6 @@ class SPUrlResolver extends SPAbstract {
         }> = await this.request(productQuery.product, { sku });
 
         this.container = 'ProductPage';
-        this.store.dispatch(updateProductsBreadcrumbs(singleProduct));
 
         this.store.dispatch(updateSingleProduct(singleProduct));
     }
@@ -115,14 +110,16 @@ class SPUrlResolver extends SPAbstract {
             categoryList: CategoryInterface[]
         }> = await this.request(categoryQuery.category, { id });
 
-        this.store.dispatch(updateCategoryBreadcrumbs(category));
         this.store.dispatch(updateCategory(category));
         const variables = getProductVariablesBasedOnQuery(this.query, id);
         await this.getProductList(variables);
     }
 
     async getProductList(variables: object) {
-        const { data: { productsInformation } } = await this.request(productQuery.productListInformation, variables);
+        const { data: { productsInformation } }: ApolloQueryResult<{
+            productsInformation: ProductsInformationInterface
+        }> = await this.request(productQuery.productListInformation, variables);
+
         this.store.dispatch(updateProductsInformation(productsInformation));
         const { data: { products } } = await this.request(productQuery.productList, variables);
         this.store.dispatch(updateProductList(products));
