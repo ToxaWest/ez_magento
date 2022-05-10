@@ -5,10 +5,10 @@ import useUrl from '@hook/useUrl';
 import { RootState } from '@store/index';
 import Render from '@ui/Render';
 import { RenderInterface } from '@ui/Render/Render.types';
-import { createElement } from 'react';
+import { createElement, ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
-function BlogPostPageContainer() {
+function BlogPostPageContainer(): ReactElement {
     const {
         author: { author_url, name }, creation_time, filtered_content, first_image, title
     } = useSelector((state: RootState) => state.blog.blogPost);

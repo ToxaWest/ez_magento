@@ -1,9 +1,9 @@
 import { NextRouter } from 'next/router';
 
-const isAbsoluteUrl = (value: string) => /^(?:[a-z]+:)?\/\//i.test(value);
-const isSpecialLink = (value: string) => /^(sms|tel|mailto):/i.test(value);
+const isAbsoluteUrl = (value: string): boolean => /^(?:[a-z]+:)?\/\//i.test(value);
+const isSpecialLink = (value: string): boolean => /^(sms|tel|mailto):/i.test(value);
 
-const hrefDoctor = (href?: string) => {
+const hrefDoctor = (href?: string): string => {
     if (!href) {
         return '/';
     }
@@ -14,7 +14,8 @@ const hrefDoctor = (href?: string) => {
     return `/${href}`;
 };
 
-const removeParamsIfEmpty = (query: NextRouter['query'], params: object) => Object.entries({ ...query, ...params })
+const removeParamsIfEmpty = (query: NextRouter['query'], params: object)
+    : NextRouter['query'] => Object.entries({ ...query, ...params })
     .reduce((acc, [key, value]) => {
         // eslint-disable-next-line no-prototype-builtins
         if (params.hasOwnProperty(key) && !params[key]) {
@@ -58,7 +59,11 @@ export const getSelectedFiltersFromUrl = (customFilters: string): { [key: string
     }, {});
 };
 
-const _getNewSelectedFiltersString = (filterName: string, filterArray: (string | number)[], prev: object = {}) => {
+const _getNewSelectedFiltersString = (
+    filterName: string,
+    filterArray: (string | number)[],
+    prev: object = {}
+): string => {
     const customFilers = {
         ...prev,
         [filterName]: filterArray
@@ -109,7 +114,7 @@ const setFilterAttribute = (router: NextRouter, {
     }
 };
 
-const configureAttributesForRequest = (customFilters: string) => {
+const configureAttributesForRequest = (customFilters: string): object => {
     const selected = getSelectedFiltersFromUrl(decodeURIComponent(customFilters));
 
     return Object.entries(selected)

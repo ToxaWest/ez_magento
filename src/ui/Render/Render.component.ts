@@ -1,10 +1,10 @@
 import { RenderInterface } from '@ui/Render/Render.types';
 import { sortedRender } from '@util/Attributes/Attributes';
-import { cloneElement, createElement } from 'react';
+import { cloneElement, createElement, ReactElement } from 'react';
 
 function RenderComponent({
     className, renderMap, renderSort, wrapperTag
-}: RenderInterface) {
+}: RenderInterface): ReactElement {
     if (!renderMap) {
         throw new Error('renderMap is required');
     }

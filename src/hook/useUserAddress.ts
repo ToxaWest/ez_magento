@@ -18,11 +18,12 @@ export interface countriesInterface {
 }
 
 export interface useUserAddressInterface {
-    fields?: { [key: string]: { [key: string]: string | number } },
+    fields?: { [key: string]: FieldInterface },
     options?: object
 }
 
-const useUserAddress = ({ fields }: useUserAddressInterface) => {
+const useUserAddress = ({ fields }: useUserAddressInterface) :
+    { [key: string]: FieldInterface } => {
     const {
         address_lines_quantity,
         default_country,
@@ -55,7 +56,9 @@ const useUserAddress = ({ fields }: useUserAddressInterface) => {
         }
     }, [country_id]);
 
-    const getStreetFields = () => new Array({ length: address_lines_quantity })
+    const getStreetFields = (): { [key: string]: FieldInterface } => new Array(
+        { length: address_lines_quantity }
+    )
         .fill('')
         .reduce((acc, key, index) => ({
             ...acc,
@@ -65,7 +68,7 @@ const useUserAddress = ({ fields }: useUserAddressInterface) => {
             }
         }), {});
 
-    const getRegionFields = () => {
+    const getRegionFields = (): { [key: string]: FieldInterface } | null => {
         if (!region_display_all && !is_state_required) {
             return null;
         }
@@ -98,7 +101,7 @@ const useUserAddress = ({ fields }: useUserAddressInterface) => {
         };
     };
 
-    const getCountryField = () => {
+    const getCountryField = (): { country_code?: FieldInterface } => {
         if (!countries.length) {
             return {};
         }
@@ -109,20 +112,10 @@ const useUserAddress = ({ fields }: useUserAddressInterface) => {
                 defaultValue: country_id,
                 autocomplete: true,
                 placeholder: 'Select country',
-                onChange: onCountryChange,
+                onChange: (e) => onCountryChange(e as string),
                 options: countries
-                    .filter(({
-                        full_name_locale,
-                        id
-                    }) => id && full_name_locale)
-                    .map(({
-                        full_name_locale,
-                        id
-                    }) => ({
-                        id,
-                        label: full_name_locale,
-                        value: id
-                    })),
+                    .filter(({ full_name_locale, id }) => id && full_name_locale)
+                    .map(({ full_name_locale, id }) => ({ id, label: full_name_locale, value: id })),
                 validation: ['notEmpty', 'autocomplete'],
                 type: SELECT_TYPE
             }
@@ -158,7 +151,7 @@ const useUserAddress = ({ fields }: useUserAddressInterface) => {
         },
         ...getStreetFields(),
         ...fields
-    } as { [key: string] : object };
+    } as { [key: string] : FieldInterface };
 };
 
 useUserAddress.defaultProps = {

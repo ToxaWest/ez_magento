@@ -1,10 +1,10 @@
 import styles from './PostList.module.scss';
 
 import PostCard from '@component/PostCard';
-import { createElement } from 'react';
+import { createElement, ReactElement } from 'react';
 
-function PostListComponent({ items }: { items: BlogPostInterface[] }) {
-    const renderPostCard = (item: BlogPostInterface) => (
+function PostListComponent({ items }: { items: BlogPostInterface[] }): ReactElement {
+    const renderPostCard = (item: BlogPostInterface): ReactElement => (
         createElement(PostCard, {
             key: item.post_id,
             wrapperTag: 'li',

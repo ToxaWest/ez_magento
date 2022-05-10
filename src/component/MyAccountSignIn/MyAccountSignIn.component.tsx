@@ -1,12 +1,13 @@
 import Form from '@component/Form';
 import useGenerateCustomerToken from '@hook/useGenerateCustomerToken';
 import { fieldsInterface } from '@util/Address';
+import { ReactElement } from 'react';
 
 interface MyAccountSignInComponentInterface {
     onSignIn?: (r: boolean) => void
 }
 
-function MyAccountSignInComponent(props: MyAccountSignInComponentInterface) {
+function MyAccountSignInComponent(props: MyAccountSignInComponentInterface): ReactElement {
     const { onSignIn } = props;
     const fields = {
         email: {
@@ -20,7 +21,7 @@ function MyAccountSignInComponent(props: MyAccountSignInComponentInterface) {
 
     const signIn = useGenerateCustomerToken();
 
-    const onSubmit = (values: fieldsInterface) => {
+    const onSubmit = (values: fieldsInterface): void => {
         signIn(values).then(onSignIn).catch(() => {});
     };
 

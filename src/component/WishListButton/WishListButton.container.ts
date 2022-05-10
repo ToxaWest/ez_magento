@@ -1,11 +1,11 @@
 import useWishList from '@hook/useWishList';
 import { RootState } from '@store/index';
-import { createElement } from 'react';
+import { createElement, ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
 import WishListButtonComponent from './WishListButton.component';
 
-function WishListButtonContainer({ sku }: { sku: string }) {
+function WishListButtonContainer({ sku }: { sku: string }): ReactElement {
     const {
         addToWishList,
         disabled

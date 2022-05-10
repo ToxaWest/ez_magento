@@ -1,8 +1,9 @@
 import useCurrentProduct from '@hook/useCurrentProduct';
 import Table from '@ui/Table';
 import { getAttributeValue } from '@util/Attributes/Attributes';
+import { ReactElement } from 'react';
 
-function ProductAttributesComponent() {
+function ProductAttributesComponent(): ReactElement {
     const product = useCurrentProduct();
 
     const { s_attributes } = product;

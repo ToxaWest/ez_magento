@@ -1,9 +1,9 @@
 import useWishList from '@hook/useWishList';
-import { createElement } from 'react';
+import { createElement, ReactElement } from 'react';
 
 import MyAccountWishlistComponent from './MyAccountWishlist.component';
 
-function MyAccountWishlistContainer() {
+function MyAccountWishlistContainer(): ReactElement {
     const {
         items, loading, pageInfo, removeFromWishList
     } = useWishList({ getWishList: true });

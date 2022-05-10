@@ -2,7 +2,7 @@ import styles from './Select.module.scss';
 
 import ClickOutside from '@component/ClickOutside';
 import classNames from 'classnames';
-import React, { useId } from 'react';
+import React, { ReactElement, useId } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -19,7 +19,7 @@ interface SelectComponentInterface extends SelectAbstractInterface {
     setOpen: (open: boolean) => void
 }
 
-function SelectComponent(props: SelectComponentInterface) {
+function SelectComponent(props: SelectComponentInterface): ReactElement {
     const {
         autocomplete,
         className,
@@ -40,7 +40,7 @@ function SelectComponent(props: SelectComponentInterface) {
 
     const id = useId();
 
-    const renderOptions = () => {
+    const renderOptions = (): ReactElement | null => {
         if (!opened) {
             return null;
         }
@@ -70,7 +70,7 @@ function SelectComponent(props: SelectComponentInterface) {
         );
     };
 
-    const renderContent = () => (
+    const renderContent = (): ReactElement => (
         <>
             <input type="hidden" { ...inputProps } defaultValue={ defaultValue } />
             <label htmlFor={ id } aria-label="Select input">

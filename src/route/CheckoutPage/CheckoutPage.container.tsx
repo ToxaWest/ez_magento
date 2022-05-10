@@ -11,12 +11,12 @@ import { updateMeta } from '@store/meta.store';
 import { setErrorNotification, setInfoNotification } from '@store/notifiactions';
 import { showPopup } from '@store/popup';
 import { NextRouter, useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CheckoutPageComponent from './CheckoutPage.component';
 
-function CheckoutPageContainer() {
+function CheckoutPageContainer(): ReactElement {
     const {
         account: { isSignedIn, loading: accountLoading }, cart: { isVirtual, items }, guest_checkout, loading
     } = useSelector(({
@@ -97,7 +97,7 @@ function CheckoutPageContainer() {
         }
     }, [loading, accountLoading]);
 
-    const onClick = (tabName: string) => {
+    const onClick = (tabName: string): void => {
         router.push({
             pathname: CHECKOUT_ROUTE_PATHNAME,
             query: {

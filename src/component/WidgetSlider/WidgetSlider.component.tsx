@@ -7,7 +7,7 @@ import Slider from '@ui/Slider';
 import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
-function WidgetSliderComponent(props: WidgetSliderInterface) {
+function WidgetSliderComponent(props: WidgetSliderInterface): ReactElement {
     const { slider_id } = props;
     const { getUrl } = useUrl();
     const {

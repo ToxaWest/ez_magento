@@ -47,7 +47,7 @@ export function SliderContainer(props: SliderContainerInterface): ReactElement {
     const [current, setCurrent] = useState<number>(0);
 
     useEffect(() => {
-        const init = () => {
+        const init = (): void => {
             const w = sliderRef.current.offsetWidth;
             Array.from(sliderRef.current.children)
                 .forEach((state: HTMLElement) => {

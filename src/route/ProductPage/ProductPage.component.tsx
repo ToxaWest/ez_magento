@@ -8,8 +8,9 @@ import ProductPrice from '@component/ProductPrice';
 import RelatedProducts from '@component/RelatedProducts';
 import WishListButton from '@component/WishListButton';
 import useCurrentProduct from '@hook/useCurrentProduct';
+import { ReactElement } from 'react';
 
-function ProductPageComponent() {
+function ProductPageComponent(): ReactElement {
     const product = useCurrentProduct();
 
     const { name, price_range, sku } = product;

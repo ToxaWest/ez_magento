@@ -18,7 +18,7 @@ function AppComponent(props: AppComponentInterface): JSX.Element {
         loading
     } = props;
 
-    const getRouteByPage = () => {
+    const getRouteByPage = (): ReactElement => {
         if (children) {
             return children;
         }

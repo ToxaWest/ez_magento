@@ -1,6 +1,6 @@
 export interface fieldsInterface { [key: string]: string | boolean | number | string[] | object }
 
-export const setAddressesInFormObject = (fields: fieldsInterface, numberOfLines = 1) => {
+export const setAddressesInFormObject = (fields: fieldsInterface, numberOfLines = 1): fieldsInterface => {
     const addressKeys = new Array(numberOfLines)
         .fill('')
         .map((_, index) => `street${index}`);
@@ -25,21 +25,19 @@ export const setAddressesInFormObject = (fields: fieldsInterface, numberOfLines 
     return newFields;
 };
 
-interface _normalizeStreetFieldsInterface {
-    [key: string]: string
-}
-
-export const _normalizeStreetFields = (street:
-    _normalizeStreetFieldsInterface[]) => (street || []).reduce((acc, value, index) => (
-    { ...acc, [`street${index}`]: value }
-), {});
+export const _normalizeStreetFields = (street: string[]): { [key: string]: string | null } => (street || [])
+    .reduce((acc, value, index) => (
+        { ...acc, [`street${index}`]: value }
+    ), {});
 
 interface _normalizeRegionInterface {
     label:string,
     region_id?:number
 }
 
-export const _normalizeRegion = (region: _normalizeRegionInterface = { region_id: null, label: '' }) => {
+export const _normalizeRegion = (region: _normalizeRegionInterface = { region_id: null, label: '' }): {
+    region?: string, region_id?:number
+} => {
     const { label, region_id } = region;
     if (region_id) {
         return { region_id };
@@ -56,10 +54,12 @@ export interface _normalizeAddressAsMagentoStyleInterface {
     },
     region?:_normalizeRegionInterface,
     selected_shipping_method?,
-    street?: _normalizeStreetFieldsInterface[]
+    street?: string[]
 }
 
-export function _normalizeAddressAsMagentoStyle(initial: _normalizeAddressAsMagentoStyleInterface) {
+export function _normalizeAddressAsMagentoStyle(
+    initial: _normalizeAddressAsMagentoStyleInterface
+): { [key: string]: number | string | null | string[] } {
     if (!initial) {
         return null;
     }
@@ -78,5 +78,5 @@ export function _normalizeAddressAsMagentoStyle(initial: _normalizeAddressAsMage
         ..._normalizeStreetFields(street),
         ..._normalizeRegion(region),
         ...address
-    } as object;
+    };
 }

@@ -37,17 +37,19 @@ declare interface SAttributesInterface {
   attribute_value: string
 }
 
+declare interface ProductConfigurableOptionsInterface {
+  attribute_code: string
+  label: string
+  values: {
+    store_label: string
+    uid: string
+  }[]
+}
+
 declare interface ProductInterface {
   __typename: 'SimpleProduct' | 'ConfigurableProduct',
   categories: CategoryInterface[],
-  configurable_options?: {
-    attribute_code: string
-    label: string
-    values: {
-      store_label: string
-      uid: string
-    }[]
-  }[],
+  configurable_options?:ProductConfigurableOptionsInterface[],
   id: number,
   media_gallery: MediaGalleryInterface[],
   name: string,

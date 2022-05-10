@@ -1,6 +1,7 @@
 import Form from '@component/Form';
 import Loader from '@ui/Loader';
 import { fieldsInterface } from '@util/Address';
+import { ReactElement } from 'react';
 
 interface CheckoutShippingComponentInterface {
     defaultValues?: initialValuesForm,
@@ -9,7 +10,7 @@ interface CheckoutShippingComponentInterface {
     onSubmit: onSubmitForm
 }
 
-function CheckoutShippingComponent(props: CheckoutShippingComponentInterface) {
+function CheckoutShippingComponent(props: CheckoutShippingComponentInterface): ReactElement {
     const {
         defaultValues, fields, loading, onSubmit
     } = props;

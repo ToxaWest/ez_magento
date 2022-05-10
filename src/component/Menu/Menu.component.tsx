@@ -3,26 +3,13 @@ import styles from './Menu.module.scss';
 import Link from '@component/Link';
 import Icon from '@ui/Icon';
 import classNames from 'classnames';
+import { ReactElement } from 'react';
 
 const cx = classNames.bind(styles);
 
-export interface menuItemInterface {
-    children: menuItemInterface[],
-    item_id: string,
-    parent_id: number,
-    title: string,
-    url: string
-}
-
 interface MenuComponentInterface {
     isActive: (id: number) => boolean
-    menu: {
-        children: menuItemInterface[],
-        item_id: string,
-        parent_id: number,
-        title: string,
-        url: string
-    }[],
+    menu: MenuItem[],
     menuOpened: boolean,
     toggle: (item_id: number, parent_id: number) => void,
     toggleMenu: () => void
@@ -30,12 +17,17 @@ interface MenuComponentInterface {
 
 function MenuComponent({
     isActive, menu, menuOpened, toggle, toggleMenu
-}: MenuComponentInterface) {
-    const renderMenuItem = (item: menuItemInterface, level: number) => {
+}: MenuComponentInterface): ReactElement {
+    const renderMenuItem = (item: MenuItem, level: number): ReactElement | null => {
         const {
             children, item_id, parent_id, title, url
         } = item;
         const hasChild = Object.keys(children).length > 0;
+
+        if (!item_id) {
+            return null;
+        }
+
         return (
             <li
               key={ item_id }
@@ -53,7 +45,7 @@ function MenuComponent({
         );
     };
 
-    const renderChild = (items: menuItemInterface[], item_id: number, parent_id: number, level: number) => (
+    const renderChild = (items: MenuItem[], item_id: number, parent_id: number, level: number): ReactElement => (
         <>
             <button
               onClick={ () => toggle(item_id, parent_id) }
@@ -88,7 +80,6 @@ function MenuComponent({
                 { Object.values(menu).map((i) => renderMenuItem(i, 0)) }
             </ul>
         </>
-
     );
 }
 

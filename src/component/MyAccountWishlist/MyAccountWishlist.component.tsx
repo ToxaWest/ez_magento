@@ -4,7 +4,7 @@ import ProductCard from '@component/ProductCard';
 import Icon from '@ui/Icon';
 import Loader from '@ui/Loader';
 import Pagination from '@ui/Pagination';
-import { createElement } from 'react';
+import { createElement, ReactElement } from 'react';
 
 interface MyAccountWishlistComponentInterface {
     items: WishListItem[],
@@ -13,7 +13,7 @@ interface MyAccountWishlistComponentInterface {
     removeFromWishList: ({ id }: { id: number }) => void
 }
 
-function MyAccountWishlistComponent(props: MyAccountWishlistComponentInterface) {
+function MyAccountWishlistComponent(props: MyAccountWishlistComponentInterface): ReactElement {
     const {
         items, loading, pageInfo: {
             page_info,
@@ -21,9 +21,9 @@ function MyAccountWishlistComponent(props: MyAccountWishlistComponentInterface) 
         }, removeFromWishList
     } = props;
 
-    const renderPagination = () => createElement(Pagination, { page_info });
+    const renderPagination = (): ReactElement => createElement(Pagination, { page_info });
 
-    const renderInfo = (id, added_at) => (
+    const renderInfo = (id, added_at): ReactElement => (
         <div className={ styles.info }>
             <span className={ styles.date }>
                 <Icon name="date_range" />
@@ -39,7 +39,7 @@ function MyAccountWishlistComponent(props: MyAccountWishlistComponentInterface) 
         added_at,
         id,
         product
-    }: WishListItem) => (
+    }: WishListItem): ReactElement => (
         <li key={ id } className={ styles.item }>
             { renderInfo(id, added_at) }
             <ProductCard
@@ -48,7 +48,7 @@ function MyAccountWishlistComponent(props: MyAccountWishlistComponentInterface) 
         </li>
     );
 
-    const renderProducts = () => (
+    const renderProducts = (): ReactElement => (
         <ul className={ styles.list }>
             { items.map(renderProductCard) }
         </ul>

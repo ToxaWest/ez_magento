@@ -2,6 +2,7 @@ import styles from './Image.module.scss';
 
 import classNames from 'classnames';
 import Image from 'next/image';
+import { ReactElement } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -14,7 +15,7 @@ interface ImageComponentInterface {
     wrapperStyle: object
 }
 
-function ImageComponent(props: ImageComponentInterface) {
+function ImageComponent(props: ImageComponentInterface): ReactElement {
     const {
         alt,
         className,
@@ -24,7 +25,7 @@ function ImageComponent(props: ImageComponentInterface) {
         wrapperStyle
     } = props;
 
-    const renderImage = () => {
+    const renderImage = (): ReactElement => {
         if (!url) {
             return <span className={ styles.ImageContent }>Image not specified</span>;
         }

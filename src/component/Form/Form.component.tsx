@@ -25,12 +25,12 @@ interface FormComponentInterface {
     subscription?: string[]
 }
 
-function FormComponent(props: FormComponentInterface) {
+function FormComponent(props: FormComponentInterface): ReactElement {
     const {
         className, fields, id, initialValues, onChange, onSubmit, renderActions: actionsRender, subscription
     } = props;
 
-    const renderActions = () => {
+    const renderActions = (): ReactElement => {
         if (actionsRender) {
             return actionsRender();
         }
@@ -38,7 +38,7 @@ function FormComponent(props: FormComponentInterface) {
         return <Button type="submit" variant="default" className={ styles.button }>Submit</Button>;
     };
 
-    const renderLabel = (field: sortedFieldInterface, children: ReactElement) => {
+    const renderLabel = (field: sortedFieldInterface, children: ReactElement): ReactElement => {
         const {
             type, name, label, validation = []
         } = field;
@@ -56,7 +56,7 @@ function FormComponent(props: FormComponentInterface) {
         );
     };
 
-    const renderFields = () => {
+    const renderFields = (): ReactElement[] => {
         const groups = sortFieldsByGroup(fields);
 
         return (
@@ -77,7 +77,7 @@ function FormComponent(props: FormComponentInterface) {
         );
     };
 
-    const renderFormSpy = () => {
+    const renderFormSpy = (): null | ReactElement => {
         if (subscription.length) {
             const subscriptionObj = subscription.reduce((acc, key) => ({ ...acc, [key]: true }), {});
 

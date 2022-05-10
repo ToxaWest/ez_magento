@@ -13,11 +13,11 @@ import {
 import { AppDispatch, RootState } from '@store/index';
 import { hidePopup, showPopup } from '@store/popup';
 import Icon from '@ui/Icon';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { NextRouter, useRouter } from 'next/router';
+import { ReactElement, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-function HeaderAccountComponent() {
+function HeaderAccountComponent(): ReactElement {
     const dispatch = useDispatch<AppDispatch>();
 
     const { customer: { firstname, wishlist: { items_count } }, isSignedIn } = useSelector(
@@ -25,14 +25,14 @@ function HeaderAccountComponent() {
     );
     const { magento_wishlist_general_is_enabled } = useSelector((state: RootState) => state.config.config);
 
-    const router = useRouter();
+    const router: NextRouter = useRouter();
     useEffect(() => {
         if (isSignedIn) {
             dispatch(hidePopup());
         }
     }, [isSignedIn]);
 
-    const onClick = async () => {
+    const onClick = async (): Promise<void> => {
         if (isSignedIn) {
             await router.push({
                 pathname: ACCOUNT_ROUTE_PATHNAME,
@@ -46,7 +46,7 @@ function HeaderAccountComponent() {
         dispatch(showPopup(popupId.ACCOUNT));
     };
 
-    const renderWishListButton = () => {
+    const renderWishListButton = (): null | ReactElement => {
         if (!(magento_wishlist_general_is_enabled === '1') || !isSignedIn) {
             return null;
         }

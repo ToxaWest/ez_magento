@@ -14,12 +14,12 @@ interface urlResolverInterface {
 }
 
 class SPUrlResolver extends SPAbstract {
-    async initial() {
+    async initial(): Promise<void> {
         await super.initial();
         await this.getUrlData();
     }
 
-    async getUrlData() {
+    async getUrlData(): Promise<void> {
         try {
             const { data: { urlResolver } }: ApolloQueryResult<{
                 urlResolver: urlResolverInterface
@@ -35,7 +35,7 @@ class SPUrlResolver extends SPAbstract {
         }
     }
 
-    async getPageByType({ id, sku, type }: urlResolverInterface) {
+    async getPageByType({ id, sku, type }: urlResolverInterface): Promise<void> {
         if (type === 'CATEGORY') {
             await this.getCategory(id);
             return;
@@ -64,7 +64,7 @@ class SPUrlResolver extends SPAbstract {
         console.info(`${type } not configured`);
     }
 
-    async getBlogPost({ id }: { id: number | string }) {
+    async getBlogPost({ id }: { id: number | string }) : Promise<void> {
         this.container = 'BlogPostPage';
         const { data: { blogPost } }: ApolloQueryResult<{
             blogPost: BlogPostInterface
@@ -73,7 +73,7 @@ class SPUrlResolver extends SPAbstract {
         this.store.dispatch(updateBlogPost(blogPost));
     }
 
-    async getBlogCategory({ id }: { id: number | string }) {
+    async getBlogCategory({ id }: { id: number | string }): Promise<void> {
         this.container = 'BlogCategoryPage';
         const { data: { blogCategory } }: ApolloQueryResult<{
             blogCategory: BlogCategoryInterface
@@ -87,7 +87,7 @@ class SPUrlResolver extends SPAbstract {
         this.store.dispatch(updateBlogPosts(blogPosts));
     }
 
-    async getProduct(sku) {
+    async getProduct(sku): Promise<void> {
         if (!sku) {
             throw new Error('sku is Required');
         }
@@ -100,7 +100,7 @@ class SPUrlResolver extends SPAbstract {
         this.store.dispatch(updateSingleProduct(singleProduct));
     }
 
-    async getCategory(id: string | number) {
+    async getCategory(id: string | number): Promise<void> {
         if (!id) {
             throw new Error('id is Required');
         }
@@ -115,7 +115,7 @@ class SPUrlResolver extends SPAbstract {
         await this.getProductList(variables);
     }
 
-    async getProductList(variables: object) {
+    async getProductList(variables: object): Promise<void> {
         const { data: { productsInformation } }: ApolloQueryResult<{
             productsInformation: ProductsInformationInterface
         }> = await this.request(productQuery.productListInformation, variables);

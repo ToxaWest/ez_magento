@@ -11,11 +11,12 @@ import { notInteractiveClick } from '@util/Events';
 import { getFinalPrice } from '@util/Price/price';
 import classNames from 'classnames';
 import { NextRouter, useRouter } from 'next/router';
+import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
-function CheckoutShippingMethodsComponent() {
+function CheckoutShippingMethodsComponent(): ReactElement {
     const { shipping_addresses } = useSelector((state: RootState) => state.cart.cart);
 
     const router: NextRouter = useRouter();
@@ -34,7 +35,7 @@ function CheckoutShippingMethodsComponent() {
         return (carr === carrier_code && method_code === meth);
     };
 
-    const onClick = () => {
+    const onClick = (): void => {
         if (selected_shipping_method) {
             router.push({
                 pathname: ACCOUNT_ROUTE_PATHNAME,
@@ -45,7 +46,7 @@ function CheckoutShippingMethodsComponent() {
         }
     };
 
-    const renderShippingMethods = () => available_shipping_methods.map(({
+    const renderShippingMethods = (): ReactElement[] => available_shipping_methods.map(({
         amount, carrier_code, carrier_title, method_code, method_title
     }) => (
         <li
@@ -63,7 +64,7 @@ function CheckoutShippingMethodsComponent() {
         </li>
     ));
 
-    const renderNoDelivery = () => {
+    const renderNoDelivery = (): ReactElement | null => {
         if (available_shipping_methods.length !== 0) {
             return null;
         }

@@ -5,11 +5,11 @@ import useCurrentProduct from '@hook/useCurrentProduct';
 import Slider from '@ui/Slider';
 import { ReactElement } from 'react';
 
-function ProductMediaGalleryComponent({ className }: { className?: string }) {
+function ProductMediaGalleryComponent({ className }: { className?: string }): ReactElement {
     const product = useCurrentProduct();
     const { media_gallery, name } = product;
 
-    const renderSlide = ({ disabled, label, url }: MediaGalleryInterface, index: number) => {
+    const renderSlide = ({ disabled, label, url }: MediaGalleryInterface, index: number): ReactElement | null => {
         if (disabled) {
             return null;
         }
@@ -21,7 +21,7 @@ function ProductMediaGalleryComponent({ className }: { className?: string }) {
 
     return (
         <Slider className={ className }>
-          { media_gallery.map(renderSlide) as ReactElement[] }
+          { media_gallery.map(renderSlide) }
         </Slider>
     );
 }

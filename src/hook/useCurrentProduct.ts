@@ -1,7 +1,7 @@
 import { RootState } from '@store/index';
 import { useSelector } from 'react-redux';
 
-const useCurrentProduct = () => {
+const useCurrentProduct = (): ProductInterface => {
     const {
         configurableIndex, singleProduct
     } = useSelector((state: RootState) => state.products);

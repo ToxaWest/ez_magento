@@ -7,11 +7,11 @@ import Select from '@ui/Select';
 import { getSelectedFiltersFromUrl, setFilterAttribute } from '@util/Link';
 import { NextRouter, useRouter } from 'next/router';
 import {
-    createElement, useEffect, useMemo
+    createElement, ReactElement, useEffect, useMemo
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-function ConfigurableOptionsContainer() {
+function ConfigurableOptionsContainer(): ReactElement {
     const {
         configurableIndex, singleProduct: {
             configurable_options, s_attributes, sku, variants
@@ -25,7 +25,7 @@ function ConfigurableOptionsContainer() {
         .reduce((acc, [name, [value]]) => ({ ...acc, [name]: value }), {});
 
     useEffect(() => {
-        const updateVariant = () => {
+        const updateVariant = (): void => {
             const index = (variants || []).findIndex((
                 { product: { s_attributes: attrs } }
             ) => configurable_options.every(({ attribute_code }) => {
@@ -49,7 +49,7 @@ function ConfigurableOptionsContainer() {
             .some(({ attribute_code }) => attribute_code === item.attribute_code));
 
         return attributes.map(({ attribute_code, attribute_label, attribute_options }) => {
-            const onChange = (value) => {
+            const onChange = (value): void => {
                 setFilterAttribute(router, { code: attribute_code, value }, true);
             };
 

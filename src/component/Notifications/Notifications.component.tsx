@@ -3,11 +3,11 @@ import styles from './Notifications.module.scss';
 import { AppDispatch, RootState } from '@store/index';
 import { resetNotification } from '@store/notifiactions';
 import classNames from 'classnames';
-import { useEffect } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
-function NotificationsComponent() {
+function NotificationsComponent(): ReactElement | null {
     const { message, type } = useSelector((state: RootState) => state.notifications);
     const dispatch = useDispatch<AppDispatch>();
 

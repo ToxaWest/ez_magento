@@ -1,6 +1,7 @@
 import styles from './Table.module.scss';
 
 import classNames from 'classnames';
+import { ReactElement } from 'react';
 
 const cx = classNames.bind(styles);
 interface TableInterface {
@@ -14,12 +15,12 @@ interface TableInterface {
     isVertical?: boolean
 }
 
-function Table(props: TableInterface) {
+function Table(props: TableInterface): ReactElement {
     const { data, head, isVertical } = props;
 
-    const renderHeadItem = ({ key, label }) => <td key={ key }>{ label }</td>;
+    const renderHeadItem = ({ key, label }): ReactElement => <td key={ key }>{ label }</td>;
 
-    const renderThead = () => {
+    const renderThead = (): ReactElement | null => {
         if (isVertical) {
             return null;
         }
@@ -33,7 +34,7 @@ function Table(props: TableInterface) {
         );
     };
 
-    const renderTbody = () => {
+    const renderTbody = (): ReactElement[] => {
         if (isVertical) {
             return head.map(({ key, label }) => (
                 <tr key={ key }>
@@ -43,7 +44,7 @@ function Table(props: TableInterface) {
             ));
         }
 
-        const renderItem = (item: object, index) => (
+        const renderItem = (item: object, index): ReactElement => (
             <tr key={ index }>
                 { head.map((i) => <td key={ i.key }>{ item[i.key] }</td>) }
             </tr>

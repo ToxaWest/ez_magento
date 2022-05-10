@@ -7,10 +7,10 @@ import { RootState } from '@store/index';
 import Loader from '@ui/Loader';
 import { _normalizeAddressAsMagentoStyle, fieldsInterface } from '@util/Address';
 import { NextRouter, useRouter } from 'next/router';
-import { useState } from 'react';
+import { ReactElement, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-function CheckoutBillingComponent() {
+function CheckoutBillingComponent(): ReactElement {
     const [sameAsShipping, setSameAsShipping] = useState(true);
     const router: NextRouter = useRouter();
     const { billing_address } = useSelector((state: RootState) => state.cart.cart);
@@ -28,7 +28,7 @@ function CheckoutBillingComponent() {
     });
 
     const [setBillingAddress, loading] = useSetBillingAddressOnCart();
-    const onSubmit = (values: fieldsInterface) => {
+    const onSubmit = (values: fieldsInterface): void => {
         setBillingAddress(values).then((ok) => {
             if (ok) {
                 router.push({
@@ -41,7 +41,7 @@ function CheckoutBillingComponent() {
         }).catch(() => {});
     };
 
-    const onChange = ({ values }: { values: fieldsInterface }) => {
+    const onChange = ({ values }: { values: fieldsInterface }): void => {
         if (values.same_as_shipping !== sameAsShipping) {
             const { same_as_shipping } = values as { same_as_shipping: boolean };
             setSameAsShipping(same_as_shipping);

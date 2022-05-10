@@ -3,6 +3,7 @@ import styles from './LayeredNavigation.module.scss';
 import ExpandableContent from '@component/ExpandableContent';
 import Icon from '@ui/Icon';
 import { notInteractiveClick } from '@util/Events';
+import { ReactElement } from 'react';
 
 interface LayeredNavigationComponentInterface {
     aggregations: AggregationsInterface[]
@@ -10,14 +11,14 @@ interface LayeredNavigationComponentInterface {
     onSelect: (code:string, value: string | number) => void
 }
 
-function LayeredNavigationComponent(props: LayeredNavigationComponentInterface) {
+function LayeredNavigationComponent(props: LayeredNavigationComponentInterface): ReactElement {
     const {
         aggregations,
         isSelected,
         onSelect
     } = props;
 
-    const renderOption = (option: AggregationOptionInterface, code: string) => {
+    const renderOption = (option: AggregationOptionInterface, code: string): ReactElement => {
         const {
             count,
             label,
@@ -39,7 +40,7 @@ function LayeredNavigationComponent(props: LayeredNavigationComponentInterface) 
         );
     };
 
-    const renderAttribute = (item: AggregationsInterface) => {
+    const renderAttribute = (item: AggregationsInterface): ReactElement => {
         const {
             attribute_code,
             count,

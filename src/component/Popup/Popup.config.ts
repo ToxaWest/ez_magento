@@ -3,11 +3,11 @@ const popupId = {
     MINI_CART: 'MINI_CART'
 };
 
-const freezeScroll = () => {
+const freezeScroll = (): void => {
     document.body.style.overflow = 'hidden';
 };
 
-const unfreezeScroll = () => {
+const unfreezeScroll = (): void => {
     document.body.style.overflow = 'auto';
 };
 

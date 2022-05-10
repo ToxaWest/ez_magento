@@ -10,7 +10,7 @@ export class BrowserDatabase {
      * @return {Object} Object stored in a specified path
      * @memberof BrowserDatabase
      */
-    getItem(location: string) {
+    getItem(location: string): object | string | number | null {
         try {
             const entryObject = JSON.parse(localStorage.getItem(location));
             const { createdAt, data, expiration } = entryObject;
@@ -34,7 +34,7 @@ export class BrowserDatabase {
      * @param {Number} expiration Time to store entry (in seconds)
      * @memberof BrowserDatabase
      */
-    setItem(data, location: string, expiration?: number) {
+    setItem(data, location: string, expiration?: number): void {
         localStorage.setItem(location, JSON.stringify({
             createdAt: Date.now(),
             data,
@@ -47,7 +47,7 @@ export class BrowserDatabase {
      * @param {String} location
      * @memberof BrowserDatabase
      */
-    deleteItem(location: string) {
+    deleteItem(location: string): void {
         localStorage.removeItem(location);
     }
 }

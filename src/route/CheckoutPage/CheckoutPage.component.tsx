@@ -1,7 +1,9 @@
 import styles from './CheckoutPage.module.scss';
 
 import { notInteractiveClick } from '@util/Events';
-import { ComponentType, createElement, FC } from 'react';
+import {
+    ComponentType, createElement, FC, ReactElement
+} from 'react';
 
 interface tabInterface {
     include_in_menu?: boolean,
@@ -17,7 +19,7 @@ interface CheckoutPageComponentInterface {
     }
 }
 
-function CheckoutPageComponent(props: CheckoutPageComponentInterface) {
+function CheckoutPageComponent(props: CheckoutPageComponentInterface): ReactElement | null {
     const {
         onClick,
         tab,
@@ -29,7 +31,7 @@ function CheckoutPageComponent(props: CheckoutPageComponentInterface) {
         render
     } = tabMap[tab] || {};
 
-    const renderTab = () => {
+    const renderTab = (): ReactElement | null => {
         if (render) {
             return createElement(render);
         }
@@ -37,7 +39,7 @@ function CheckoutPageComponent(props: CheckoutPageComponentInterface) {
         return null;
     };
 
-    const tabHeading = () => (
+    const tabHeading = (): ReactElement => (
         <div role="tablist" className={ styles.tabList }>
             { Object.entries(tabMap)
                 .filter(([, { include_in_menu }]) => include_in_menu)

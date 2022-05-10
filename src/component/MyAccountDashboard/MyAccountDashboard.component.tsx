@@ -1,8 +1,9 @@
 import { RootState } from '@store/index';
 import Table from '@ui/Table';
+import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
-function MyAccountDashboardComponent() {
+function MyAccountDashboardComponent(): ReactElement {
     const {
         customer: {
             date_of_birth,

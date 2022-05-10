@@ -13,8 +13,7 @@ interface sortFieldsByGroupInterface {
     [group: string]: sortedFieldInterface[]
 }
 
-// eslint-disable-next-line import/prefer-default-export
-export const sortFieldsByGroup = (fields: fieldsInterface) => Object.entries(fields)
+export const sortFieldsByGroup = (fields: fieldsInterface): sortFieldsByGroupInterface => Object.entries(fields)
     .reduce((acc, [name, data]: [string, sortedFieldInterface]) => {
         const { group } = data;
         if (group) {

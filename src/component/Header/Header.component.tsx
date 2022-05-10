@@ -5,8 +5,9 @@ import Logo from '@component/Logo';
 import Menu from '@component/Menu';
 import MiniCart from '@component/MiniCart';
 import StoreSwitcher from '@component/StoreSwitcher';
+import { ReactElement } from 'react';
 
-function HeaderComponent() {
+function HeaderComponent(): ReactElement {
     return (
         <header className={ styles.wrapper }>
             <Menu identifier="category_menu" />

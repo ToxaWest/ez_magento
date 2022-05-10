@@ -4,11 +4,12 @@ import { CHECKOUT_ROUTE_PATHNAME, DELIVERY } from '@route/CheckoutPage/CheckoutP
 import { RootState } from '@store/index';
 import { _normalizeAddressAsMagentoStyle, fieldsInterface } from '@util/Address';
 import { NextRouter, useRouter } from 'next/router';
+import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
 import CheckoutShippingComponent from './CheckoutShipping.component';
 
-function CheckoutShippingContainer() {
+function CheckoutShippingContainer(): ReactElement {
     const [setShippingAddressOnCart, loading] = useSetShippingAddressOnCart();
     const router: NextRouter = useRouter();
     const fields = useUserAddress({});
@@ -20,7 +21,7 @@ function CheckoutShippingContainer() {
         ? shipping_addresses
         : [{ selected_shipping_method: null }];
 
-    const onSubmit = (e: fieldsInterface) => {
+    const onSubmit = (e: fieldsInterface): void => {
         setShippingAddressOnCart(e).then((ok) => {
             if (ok) {
                 router.push({

@@ -22,11 +22,11 @@ interface SliderComponentInterface {
     x: number
 }
 
-function SliderComponent(props: SliderComponentInterface) {
+function SliderComponent(props: SliderComponentInterface): ReactElement {
     const {
         children, className, current, dots, draggable, goTo, nav, setX, sliderRef, transition, x
     } = props;
-    const renderDots = () => {
+    const renderDots = (): ReactElement | null => {
         if (!dots || children.length === 1) {
             return null;
         }
@@ -48,7 +48,7 @@ function SliderComponent(props: SliderComponentInterface) {
         );
     };
 
-    const renderNav = () => {
+    const renderNav = (): ReactElement | null => {
         if (!nav || children.length === 1) {
             return null;
         }

@@ -10,7 +10,7 @@ export interface breadcrumbsInterface {
     showBreadcrumbs: boolean
 }
 
-const getInitialState = () => {
+const getInitialState = (): breadcrumbsInterface => {
     if (typeof window !== 'undefined') {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         return window.__NEXT_DATA__.props.pageProps.state.breadcrumbs as breadcrumbsInterface;

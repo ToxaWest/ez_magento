@@ -10,7 +10,9 @@ import Render from '@ui/Render';
 import Select from '@ui/Select';
 import { NextRouter, useRouter } from 'next/router';
 import { useTranslations } from 'next-intl';
-import { createElement, useMemo, useState } from 'react';
+import {
+    createElement, ReactElement, useMemo, useState
+} from 'react';
 
 import { ProductCardComponentInterface } from './ProductCard.types';
 
@@ -18,7 +20,7 @@ function ProductCardComponent({
     product,
     renderSort,
     wrapperTag
-}: ProductCardComponentInterface) {
+}: ProductCardComponentInterface): ReactElement {
     const {
         __typename,
         configurable_options,
@@ -34,7 +36,7 @@ function ProductCardComponent({
 
     const router: NextRouter = useRouter();
     const [opened, setOpened] = useState<boolean>(false);
-    const [options, selectOption] = useState({});
+    const [options, selectOption] = useState<{ [key: string]: string }>({});
 
     const { query: { customFilters } } = router;
 
@@ -52,7 +54,7 @@ function ProductCardComponent({
                         }) => (
                             <Select
                               key={ attribute_code }
-                              onChange={ (e) => {
+                              onChange={ (e: string) => {
                                   selectOption({ ...options, [attribute_code]: e });
                               } }
                               options={ values.map(({ store_label, uid }) => (
@@ -102,6 +104,7 @@ function ProductCardComponent({
 ProductCardComponent.defaultProps = {
     wrapperTag: 'div',
     renderSort: {
+        wishlist: true,
         image: true,
         link: true,
         price: true,

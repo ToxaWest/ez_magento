@@ -9,31 +9,19 @@ import {
     CmsPageInterface, SliderInterface, updatePage, updateWidget
 } from '@store/cms';
 import {
-    menuChildInterface, StoreConfigInterface,
+    StoreConfigInterface,
     updateConfig, updateMenu, updateStoreList
 } from '@store/config';
 import store, { StateType } from '@store/index';
-import {
-    addBlogToMenu, normalizeCategoryMenu, normalizeMenu, unsortedItemsInterface
-} from '@util/Menu';
+import { addBlogToMenu, normalizeCategoryMenu } from '@util/Menu';
 import { getErrorMessage } from '@util/Request';
 import client from '@util/Request/apolloClient';
 import { set } from 'cookie-cutter';
 import { Element } from 'domhandler';
 import parser, { DOMNode } from 'html-react-parser';
-import { NextRouter } from 'next/router';
 import { AbstractIntlMessages } from 'use-intl';
 
-import { getContextBasedOnStore, getLangPrefix } from './sp.helpers';
-
-export interface SPAbstractInterface {
-    asPath?: NextRouter['asPath'],
-    current_currency?: string,
-    isServer?: boolean,
-    locale?: NextRouter['locale'],
-    query?: NextRouter['query'],
-    store_code?: string
-}
+import { getContextBasedOnStore, getLangPrefix, SPAbstractInterface } from './sp.helpers';
 
 export default class SPAbstract {
     container = '';
@@ -77,23 +65,23 @@ export default class SPAbstract {
         this.context = getContextBasedOnStore(store_code, current_currency);
     }
 
-    async request(query, variables = {}) {
+    async request(query, variables = {}): Promise<ApolloQueryResult<never>> {
         try {
             return await client.query({ context: this.context, query, variables });
         } catch (e) {
             getErrorMessage(e as ApolloError);
-            return { data: {} } as ApolloQueryResult<object>;
+            return { data: {} } as ApolloQueryResult<never>;
         }
     }
 
-    async initial() {
+    async initial(): Promise<void> {
         this.store.dispatch(hideBreadcrumbs());
         await this.getStoreBasedOnLocale(false);
 
         const {
             data: { categoryMenu, storeConfig }
         }: ApolloQueryResult<{
-            categoryMenu: menuChildInterface[]
+            categoryMenu: CategoryMenuInitial[]
             storeConfig: StoreConfigInterface
         }> = await this.request(configQuery.config);
 
@@ -125,7 +113,7 @@ export default class SPAbstract {
     updateClientBasedOnStore({ default_display_currency_code, store_code }: {
         default_display_currency_code: string,
         store_code: string
-    }) {
+    }): void {
         this.store_code = store_code;
         this.current_currency = default_display_currency_code;
         this.context = getContextBasedOnStore(store_code, default_display_currency_code);
@@ -135,7 +123,7 @@ export default class SPAbstract {
         }
     }
 
-    async getStoreBasedOnLocale(isAfterError) {
+    async getStoreBasedOnLocale(isAfterError): Promise<void> {
         try {
             const { data: { availableStores: initialStoreList } }: ApolloQueryResult<{
                 availableStores: {
@@ -220,7 +208,7 @@ export default class SPAbstract {
         await Promise.all(req.map((r:WidgetFactoryInterface) => widgetMap[r.type](r) as Promise<void>));
     }
 
-    async getCmsPage(variables: object) {
+    async getCmsPage(variables: object): Promise<void> {
         const { data: { cmsPage } }: ApolloQueryResult<{
             cmsPage: CmsPageInterface }> = await this.request(pageQuery.cmsPage, variables);
         const { content } = cmsPage;
@@ -229,15 +217,17 @@ export default class SPAbstract {
         this.store.dispatch(updatePage(cmsPage));
     }
 
-    async getMenu(identifier: string) {
-        const { data: { scandiwebMenu } }:ApolloQueryResult<{
-            scandiwebMenu: { items: unsortedItemsInterface[] }
-        }> = await this.request(configQuery.menu, { identifier });
+    // async getMenu(identifier: string): Promise<void> {
+    //     const { data: { scandiwebMenu } }:ApolloQueryResult<{
+    //         scandiwebMenu: { items: unsortedItemsInterface[] }
+    //     }> = await this.request(configQuery.menu, { identifier });
+    //
+    //     this.store.dispatch(updateMenu({ [identifier]: [normalizeMenu(scandiwebMenu)] }));
+    // }
 
-        this.store.dispatch(updateMenu({ [identifier]: [normalizeMenu(scandiwebMenu)] }));
-    }
-
-    async getData() {
+    async getData() : Promise<{
+        cache: object, container: string, messages: string | AbstractIntlMessages, state: object
+    }> {
         await this.initial();
         const { default: messages } = (await import(`../../../i18n/${this.locale}.json`)) as AbstractIntlMessages;
         return {

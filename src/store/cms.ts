@@ -24,7 +24,7 @@ interface cmsReducerInterface {
     widget: WidgetInterface
 }
 
-const getInitialState = () => {
+const getInitialState = (): cmsReducerInterface => {
     if (typeof window !== 'undefined') {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         return window.__NEXT_DATA__.props.pageProps.state.cms as cmsReducerInterface;
@@ -34,7 +34,7 @@ const getInitialState = () => {
         block: {},
         page: {},
         widget: {}
-    } as cmsReducerInterface;
+    };
 };
 
 export const cmsReducer = createSlice({

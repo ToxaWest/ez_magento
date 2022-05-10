@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 const cx = classNames.bind(styles);
 
 interface PopupComponentInterface {
-    children: ReactElement | ReactElement[] | Element[] | Element,
+    children: ReactElement,
     classNames?: {
         content: string,
         wrapper: string
@@ -26,7 +26,7 @@ interface PopupComponentInterface {
     outsideClick?: boolean
 }
 
-function PopupComponent(props: PopupComponentInterface) {
+function PopupComponent(props: PopupComponentInterface): ReactElement | null {
     const {
         children, classNames: classNamesObj, id, isActive, isStatic, onClose, outsideClick
     } = props;
@@ -49,7 +49,7 @@ function PopupComponent(props: PopupComponentInterface) {
         }
     }, [active]);
 
-    const close = () => {
+    const close = (): void => {
         onClose();
         if (outsideClick) {
             dispatch(hidePopup());
@@ -72,9 +72,7 @@ function PopupComponent(props: PopupComponentInterface) {
         return child;
     };
 
-    const renderChildren = () => children as ReactElement;
-
-    const renderContent = () => (
+    const renderContent = (): ReactElement => (
         <div className={ cx(
             styles.wrapper,
             classNamesObj.wrapper,
@@ -87,7 +85,7 @@ function PopupComponent(props: PopupComponentInterface) {
                 ) }
                 >
                     <button onClick={ close }>Close</button>
-                    { renderChildren() }
+                    { children }
                 </div>
             ) }
         </div>
@@ -98,7 +96,7 @@ function PopupComponent(props: PopupComponentInterface) {
             return null;
         }
         if (isStatic) {
-            return renderContent() as ReactElement;
+            return renderContent();
         }
 
         return createPortal(

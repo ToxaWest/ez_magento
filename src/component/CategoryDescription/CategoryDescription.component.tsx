@@ -3,9 +3,10 @@ import styles from './CategoryDescription.module.scss';
 import Html from '@component/Html';
 import Image from '@component/Image';
 import { RootState } from '@store/index';
+import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
-function CategoryDescriptionComponent() {
+function CategoryDescriptionComponent(): ReactElement {
     const {
         current: {
             description,

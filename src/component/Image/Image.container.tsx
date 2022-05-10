@@ -30,7 +30,7 @@ function ImageContainer(props: ImageContainerInterface): ReactElement {
     const [{ naturalHeight, naturalWidth }, setParams] = useState<
         { naturalHeight: number, naturalWidth: number }>({ naturalWidth: width, naturalHeight: height });
 
-    function _getCorrectUrl() {
+    function _getCorrectUrl(): string | null {
         if (url === 'false') {
             return null;
         }
@@ -41,7 +41,7 @@ function ImageContainer(props: ImageContainerInterface): ReactElement {
         return getUrl({ url });
     }
 
-    const _getWrapperStyle = () => {
+    const _getWrapperStyle = (): object => {
         if (naturalHeight && naturalWidth) {
             return {
                 '--image-padding-bottom': `${

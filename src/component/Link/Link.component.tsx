@@ -1,6 +1,6 @@
 import { isAbsoluteUrl, isSpecialLink } from '@util/Link';
 import Link from 'next/link';
-import { ReactNode } from 'react';
+import { ReactElement, ReactNode } from 'react';
 import { UrlObject } from 'url';
 
 interface LinkComponentInterface {
@@ -15,7 +15,7 @@ function LinkComponent({
     className,
     href,
     title
-}: LinkComponentInterface) {
+}: LinkComponentInterface): ReactElement {
     if (typeof href !== 'string' || (!isAbsoluteUrl(href) && !isSpecialLink(href))) {
         return (
             <Link href={ href }>

@@ -6,7 +6,7 @@ import BrowserDatabase from '@util/BrowserDatabase';
 import { CART_ID, localCartId } from '@util/Cart';
 import { useDispatch } from 'react-redux';
 
-const useMergeCarts = () => {
+const useMergeCarts = (): () => Promise<boolean> => {
     const [mutateFunction] = useMutation(cartQuery.createEmptyCart);
     const [merge] = useMutation(cartQuery.mergeCarts);
     const updateCartData = useUpdateInitialCart();

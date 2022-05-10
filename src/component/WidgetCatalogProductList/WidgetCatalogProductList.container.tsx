@@ -1,10 +1,10 @@
 import ProductCard from '@component/ProductCard';
 import { RootState } from '@store/index';
 import Slider from '@ui/Slider';
-import { useMemo } from 'react';
+import { ReactElement, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
-function WidgetCatalogProductListContainer(props: WidgetProductListInterface) {
+function WidgetCatalogProductListContainer(props: WidgetProductListInterface): ReactElement {
     const {
         page_var_name, products_per_page, show_pager, title
     } = props;
@@ -27,7 +27,7 @@ function WidgetCatalogProductListContainer(props: WidgetProductListInterface) {
         )
     ), []);
 
-    const renderContent = () => {
+    const renderContent = (): ReactElement | ReactElement[] => {
         if (show_pager) {
             return (
                 <Slider settings={ {

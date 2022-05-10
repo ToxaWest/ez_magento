@@ -1,6 +1,7 @@
 import Form from '@component/Form';
+import { ReactElement } from 'react';
 
-function MyAccountRegistrationComponent() {
+function MyAccountRegistrationComponent(): ReactElement {
     const fields = {
         firstname: {
             label: 'firstname'
@@ -17,7 +18,7 @@ function MyAccountRegistrationComponent() {
         }
     };
 
-    const onSubmit = () => {
+    const onSubmit = (): void => {
     };
 
     return (

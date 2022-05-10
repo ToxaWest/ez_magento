@@ -31,7 +31,7 @@ function SelectContainer(props: SelectContainerInterface): ReactElement {
     const optionRef = useRef<HTMLUListElement>(null);
     const inputRef = useRef<HTMLInputElement>();
 
-    const setFocus = (childIndex: number) => {
+    const setFocus = (childIndex: number): void => {
         const child = optionRef.current.children[childIndex] as HTMLElement;
         if (child) {
             child.focus({
@@ -50,13 +50,13 @@ function SelectContainer(props: SelectContainerInterface): ReactElement {
         }
     }, [defaultValue, selectOptions]);
 
-    const onClick = (e: string | number) => {
+    const onClick = (e: string | number): void => {
         setOpen(false);
         setLabel(options.find(({ value }) => value === e)?.label);
         onChange(e);
     };
 
-    const onKeyDown: KeyboardEventHandler<HTMLInputElement> = (e) => {
+    const onKeyDown: KeyboardEventHandler<HTMLInputElement> = (e): void => {
         const { keyCode } = e;
         if (keyCode === 9) {
             setOpen(false);
@@ -78,7 +78,7 @@ function SelectContainer(props: SelectContainerInterface): ReactElement {
         }
     };
 
-    const search = ({ target: { value = '' } } : ChangeEvent<HTMLInputElement>) => {
+    const search = ({ target: { value = '' } } : ChangeEvent<HTMLInputElement>): void => {
         setLabel(value);
         const f = selectOptions.filter(
             ({ label: fLabel }) => fLabel.toLowerCase()

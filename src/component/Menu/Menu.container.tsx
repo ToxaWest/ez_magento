@@ -1,21 +1,23 @@
 import MenuComponent from '@component/Menu/Menu.component';
 import { RootState } from '@store/index';
-import { addToActive, checkActive, removeFromActive } from '@util/Menu';
-import { useState } from 'react';
+import {
+    ActiveMenuItems, addToActive, checkActive, removeFromActive
+} from '@util/Menu';
+import { ReactElement, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-function MenuContainer({ identifier }: { identifier: string }) {
+function MenuContainer({ identifier }: { identifier: string }): ReactElement {
     const { [identifier]: menu } = useSelector((state: RootState) => state.config.menu);
 
-    const [activeItems, setActive] = useState({});
+    const [activeItems, setActive] = useState<ActiveMenuItems>({});
     const [menuOpened, toggleMenu] = useState<boolean>(false);
     if (!menu) {
         return null;
     }
 
-    const isActive = (id: number) => checkActive(activeItems, id);
+    const isActive = (id: number): boolean => checkActive(activeItems, id);
 
-    const toggle = (id: number, parent_id) => {
+    const toggle = (id: number, parent_id: number): void => {
         if (activeItems[id]) {
             setActive({});
             return;

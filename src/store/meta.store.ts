@@ -7,7 +7,7 @@ interface MetaInterface {
     title?: string
 }
 
-const getInitialState = () => {
+const getInitialState = (): MetaInterface => {
     if (typeof window !== 'undefined') {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         return window.__NEXT_DATA__.props.pageProps.state.meta as MetaInterface;

@@ -15,7 +15,7 @@ function Loader(props: { isLoading: boolean, isMain?: boolean }): ReactElement {
         return null;
     }
 
-    const renderMain = () => (
+    const renderMain = (): ReactElement => (
         <div className={ styles.LoaderMain }>
             <span />
         </div>

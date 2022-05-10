@@ -1,19 +1,19 @@
 import styles from './ProductList.module.scss';
 
 import ProductCard from '@component/ProductCard';
-import { createElement } from 'react';
+import { createElement, ReactElement } from 'react';
 
 interface ProductListComponentInterface {
     items: ProductInterface[]
 }
 
-function ProductListComponent({ items }: ProductListComponentInterface) {
-    const renderProductCard = (item: ProductInterface) => (
-      <ProductCard
-        key={ item.id }
-        wrapperTag="li"
-        product={ item }
-      />
+function ProductListComponent({ items }: ProductListComponentInterface): ReactElement {
+    const renderProductCard = (item: ProductInterface): ReactElement => (
+        createElement(ProductCard, {
+            key: item.id,
+            wrapperTag: 'li',
+            product: item
+        })
     );
 
     return createElement('ul', {

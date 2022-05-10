@@ -10,13 +10,21 @@ export interface ctxInterface extends NextRouter {
     res: NextApiResponse
 }
 
-export const getPropsBasedOnRequest = (ctx: ctxInterface) => {
+export interface SPAbstractInterface {
+    asPath?: NextRouter['asPath'],
+    current_currency?: string,
+    isServer?: boolean,
+    locale?: NextRouter['locale'],
+    query?: NextRouter['query'],
+    store_code?: string
+}
+
+export const getPropsBasedOnRequest = (ctx: ctxInterface): SPAbstractInterface => {
     const {
         asPath,
         locale,
         query,
-        req,
-        res
+        req
     } = ctx;
     const isServer = !!req;
 
@@ -33,14 +41,13 @@ export const getPropsBasedOnRequest = (ctx: ctxInterface) => {
         isServer,
         locale,
         query,
-        res,
         store_code
     };
 };
-export const getLangPrefix = (store_code: string) => store_code;
+export const getLangPrefix = (store_code: string): string => store_code;
 // export const getLangPrefix = (store_code: string):string => store_code.split('_')[1];
 
-export const getContextBasedOnStore = (store_code?: string, current_currency?: string) => {
+export const getContextBasedOnStore = (store_code?: string, current_currency?: string) : { headers: object } => {
     const isServer: boolean = typeof window === 'undefined';
     const token: string = isServer ? '' : (BrowserDatabase.getItem(TOKEN_ID) as string || '');
     return {
@@ -59,7 +66,7 @@ interface QueryInterface {
     sort_direction?: string
 }
 
-export const getProductVariablesBasedOnQuery = (query: QueryInterface, category_uid: number | string) => {
+export const getProductVariablesBasedOnQuery = (query: QueryInterface, category_uid: number | string) : object => {
     const {
         customFilters,
         page,

@@ -9,7 +9,7 @@ interface productsReducerInterface {
     singleProduct: ProductInterface
 }
 
-const getInitialState = () => {
+const getInitialState = (): productsReducerInterface => {
     if (typeof window !== 'undefined') {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         return window.__NEXT_DATA__.props.pageProps.state.products as productsReducerInterface;
@@ -21,18 +21,36 @@ const getInitialState = () => {
         },
         productsInformation: {
             aggregations: [],
+            page_info: { total_pages: 0 },
+            total_count: 0,
             sort_fields: {
                 default: '',
                 options: []
             }
         },
         configurableIndex: -1,
-        singleProduct: {}
+        singleProduct: {
+            __typename: 'SimpleProduct',
+            id: 0,
+            name: '',
+            sku: '',
+            s_attributes: [],
+            categories: [],
+            media_gallery: [],
+            url: '',
+            small_image: { label: '', url: '' },
+            price_range: {
+                minimum_price: { final_price: { currency: '', value: 0 } },
+                maximum_price: { discount: { percent_off: 0 }, final_price: { currency: '', value: 0 } }
+            },
+            related_products: []
+
+        }
     };
 };
 
 export const productsReducer = createSlice({
-    initialState: getInitialState() as productsReducerInterface,
+    initialState: getInitialState(),
     name: 'products',
     reducers: {
         updateProductList: (state: productsReducerInterface, action) => {

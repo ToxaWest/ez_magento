@@ -36,7 +36,7 @@ function CartItemComponent(props: CartItemComponentInterface): ReactElement {
         quantity
     } = props;
 
-    const remove = (toRemoveId: string) => {
+    const remove = (toRemoveId: string): void => {
         setLoading(true);
         removeItem(toRemoveId)
             .then(() => {
@@ -47,7 +47,7 @@ function CartItemComponent(props: CartItemComponentInterface): ReactElement {
             });
     };
 
-    const renderConfigurableOptions = () => {
+    const renderConfigurableOptions = (): ReactElement => {
         if (__typename === 'SimpleCartItem') {
             return <div />;
         }

@@ -1,9 +1,9 @@
 import { ORDER_DATA } from '@route/CheckoutPage/CheckoutPage.config';
 import Loader from '@ui/Loader';
 import BrowserDatabase from '@util/BrowserDatabase';
-import { useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 
-function CheckoutSuccessPageComponent() {
+function CheckoutSuccessPageComponent(): ReactElement {
     const [order, setOrder] = useState<{ order_number: number | string }>(null);
 
     useEffect(() => {
@@ -14,7 +14,7 @@ function CheckoutSuccessPageComponent() {
         };
     }, []);
 
-    const renderContent = () => {
+    const renderContent = (): string | null => {
         if (!order) {
             return null;
         }

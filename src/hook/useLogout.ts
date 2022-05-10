@@ -9,7 +9,7 @@ import { CART_ID } from '@util/Cart';
 import { NextRouter, useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 
-const useLogout = () => {
+const useLogout = (): () => Promise<void> => {
     const [logoutMutation] = useMutation(revokeCustomerToken);
     const dispatch = useDispatch<AppDispatch>();
     const router: NextRouter = useRouter();

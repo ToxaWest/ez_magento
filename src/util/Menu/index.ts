@@ -1,27 +1,22 @@
-import { menuChildInterface, MenuInterface } from '@store/config';
-
-export interface unsortedItemsInterface { item_id: number, parent_id: number, position: number }
-
-export const getSortedItems = (unsortedItems: unsortedItemsInterface[]) => Array.from(unsortedItems)
+export const getSortedItems = (
+    unsortedItems: MenuItem[]
+): MenuItem[] => Array.from(unsortedItems)
     .sort((
         { parent_id: PID, position: P },
         { parent_id: prevPID, position: prevP },
     ) => (PID - prevPID) || (P - prevP));
 
-interface checkActiveInterface {
-    [key: string]: checkActiveInterface
+export interface ActiveMenuItems {
+    [key: string]: ActiveMenuItems
 }
 
-export const checkActive = (items: checkActiveInterface, id: number): boolean => Object.entries(items)
+export const checkActive = (items: ActiveMenuItems, id: number): boolean => Object.entries(items)
     .some(([parent, current]) => (
         parseInt(parent, 10) === id ? true : checkActive(current, id)
     ));
 
-interface activeItemsInterface {
-    [key: string]: activeItemsInterface
-}
-
-export const addToActive = (activeItems: activeItemsInterface, id, parent_id) => Object.entries(activeItems)
+export const addToActive = (activeItems: ActiveMenuItems, id: number, parent_id: number): ActiveMenuItems => Object
+    .entries(activeItems)
     .reduce((acc, [parent, current]) => {
         if (parseInt(parent, 10) === parent_id) {
             acc[parent] = { ...current, [id]: {} };
@@ -32,7 +27,8 @@ export const addToActive = (activeItems: activeItemsInterface, id, parent_id) =>
         return acc;
     }, {});
 
-export const removeFromActive = (activeItems: activeItemsInterface, id) => Object.entries(activeItems)
+export const removeFromActive = (activeItems: ActiveMenuItems, id: number): ActiveMenuItems => Object
+    .entries(activeItems)
     .reduce((acc, [parent, current]) => {
         if (parseInt(parent, 10) !== id) {
             acc[parent] = removeFromActive(current, id);
@@ -41,8 +37,8 @@ export const removeFromActive = (activeItems: activeItemsInterface, id) => Objec
         return acc;
     }, {});
 
-export const normalizeMenu = ({ items }: { items: unsortedItemsInterface[] }): MenuInterface => {
-    const getChild = (parentItem) => getSortedItems(items).reduce((acc, item) => {
+export const normalizeMenu = ({ items }: { items: MenuItem[] }): MenuItem => {
+    const getChild = (parentItem): MenuItem => getSortedItems(items).reduce((acc, item) => {
         if (acc.children) {
             if (acc.item_id === item.parent_id.toString()) {
                 acc.children[item.item_id] = getChild(item);
@@ -50,30 +46,29 @@ export const normalizeMenu = ({ items }: { items: unsortedItemsInterface[] }): M
         }
 
         return acc;
-    }, { ...parentItem, children: {} } as MenuInterface);
+    }, { ...parentItem, children: {} } as MenuItem);
 
     const result = items.find(({ parent_id }) => parent_id === 0);
 
     return getChild(result);
 };
 
-export const getCategoryItem = ({ children, item_id, ...item } : menuChildInterface, parent_id: number) => {
-    const _normalizeCategoryChild = (n_children: menuChildInterface[], n_parent_id: number) => n_children
+export const getCategoryItem = ({
+    children, item_id, ...item
+} : CategoryMenuInitial, parent_id: number): MenuItem => {
+    const _normalizeCategoryChild = (
+        n_children: CategoryMenuInitial[],
+        n_parent_id: number
+    ): MenuChildItems => n_children
         .reduce((acc, n_item) => {
-            const {
-                include_in_menu,
-                item_id: n_item_id
-            } = n_item;
+            const { include_in_menu, item_id: n_item_id } = n_item;
 
             if (!include_in_menu) {
                 return acc;
             }
 
-            return {
-                ...acc,
-                [n_item_id]: getCategoryItem(n_item, n_parent_id)
-            };
-        }, {}) as MenuInterface;
+            return { ...acc, [n_item_id]: getCategoryItem(n_item, n_parent_id) };
+        }, {});
 
     return {
         ...item,
@@ -83,14 +78,14 @@ export const getCategoryItem = ({ children, item_id, ...item } : menuChildInterf
     };
 };
 
-export const normalizeCategoryMenu = (categoryMenu: menuChildInterface[]) => {
+export const normalizeCategoryMenu = (categoryMenu: CategoryMenuInitial[]): MenuItem[] => {
     const item = categoryMenu[0];
 
-    return [getCategoryItem(item, 0)] as MenuInterface[];
+    return [getCategoryItem(item, 0)];
 };
 
 export const addBlogToMenu = (
-    menu: MenuInterface[],
+    menu: MenuItem[],
     {
         mfblog_permalink_route,
         mfblog_top_menu_include_categories,
@@ -100,10 +95,10 @@ export const addBlogToMenu = (
         mfblog_top_menu_include_categories: number,
         mfblog_top_menu_item_text: string
     }
-): MenuInterface[] => [...menu, {
+): MenuItem[] => [...menu, {
     title: mfblog_top_menu_item_text,
     url: `/${ mfblog_permalink_route}`,
-    children: [],
+    children: {},
     parent_id: null,
     item_id: mfblog_permalink_route,
     include_in_menu: mfblog_top_menu_include_categories

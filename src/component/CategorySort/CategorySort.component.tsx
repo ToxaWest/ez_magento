@@ -1,4 +1,5 @@
 import Select from '@ui/Select';
+import { ReactElement } from 'react';
 
 interface CategorySortComponentInterface {
     defaultSort: string,
@@ -6,7 +7,7 @@ interface CategorySortComponentInterface {
     options: { label: string, value: string }[]
 }
 
-function CategorySortComponent(props: CategorySortComponentInterface) {
+function CategorySortComponent(props: CategorySortComponentInterface): ReactElement {
     const { defaultSort, onSortChange, options } = props;
     return (
         <Select

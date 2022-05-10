@@ -4,7 +4,7 @@ interface categoryReducerInterface {
     current: CategoryInterface
 }
 
-const getInitialState = () => {
+const getInitialState = (): categoryReducerInterface => {
     if (typeof window !== 'undefined') {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         return window.__NEXT_DATA__.props.pageProps.state.category as categoryReducerInterface;
@@ -12,9 +12,13 @@ const getInitialState = () => {
 
     return {
         current: {
+            breadcrumbs: [],
+            uid: '',
             description: '',
             image: null,
-            name: ''
+            name: '',
+            title: '',
+            url: ''
         }
     };
 };

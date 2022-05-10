@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const getInitialState = () => {
+const getInitialState = (): BlogReducerInterface => {
     if (typeof window !== 'undefined') {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         return window.__NEXT_DATA__.props.pageProps.state.blog as BlogReducerInterface;
@@ -8,6 +8,7 @@ const getInitialState = () => {
 
     return {
         currentCategory: {
+            breadcrumbs: [],
             title: ''
         },
         blogPosts: {
@@ -15,12 +16,23 @@ const getInitialState = () => {
             total_pages: 1,
             items: []
         },
-        blogPost: {}
+        blogPost: {
+            author: {
+                author_url: '',
+                name: ''
+            },
+            creation_time: '',
+            filtered_content: '',
+            first_image: '',
+            post_id: -1,
+            post_url: '',
+            title: ''
+        }
     };
 };
 
 const blogReducer = createSlice({
-    initialState: getInitialState() as BlogReducerInterface,
+    initialState: getInitialState(),
     name: 'blog',
     reducers: {
         updateBlogCategory: (state, { payload }: PayloadAction<BlogCategoryInterface>) => {

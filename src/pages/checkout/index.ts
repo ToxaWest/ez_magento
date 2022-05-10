@@ -3,7 +3,7 @@ import { ctxInterface } from '@util/SP/sp.helpers';
 import { NextRouter, withRouter } from 'next/router';
 import { useEffect } from 'react';
 
-function Render({ router }: { router: NextRouter }) {
+function Render({ router }: { router: NextRouter }): null {
     useEffect(() => {
         router.push({
             pathname: CHECKOUT_ROUTE_PATHNAME,
@@ -21,7 +21,7 @@ Render.getInitialProps = (ctx: ctxInterface) => {
         defaultLocale, locale, res
     } = ctx;
 
-    const withLocale = (l: string) => (locale === defaultLocale ? l : `/${locale}${l}`);
+    const withLocale = (l: string): string => (locale === defaultLocale ? l : `/${locale}${l}`);
 
     if (typeof window === 'undefined') {
         res.writeHead(301, { location: withLocale(urlWithCheckout(SHIPPING)) });

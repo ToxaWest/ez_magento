@@ -6,16 +6,27 @@ import removeProductsFromWishlist from '@graphql/mutation/removeProductsFromWish
 import wishListInformation from '@graphql/query/wishListInformation.graphql';
 import wishListItems from '@graphql/query/wishListItems.graphql';
 import { updateWishListItemsCount } from '@store/account.store';
-import { RootState } from '@store/index';
+import { AppDispatch, RootState } from '@store/index';
 import { setInfoNotification, setSuccessNotification } from '@store/notifiactions';
 import { NextRouter, useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-const useWishList = ({ getWishList }: { getWishList: boolean } = { getWishList: false }) => {
+interface useWishListReturn {
+    addToWishList: ({ sku }: { sku: string }) => void,
+    disabled:boolean,
+    getWishListItems: (p: string, noCache: boolean) => Promise<WishListItem[]>,
+    getWishListPageInfo: (noCache: boolean) => Promise<(WishListInfo & WishListPageInfo)>,
+    items: WishListItem[],
+    loading: boolean,
+    pageInfo: WishListInfo & WishListPageInfo,
+    removeFromWishList: ({ id } : { id: string | number }) => void
+}
+
+const useWishList = ({ getWishList }: { getWishList: boolean } = { getWishList: false }): useWishListReturn => {
     const { customer: { wishlist: { id } }, isSignedIn } = useSelector((state: RootState) => state.account);
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const router: NextRouter = useRouter();
     const { query: { page = '1' } } = router;
     const [loading, setLoading] = useState<boolean>(false);
@@ -34,7 +45,7 @@ const useWishList = ({ getWishList }: { getWishList: boolean } = { getWishList: 
         ${wishListItems}
     `);
 
-    const getWishListItems = async (p: string, noCache = false) => {
+    const getWishListItems = async (p: string, noCache = false): Promise<WishListItem[]> => {
         setLoading(true);
         const { data: { customer: { wishlist_v2: { items_v2: { items: res } } } } }: ApolloQueryResult<{
             customer: { wishlist_v2: { items_v2: { items: WishListItem[] } } }
@@ -48,7 +59,7 @@ const useWishList = ({ getWishList }: { getWishList: boolean } = { getWishList: 
         return res;
     };
 
-    const getWishListPageInfo = async (noCache = false) => {
+    const getWishListPageInfo = async (noCache = false): Promise<(WishListInfo & WishListPageInfo)> => {
         const { data: { customer: { wishlist_v2 } } }: ApolloQueryResult<{
             customer: { wishlist_v2: AssignedWishListPageInfo }
         }> = await loadPageInfo({
@@ -60,7 +71,7 @@ const useWishList = ({ getWishList }: { getWishList: boolean } = { getWishList: 
         return { ...items_v2, ...info };
     };
 
-    const addToWishList = ({ sku }: { sku: string }) => {
+    const addToWishList = ({ sku }: { sku: string }): void => {
         if (!isSignedIn) {
             dispatch(setInfoNotification('Please sign in to add product to wish list'));
             return;
@@ -81,7 +92,7 @@ const useWishList = ({ getWishList }: { getWishList: boolean } = { getWishList: 
         }).catch(() => {});
     };
 
-    const removeFromWishList = ({ id: item_id }: { id: string | number }) => {
+    const removeFromWishList = ({ id: item_id }: { id: string | number }): void => {
         setLoading(true);
         removeItem({
             variables: { id, wishlistItemsIds: [item_id] }

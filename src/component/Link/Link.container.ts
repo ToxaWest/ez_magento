@@ -1,6 +1,6 @@
 import LinkComponent from '@component/Link/Link.component';
 import { hrefDoctor } from '@util/Link';
-import { createElement, ReactNode } from 'react';
+import { createElement, ReactElement, ReactNode } from 'react';
 import { UrlObject } from 'url';
 
 interface LinkContainerInterface {
@@ -12,7 +12,7 @@ interface LinkContainerInterface {
 
 function LinkContainer({
     children, className, href, title
-}: LinkContainerInterface) {
+}: LinkContainerInterface): ReactElement {
     const componentProps = {
         className,
         title,

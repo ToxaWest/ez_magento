@@ -7,11 +7,12 @@ import Button from '@ui/Button';
 import Loader from '@ui/Loader';
 import { notInteractiveClick } from '@util/Events';
 import classNames from 'classnames';
+import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
-function CheckoutPaymentMethodsComponent() {
+function CheckoutPaymentMethodsComponent(): ReactElement {
     const { available_payment_methods, selected_payment_method } = useSelector(
         (state: RootState) => state.cart.cart,
     );
@@ -20,11 +21,11 @@ function CheckoutPaymentMethodsComponent() {
 
     const [setPaymentMethod, loading] = useSetPaymentMethodOnCart();
 
-    const onClick = (code) => {
+    const onClick = (code): void => {
         setPaymentMethod({ code });
     };
 
-    const renderPaymentMethod = ({ code, title }) => (
+    const renderPaymentMethod = ({ code, title }): ReactElement => (
         <li
           role="option"
           tabIndex={ 0 }

@@ -13,7 +13,7 @@ export const getBreadcrumbs = (categories: CategoryInterface[]): BreadcrumbInter
         return acc;
     }, []);
 
-export const getBreadcrumbsBasedOnPrevPath = (categories: CategoryInterface[]) => categories.find(
+export const getBreadcrumbsBasedOnPrevPath = (categories: CategoryInterface[]): CategoryInterface => categories.find(
     ({ breadcrumbs }) => {
         if (breadcrumbs && breadcrumbs.length) {
             return breadcrumbs[breadcrumbs.length - 1].category_url === global.prevPath;

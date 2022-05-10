@@ -5,10 +5,10 @@ import PostList from '@component/PostList';
 import { RootState } from '@store/index';
 import Render from '@ui/Render';
 import { RenderInterface } from '@ui/Render/Render.types';
-import { createElement } from 'react';
+import { createElement, ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
-function BlogCategoryPageComponent() {
+function BlogCategoryPageComponent(): ReactElement {
     const { content, content_heading, title } = useSelector((state:RootState) => state.blog.currentCategory);
 
     return createElement(Render, {

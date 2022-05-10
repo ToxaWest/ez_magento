@@ -2,14 +2,15 @@ import Image from '@component/Image';
 import Link from '@component/Link';
 import { RootState } from '@store/index';
 import Slider from '@ui/Slider';
+import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
-function WidgetLinkComponent(props:WidgetLinkInterface) {
+function WidgetLinkComponent(props:WidgetLinkInterface): ReactElement {
     const { id_paths } = props;
     const categories = useSelector((state: RootState) => state.cms.widget[id_paths]) as CategoryInterface[];
     const renderCategory = ({
         image, name, uid, url
-    }: CategoryInterface) => (
+    }: CategoryInterface): ReactElement => (
         <div key={ uid }>
             <Image src={ image } alt={ name } />
             <Link href={ url } title={ name }>{ name }</Link>

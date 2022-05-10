@@ -6,14 +6,14 @@ import CmsPage from '@route/CmsPage';
 import ProductPage from '@route/ProductPage';
 import { ctxInterface, getPropsBasedOnRequest } from '@util/SP/sp.helpers';
 import SPUrlResolver from '@util/SP/SP.urlResolver';
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 interface allPageInterface {
     container: string
     state
 }
 
-const render = ({ container, state }: allPageInterface) => {
+const render = ({ container, state }: allPageInterface): ReactElement => {
     const routes = {
         CategoryPage,
         CmsPage,

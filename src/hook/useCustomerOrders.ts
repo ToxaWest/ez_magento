@@ -18,7 +18,7 @@ interface customerOrdersInterface {
     total_count: number
 }
 
-const useCustomerOrders = () => {
+const useCustomerOrders = (): { customerOrders: customerOrdersInterface, loading: boolean } => {
     const [loadGreeting] = useLazyQuery<{
         customer: { orders: customerOrdersInterface }
     }>(accountQuery.customerOrders, { ssr: false });
@@ -27,7 +27,7 @@ const useCustomerOrders = () => {
         items: [],
         total_count: 0
     });
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState<boolean>(true);
     useEffect(() => {
         if (isSignedIn) {
             loadGreeting()

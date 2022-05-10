@@ -1,8 +1,9 @@
 import { RootState } from '@store/index';
 import Head from 'next/head';
+import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
-function MetaComponent() {
+function MetaComponent(): ReactElement {
     const {
         meta_description, meta_keyword, meta_title, title
     } = useSelector((state: RootState) => state.meta);
@@ -15,7 +16,7 @@ function MetaComponent() {
         title_suffix
     } = useSelector((state: RootState) => state.config.config);
 
-    const getTitle = () => {
+    const getTitle = (): string => {
         const t = title || default_title;
         if (title_suffix && title_prefix) {
             return `${title_prefix} ${title_separator} ${t} ${title_separator} ${title_suffix} `;

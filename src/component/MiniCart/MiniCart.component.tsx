@@ -7,15 +7,15 @@ import Popup from '@component/Popup';
 import { popupId } from '@component/Popup/Popup.config';
 import { RootState } from '@store/index';
 import Icon from '@ui/Icon';
-import { useState } from 'react';
+import { ReactElement, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-function MiniCartComponent() {
+function MiniCartComponent(): ReactElement {
     const { cart } = useSelector((state: RootState) => state.cart);
     const [isActive, setActive] = useState<boolean>(false);
     const { items, total_quantity } = cart;
 
-    const renderContent = () => (
+    const renderContent = (): ReactElement => (
         <div className={ styles.wrapper }>
             <button onClick={ () => setActive(true) }>
                 <Icon name="shopping_bag" />

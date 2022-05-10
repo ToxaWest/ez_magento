@@ -5,5 +5,5 @@ export const PAYMENT = 'payment';
 export const DELIVERY = 'delivery';
 export const SUCCESS = 'success';
 export const CHECKOUT_ROUTE_PATHNAME = `${CHECKOUT_URL}/[tab]`;
-export const urlWithCheckout = (tab: string) => `${CHECKOUT_URL}/${tab}`;
+export const urlWithCheckout = (tab: string): string => `${CHECKOUT_URL}/${tab}`;
 export const ORDER_DATA = 'ORDER_DATA';

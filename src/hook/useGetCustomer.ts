@@ -9,7 +9,7 @@ import BrowserDatabase from '@util/BrowserDatabase';
 import { getErrorMessage } from '@util/Request';
 import { useDispatch } from 'react-redux';
 
-const useGetCustomer = () => {
+const useGetCustomer = (): () => Promise<boolean> => {
     const [loadGreeting] = useLazyQuery(accountQuery.customer, { ssr: false });
     const dispatch = useDispatch<AppDispatch>();
     const logout = useLogout();

@@ -5,6 +5,7 @@ import { setUrlQuery } from '@util/Link';
 import classNames from 'classnames';
 import { NextRouter, useRouter } from 'next/router';
 import { useTranslations } from 'next-intl';
+import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
@@ -12,7 +13,7 @@ const cx = classNames.bind(styles);
 interface CategoryPaginationComponentInterface {
     page_info: PageInfoInterface
 }
-function CategoryPaginationComponent(props: CategoryPaginationComponentInterface) {
+function CategoryPaginationComponent(props: CategoryPaginationComponentInterface): ReactElement {
     const {
         page_info: { total_pages }
     } = props;
@@ -26,7 +27,7 @@ function CategoryPaginationComponent(props: CategoryPaginationComponentInterface
 
     const current_page = parseInt(p as string, 10);
 
-    const onPageSelect = (page: number) => {
+    const onPageSelect = (page: number): void => {
         setUrlQuery(router, {
             page: page === 1 ? null : page
         });
@@ -34,7 +35,7 @@ function CategoryPaginationComponent(props: CategoryPaginationComponentInterface
 
     const t = useTranslations('CategoryPagination');
 
-    const renderPageIcon = (isNext = false) => (
+    const renderPageIcon = (isNext = false): ReactElement => (
         <span
           className={ cx(
               styles.CategoryPaginationIcon,
@@ -66,7 +67,7 @@ function CategoryPaginationComponent(props: CategoryPaginationComponentInterface
         </li>
     );
 
-    const renderPreviousPageLink = () => {
+    const renderPreviousPageLink = (): ReactElement => {
         if (current_page <= 1) {
             return (
                 <li className={ styles.CategoryPaginationListItem } />
@@ -81,7 +82,7 @@ function CategoryPaginationComponent(props: CategoryPaginationComponentInterface
         );
     };
 
-    const renderNextPageLink = () => {
+    const renderNextPageLink = (): ReactElement => {
         if (current_page > total_pages - 1) {
             return (
                 <li className={ styles.CategoryPaginationListItem } />
@@ -96,7 +97,7 @@ function CategoryPaginationComponent(props: CategoryPaginationComponentInterface
         );
     };
 
-    const renderPageLinks = () => {
+    const renderPageLinks = (): ReactElement[] => {
         const range = Math.floor(pagination_frame / 2);
         const maxPagesBeforeCurrentPage = (): number => {
             if (current_page >= total_pages - pagination_frame) {

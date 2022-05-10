@@ -4,21 +4,21 @@ import { makeCancelable } from '@util/Request';
 import { NextRouter, useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-const useInit = () => {
-    const [loading, setLoading] = useState(true);
+const useInit = (): [loading: boolean] => {
+    const [loading, setLoading] = useState<boolean>(true);
     const router = useRouter();
     const update = useUpdateInitialCart();
     const getCustomerData = useGetCustomer();
     const history = [];
 
     useEffect(() => {
-        const handleRouteChangeStart = (r: NextRouter['asPath']) => {
+        const handleRouteChangeStart = (r: NextRouter['asPath']): void => {
             global.prevPath = history[history.length - 1];
             history.push(r.split('?')[0]);
             setLoading(true);
         };
 
-        const handleRouteChangeComplete = () => setLoading(false);
+        const handleRouteChangeComplete = (): void => setLoading(false);
 
         router.events.on('routeChangeStart', handleRouteChangeStart);
         router.events.on('routeChangeComplete', handleRouteChangeComplete);

@@ -1,9 +1,10 @@
 import ProductCard from '@component/ProductCard';
 import { RootState } from '@store/index';
 import Slider from '@ui/Slider';
+import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
-function RelatedProductsComponent() {
+function RelatedProductsComponent(): ReactElement | null {
     const { singleProduct: { related_products } } = useSelector((state: RootState) => state.products);
 
     if (!related_products.length) {

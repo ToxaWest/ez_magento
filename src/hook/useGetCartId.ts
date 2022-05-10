@@ -3,7 +3,7 @@ import cartQuery from '@query/cart.query';
 import BrowserDatabase from '@util/BrowserDatabase';
 import { CART_ID, localCartId } from '@util/Cart';
 
-const useGetCartId = () => {
+const useGetCartId = (): () => Promise<string> => {
     const [mutateFunction] = useMutation<{ createEmptyCart: string }>(cartQuery.createEmptyCart);
 
     return async () => {

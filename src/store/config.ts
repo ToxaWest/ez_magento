@@ -1,4 +1,3 @@
-import { menuItemInterface } from '@component/Menu/Menu.component';
 import { createSlice } from '@reduxjs/toolkit';
 
 export interface availableStoreInterface {
@@ -40,26 +39,13 @@ export interface StoreConfigInterface {
     title_suffix: string
 }
 
-export interface MenuInterface {
-    children: menuItemInterface[],
-    include_in_menu: number,
-    item_id: string,
-    parent_id: number,
-    title: string,
-    url: string
-}
-
-export interface MenuNormalizedInterface {
-    [key: string]: MenuInterface[]
-}
-
 export interface configReducerInterface {
     availableStores: availableStoreInterface[],
     config: StoreConfigInterface,
-    menu: MenuNormalizedInterface
+    menu: { [key: string]: MenuItem[] }
 }
 
-const getInitialState = () => {
+const getInitialState = (): configReducerInterface => {
     if (typeof window !== 'undefined') {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         return window.__NEXT_DATA__.props.pageProps.state.config as configReducerInterface;
@@ -67,25 +53,19 @@ const getInitialState = () => {
 
     return {
         availableStores: [],
-        config: {},
+        config: {} as StoreConfigInterface,
         menu: {}
     };
 };
 
-export interface menuChildInterface {
-    children: menuChildInterface[],
-    include_in_menu: boolean,
-    item_id: number
-}
-
 export const configReducer = createSlice({
-    initialState: getInitialState() as configReducerInterface,
+    initialState: getInitialState(),
     name: 'config',
     reducers: {
         updateConfig: (state, { payload }: { payload: StoreConfigInterface }) => {
             state.config = payload;
         },
-        updateMenu: (state, { payload }: { payload: MenuNormalizedInterface }) => {
+        updateMenu: (state, { payload }: { payload: { [key: string]: MenuItem[] } }) => {
             state.menu = { ...state.menu, ...payload };
         },
         updateStoreList: (state, { payload }) => {

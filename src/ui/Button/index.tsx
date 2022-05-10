@@ -2,7 +2,7 @@ import styles from './Button.module.scss';
 
 import classNames from 'classnames';
 import {
-    ButtonHTMLAttributes, createElement
+    ButtonHTMLAttributes, createElement, ReactElement
 } from 'react';
 
 const cx = classNames.bind(styles);
@@ -11,7 +11,7 @@ interface ButtonInterface extends ButtonHTMLAttributes<object> {
     variant?: 'main' | 'secondary' | 'default' | string
 }
 
-function Button(props: ButtonInterface) {
+function Button(props: ButtonInterface): ReactElement {
     const {
         className: initialClassName = '',
         variant,

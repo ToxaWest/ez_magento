@@ -2,9 +2,10 @@ import CategorySortComponent from '@component/CategorySort/CategorySort.componen
 import { RootState } from '@store/index';
 import { setUrlQuery } from '@util/Link';
 import { NextRouter, useRouter } from 'next/router';
+import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
-function CategorySortContainer() {
+function CategorySortContainer(): ReactElement {
     const { sort_fields: { default: default_sort, options } } = useSelector(
         (state: RootState) => state.products.productsInformation,
     );
@@ -12,7 +13,7 @@ function CategorySortContainer() {
     const router: NextRouter = useRouter();
     const { query: { sort } } = router;
 
-    const onSortChange = (value: string) => {
+    const onSortChange = (value: string): void => {
         const sort_direction = (sort as string || default_sort) === value ? 'DESC' : 'ASC';
         setUrlQuery(router, { sort: value, sort_direction });
     };

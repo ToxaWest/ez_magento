@@ -7,11 +7,11 @@ import { cartErrorResolver } from '@util/Cart';
 import { getErrorMessage } from '@util/Request';
 import { useDispatch } from 'react-redux';
 
-const useRemoveItemFromCart = () => {
+const useRemoveItemFromCart = (): (cart_item_id: string) => Promise<boolean> => {
     const dispatch = useDispatch();
     const cartId = useGetCartId();
     const [mutateFunction] = useMutation(cartQuery.removeItemFromCart);
-    const update = async (cart_item_id) => {
+    const update = async (cart_item_id): Promise<boolean> => {
         const cart_id = await cartId();
         try {
             const { data: { removeItemFromCart: { cart } } } = await mutateFunction({

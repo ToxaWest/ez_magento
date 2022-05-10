@@ -19,7 +19,7 @@ function ExpandableContentComponent(props: ExpandableContentComponentInterface):
     } = props;
     const [opened, setOpened] = useState(isExpanded);
 
-    const onClick = () => {
+    const onClick = (): void => {
         setOpened(!opened);
     };
 
@@ -27,7 +27,7 @@ function ExpandableContentComponent(props: ExpandableContentComponentInterface):
         return <span>{ heading }</span>;
     }
 
-    const getContentChild = () => {
+    const getContentChild = ():ReactElement => {
         const Tag = contentWrapperTag;
         return (
             <Tag
@@ -41,7 +41,7 @@ function ExpandableContentComponent(props: ExpandableContentComponentInterface):
         );
     };
 
-    const renderHeading = () => (
+    const renderHeading = (): ReactElement => (
         <button
           className={ cx(
               styles.heading,

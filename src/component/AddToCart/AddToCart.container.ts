@@ -8,7 +8,7 @@ import Render from '@ui/Render';
 import { RenderInterface } from '@ui/Render/Render.types';
 import { useTranslations } from 'next-intl';
 import {
-    ChangeEventHandler, createElement, MouseEventHandler, useId, useState
+    ChangeEventHandler, createElement, MouseEventHandler, ReactElement, useId, useState
 } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -17,7 +17,7 @@ export interface AddToCartContainerInterface {
     showQty?: boolean | null
 }
 
-function AddToCartContainer(props: AddToCartContainerInterface) {
+function AddToCartContainer(props: AddToCartContainerInterface): ReactElement {
     const {
         product,
         showQty

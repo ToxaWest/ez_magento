@@ -25,7 +25,7 @@ interface AccountPageComponentInterface {
 
 function AccountPageComponent(props: AccountPageComponentInterface): ReactElement {
     const { loading, tab, tabMap } = props;
-    const renderContent = () => {
+    const renderContent = (): ReactElement | null => {
         const selected = tabMap[tab];
         if (selected) {
             return createElement(selected.render);
@@ -34,7 +34,7 @@ function AccountPageComponent(props: AccountPageComponentInterface): ReactElemen
         return null;
     };
 
-    const renderAccountMenu = () => (
+    const renderAccountMenu = (): ReactElement => (
         <ul className={ styles.list }>
             { Object.entries(tabMap).map(([tabKey, { icon, label, onClick }]) => {
                 const isCurrent = tabKey === tab;

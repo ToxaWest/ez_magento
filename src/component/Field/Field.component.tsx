@@ -10,26 +10,22 @@ import {
     Field, FieldInputProps, FieldMetaState
 } from 'react-final-form';
 
-interface FieldComponentInterface {
-    name: string,
-    onChange?: (e: string | number) => void,
-    options?: SelectOptions[],
-    type?: 'text' | 'select' | 'hidden' | 'tel' | 'checkbox',
-    validation?: string[]
+interface FieldComponentInterface extends FieldInterface {
+    name: string
 }
 
 function FieldComponent(props:FieldComponentInterface): ReactElement {
     const {
-        onChange: onFieldChange, options, type, validation
+        onChange: onFieldChange = () => {}, options = [], type = TEXT_TYPE, validation = []
     } = props;
 
-    const getField = (field) => {
+    const getField = (field): ReactElement => {
         const { input, input: { name, onChange, value } } = field as FieldInputProps<object>;
         switch (type) {
         case SELECT_TYPE:
             const {
                 autocomplete, placeholder
-            } = field;
+            } = field as FieldInterface;
 
             return (
                 <Select
@@ -51,11 +47,11 @@ function FieldComponent(props:FieldComponentInterface): ReactElement {
         }
     };
 
-    const renderError = (meta : FieldMetaState<string>) => meta.error && meta.touched && (
+    const renderError = (meta : FieldMetaState<string | number>): ReactElement => meta.error && meta.touched && (
             <span className={ styles.error }>{ meta.error }</span>
     );
 
-    const validate = (value: string, d, e) => {
+    const validate = (value: string, d, e): undefined | string => {
         if (validation.length) {
             return composeValidation(validation, value, d, e, options);
         }
@@ -76,11 +72,5 @@ function FieldComponent(props:FieldComponentInterface): ReactElement {
         />
     );
 }
-FieldComponent.defaultProps = {
-    options: [],
-    onChange: () => {},
-    validation: [],
-    type: TEXT_TYPE
-};
 
 export default FieldComponent;

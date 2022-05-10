@@ -11,10 +11,10 @@ import {
 } from '@route/AccountPage/AccountPage.config';
 import { RootState } from '@store/index';
 import { NextRouter, useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-function AccountPageContainer() {
+function AccountPageContainer(): ReactElement {
     const router: NextRouter = useRouter();
     const { query: { tab } } = router as { query: { tab?: string } };
     const logout = useLogout();

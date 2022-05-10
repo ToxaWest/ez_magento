@@ -7,7 +7,7 @@ import parser, {
 } from 'html-react-parser';
 import { createElement, ReactElement } from 'react';
 
-function HtmlContainer({ content }: { content?: string }) {
+function HtmlContainer({ content }: { content?: string }): ReactElement {
     if (!content) {
         return null;
     }
