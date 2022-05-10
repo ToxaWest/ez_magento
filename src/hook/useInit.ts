@@ -23,7 +23,7 @@ const useInit = (): [loading: boolean] => {
         router.events.on('routeChangeStart', handleRouteChangeStart);
         router.events.on('routeChangeComplete', handleRouteChangeComplete);
 
-        const { cancel, promise } = makeCancelable(Promise.all([
+        const { cancel, promise } = makeCancelable<boolean[]>(Promise.all([
             update(),
             getCustomerData()
         ]));

@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 function ConfigurableOptionsContainer(): ReactElement {
     const {
         configurableIndex, singleProduct: {
-            configurable_options, s_attributes, sku, variants
+            configurable_options = [], s_attributes, sku, variants
         }
     } = useSelector((state: RootState) => state.products);
     const router: NextRouter = useRouter();
@@ -84,6 +84,10 @@ function ConfigurableOptionsContainer(): ReactElement {
         renderMap: {
             options,
             reset
+        },
+        renderSort: {
+            options: configurable_options.length,
+            reset: configurableIndex !== -1
         }
     } as RenderInterface);
 }

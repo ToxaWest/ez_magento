@@ -6,6 +6,7 @@ interface productsReducerInterface {
         items: ProductInterface[]
     },
     productsInformation: ProductsInformationInterface,
+    selectedBundleOptions: { [key: string]: string | string[] },
     singleProduct: ProductInterface
 }
 
@@ -29,6 +30,7 @@ const getInitialState = (): productsReducerInterface => {
             }
         },
         configurableIndex: -1,
+        selectedBundleOptions: {},
         singleProduct: {
             __typename: 'SimpleProduct',
             id: 0,
@@ -44,7 +46,6 @@ const getInitialState = (): productsReducerInterface => {
                 maximum_price: { discount: { percent_off: 0 }, final_price: { currency: '', value: 0 } }
             },
             related_products: []
-
         }
     };
 };
@@ -53,8 +54,11 @@ export const productsReducer = createSlice({
     initialState: getInitialState(),
     name: 'products',
     reducers: {
-        updateProductList: (state: productsReducerInterface, action) => {
-            state.productList = action.payload;
+        updateProductList: (
+            state: productsReducerInterface,
+            { payload }: PayloadAction<{ items: ProductInterface[] }>
+        ) => {
+            state.productList = payload;
         },
         updateProductsInformation: (
             state: productsReducerInterface,
@@ -62,8 +66,17 @@ export const productsReducer = createSlice({
         ) => {
             state.productsInformation = payload;
         },
-        updateSingleProduct: (state: productsReducerInterface, { payload }) => {
+        updateSingleProduct: (
+            state: productsReducerInterface,
+            { payload }: PayloadAction<ProductInterface>
+        ) => {
             state.singleProduct = payload;
+        },
+        updateBundleSelectedOptions: (state, { payload }: PayloadAction<{ [key: string]: string | string[] }>) => {
+            state.selectedBundleOptions = {
+                ...state.selectedBundleOptions,
+                ...payload
+            };
         },
         updateConfigurableIndex: (state, { payload }: PayloadAction<number>) => {
             state.configurableIndex = payload;
@@ -72,6 +85,7 @@ export const productsReducer = createSlice({
 });
 
 export const {
+    updateBundleSelectedOptions,
     updateConfigurableIndex,
     updateProductList,
     updateProductsInformation,

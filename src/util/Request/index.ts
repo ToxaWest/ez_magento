@@ -1,6 +1,11 @@
 import { ApolloError } from '@apollo/client';
 
-export const makeCancelable = (promise: Promise<Awaited<boolean>[]>): { cancel: () => void, promise: Promise<any> } => {
+interface MakeCancelable<T> {
+    cancel: () => void,
+    promise: Promise<T>
+}
+
+export function makeCancelable<T>(promise: Promise<Awaited<T>>): MakeCancelable<T> {
     // eslint-disable-next-line fp/no-let
     let hasCanceled_ = false;
 
@@ -17,7 +22,7 @@ export const makeCancelable = (promise: Promise<Awaited<boolean>[]>): { cancel: 
         },
         promise: wrappedPromise
     };
-};
+}
 
 export const getErrorMessage = (e: ApolloError): string => {
     // eslint-disable-next-line no-console

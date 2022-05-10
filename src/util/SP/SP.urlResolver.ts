@@ -1,4 +1,3 @@
-import { ApolloQueryResult } from '@apollo/client';
 import BlogQuery from '@query/blog.query';
 import categoryQuery from '@query/category.query';
 import productQuery from '@query/product.query';
@@ -21,9 +20,9 @@ class SPUrlResolver extends SPAbstract {
 
     async getUrlData(): Promise<void> {
         try {
-            const { data: { urlResolver } }: ApolloQueryResult<{
+            const { data: { urlResolver } } = await this.request<{
                 urlResolver: urlResolverInterface
-            }> = await this.request(urlQuery.urlResolver, { url: this.pathname });
+            }>(urlQuery.urlResolver, { url: this.pathname });
 
             if (!urlResolver) {
                 this.container = 'NotFound';
@@ -66,23 +65,23 @@ class SPUrlResolver extends SPAbstract {
 
     async getBlogPost({ id }: { id: number | string }) : Promise<void> {
         this.container = 'BlogPostPage';
-        const { data: { blogPost } }: ApolloQueryResult<{
+        const { data: { blogPost } } = await this.request<{
             blogPost: BlogPostInterface
-        }> = await this.request(BlogQuery.blogPost, { id });
+        }>(BlogQuery.blogPost, { id });
 
         this.store.dispatch(updateBlogPost(blogPost));
     }
 
     async getBlogCategory({ id }: { id: number | string }): Promise<void> {
         this.container = 'BlogCategoryPage';
-        const { data: { blogCategory } }: ApolloQueryResult<{
+        const { data: { blogCategory } } = await this.request<{
             blogCategory: BlogCategoryInterface
-        }> = await this.request(BlogQuery.blogCategory, { id });
+        }>(BlogQuery.blogCategory, { id });
 
         this.store.dispatch(updateBlogCategory(blogCategory));
-        const { data: { blogPosts } }: ApolloQueryResult<{
+        const { data: { blogPosts } } = await this.request<{
             blogPosts: BlogPostsInterface
-        }> = await this.request(BlogQuery.blogPosts, { filter: { category_id: { eq: id } } });
+        }>(BlogQuery.blogPosts, { filter: { category_id: { eq: id } } });
 
         this.store.dispatch(updateBlogPosts(blogPosts));
     }
@@ -91,9 +90,9 @@ class SPUrlResolver extends SPAbstract {
         if (!sku) {
             throw new Error('sku is Required');
         }
-        const { data: { singleProduct: { items: [singleProduct] } } }: ApolloQueryResult<{
+        const { data: { singleProduct: { items: [singleProduct] } } } = await this.request<{
             singleProduct: { items: ProductInterface[] }
-        }> = await this.request(productQuery.product, { sku });
+        }>(productQuery.product, { sku });
 
         this.container = 'ProductPage';
 
@@ -106,9 +105,9 @@ class SPUrlResolver extends SPAbstract {
         }
         this.container = 'CategoryPage';
 
-        const { data: { categoryList: [category] } }: ApolloQueryResult<{
+        const { data: { categoryList: [category] } } = await this.request<{
             categoryList: CategoryInterface[]
-        }> = await this.request(categoryQuery.category, { id });
+        }>(categoryQuery.category, { id });
 
         this.store.dispatch(updateCategory(category));
         const variables = getProductVariablesBasedOnQuery(this.query, id);
@@ -116,12 +115,14 @@ class SPUrlResolver extends SPAbstract {
     }
 
     async getProductList(variables: object): Promise<void> {
-        const { data: { productsInformation } }: ApolloQueryResult<{
+        const { data: { productsInformation } } = await this.request<{
             productsInformation: ProductsInformationInterface
-        }> = await this.request(productQuery.productListInformation, variables);
+        }>(productQuery.productListInformation, variables);
 
         this.store.dispatch(updateProductsInformation(productsInformation));
-        const { data: { products } } = await this.request(productQuery.productList, variables);
+        const { data: { products } } = await this.request<{ products: { items: ProductInterface[] } }
+            >(productQuery.productList, variables);
+
         this.store.dispatch(updateProductList(products));
     }
 }

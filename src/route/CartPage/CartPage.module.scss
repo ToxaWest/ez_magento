@@ -1,8 +1,12 @@
 .wrapper {
   display: grid;
   grid-template-columns: 3fr 1fr;
+  padding: 1.2rem;
 }
 .list {
-  --cartItem-image-width: 30rem;
+  --cartItem-image-width: .3fr;
+  padding: 0 1.2rem;
+  display: grid;
+  grid-gap: 1.2rem;
 }
 

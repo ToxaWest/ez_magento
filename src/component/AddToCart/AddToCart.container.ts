@@ -25,8 +25,10 @@ function AddToCartContainer(props: AddToCartContainerInterface): ReactElement {
     const {
         __typename,
         configurable_options,
+        items,
         parent_sku,
         selected_options,
+        selectedBundleOptions,
         sku
     } = product;
     const [quantity, setQty] = useState<number>(1);
@@ -51,6 +53,31 @@ function AddToCartContainer(props: AddToCartContainerInterface): ReactElement {
             sku,
             selected_options
         };
+
+        if (__typename === 'BundleProduct') {
+            const res = items.reduce((acc, {
+                required, title, type, uid
+            }) => {
+                if (required && !selectedBundleOptions[uid]) {
+                    dispatch(setInfoNotification(`${title } is required`));
+                    return [...acc, null];
+                }
+                if (type === 'multi') {
+                    return [...acc, ...selectedBundleOptions[uid]] as string[];
+                }
+
+                if (selectedBundleOptions[uid]) {
+                    return [...acc, selectedBundleOptions[uid]] as string[];
+                }
+
+                return acc;
+            }, [] as string[]);
+
+            if (!res.every((i) => i)) {
+                return;
+            }
+            data.selected_options = res;
+        }
 
         if (__typename === 'ConfigurableProduct') {
             if (!selected_options || (selected_options.length < configurable_options.length)) {

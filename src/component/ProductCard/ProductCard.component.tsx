@@ -8,6 +8,7 @@ import WishListButton from '@component/WishListButton';
 import Button from '@ui/Button';
 import Render from '@ui/Render';
 import Select from '@ui/Select';
+import classNames from 'classnames';
 import { NextRouter, useRouter } from 'next/router';
 import { useTranslations } from 'next-intl';
 import {
@@ -16,7 +17,10 @@ import {
 
 import { ProductCardComponentInterface } from './ProductCard.types';
 
+const cx = classNames.bind(styles);
+
 function ProductCardComponent({
+    className,
     product,
     renderSort,
     wrapperTag
@@ -76,6 +80,7 @@ function ProductCardComponent({
 
     const renderMap = {
         wishlist: <WishListButton sku={ sku } />,
+        title: <span>{ name }</span>,
         image: <Image src={ src } alt={ label } height={ 100 } width={ 100 } className={ styles.image } />,
         link: <Link href={ href } title={ name }>{ name }</Link>,
         price: <ProductPrice price_range={ price_range } />,
@@ -94,7 +99,7 @@ function ProductCardComponent({
     };
 
     return createElement(Render, {
-        className: styles.wrapper,
+        className: cx(styles.wrapper, className),
         renderSort,
         renderMap,
         wrapperTag
@@ -103,7 +108,9 @@ function ProductCardComponent({
 
 ProductCardComponent.defaultProps = {
     wrapperTag: 'div',
+    className: '',
     renderSort: {
+        title: false,
         wishlist: true,
         image: true,
         link: true,

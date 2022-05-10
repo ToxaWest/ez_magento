@@ -3,12 +3,19 @@ import { useSelector } from 'react-redux';
 
 const useCurrentProduct = (): ProductInterface => {
     const {
-        configurableIndex, singleProduct
+        configurableIndex, selectedBundleOptions, singleProduct
     } = useSelector((state: RootState) => state.products);
 
     const {
         __typename, s_attributes, variants
     } = singleProduct;
+
+    if (__typename === 'BundleProduct') {
+        return {
+            ...singleProduct,
+            selectedBundleOptions
+        };
+    }
 
     if (__typename === 'ConfigurableProduct') {
         if (configurableIndex !== -1 && variants[configurableIndex]) {

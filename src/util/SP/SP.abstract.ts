@@ -65,7 +65,7 @@ export default class SPAbstract {
         this.context = getContextBasedOnStore(store_code, current_currency);
     }
 
-    async request(query, variables = {}): Promise<ApolloQueryResult<never>> {
+    async request<T>(query, variables = {}): Promise<ApolloQueryResult<T>> {
         try {
             return await client.query({ context: this.context, query, variables });
         } catch (e) {
@@ -80,10 +80,10 @@ export default class SPAbstract {
 
         const {
             data: { categoryMenu, storeConfig }
-        }: ApolloQueryResult<{
+        } = await this.request<{
             categoryMenu: CategoryMenuInitial[]
             storeConfig: StoreConfigInterface
-        }> = await this.request(configQuery.config);
+        }>(configQuery.config);
 
         const {
             mfblog_permalink_route,
@@ -125,13 +125,13 @@ export default class SPAbstract {
 
     async getStoreBasedOnLocale(isAfterError): Promise<void> {
         try {
-            const { data: { availableStores: initialStoreList } }: ApolloQueryResult<{
+            const { data: { availableStores: initialStoreList } } = await this.request<{
                 availableStores: {
                     default_display_currency_code: string,
                     is_default_store: boolean,
                     store_code: string
                 }[]
-            }> = await this.request(configQuery.availableStores);
+            }>(configQuery.availableStores);
 
             const storeList = initialStoreList.map((data) => ({
                 ...data,
@@ -169,24 +169,25 @@ export default class SPAbstract {
         const req = [];
         const widgetMap = {
             [SLIDER]: async ({ slider_id }: WidgetSliderInterface) => {
-                const { data: { scandiwebSlider } }: ApolloQueryResult<{
+                const { data: { scandiwebSlider } } = await this.request<{
                     scandiwebSlider: SliderInterface
-                }> = await this.request(pageQuery.scandiwebSlider, { id: slider_id });
+                }>(pageQuery.scandiwebSlider, { id: slider_id });
 
                 this.store.dispatch(updateWidget({ [slider_id]: scandiwebSlider }));
             },
             [CATALOG_LINK_LIST]: async ({ id_paths }: WidgetLinkInterface) => {
                 const id_list = id_paths.replace(/category\//g, '').split(',');
-                const { data: { categoryList } }: ApolloQueryResult<{
+                const { data: { categoryList } } = await this.request<{
                     categoryList: CategoryInterface[]
-                }> = await this.request(categoryQuery.category, { id_list });
+                }>(categoryQuery.category, { id_list });
 
                 this.store.dispatch(updateWidget({ [id_paths]: categoryList }));
             },
             [CATALOG_PRODUCT_LIST]: async ({ conditions_encoded, page_var_name }: WidgetProductListInterface) => {
-                const { data: { products } } = await this.request(productQuery.productList, {
-                    filter: { conditions: { eq: conditions_encoded } }
-                });
+                const { data: { products } } = await this.request<{ products:{ items: ProductInterface[] } }
+                    >(productQuery.productList, {
+                        filter: { conditions: { eq: conditions_encoded } }
+                    });
 
                 this.store.dispatch(updateWidget({ [page_var_name]: products }));
             }
@@ -209,8 +210,7 @@ export default class SPAbstract {
     }
 
     async getCmsPage(variables: object): Promise<void> {
-        const { data: { cmsPage } }: ApolloQueryResult<{
-            cmsPage: CmsPageInterface }> = await this.request(pageQuery.cmsPage, variables);
+        const { data: { cmsPage } } = await this.request<{ cmsPage: CmsPageInterface }>(pageQuery.cmsPage, variables);
         const { content } = cmsPage;
         await this.getWidget(content);
         this.container = 'CmsPage';

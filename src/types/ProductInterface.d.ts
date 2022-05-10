@@ -46,17 +46,32 @@ declare interface ProductConfigurableOptionsInterface {
   }[]
 }
 
+declare interface BundleItem {
+  options: {
+    is_default: boolean,
+    label: string,
+    product: ProductInterface,
+    uid: string
+  }[],
+  position: number,
+  required: boolean,
+  title: string,
+  type: 'select' | 'multi' | 'checkbox',
+  uid: string
+}
 declare interface ProductInterface {
-  __typename: 'SimpleProduct' | 'ConfigurableProduct',
+  __typename: 'SimpleProduct' | 'ConfigurableProduct' | 'BundleProduct',
   categories: CategoryInterface[],
   configurable_options?:ProductConfigurableOptionsInterface[],
   id: number,
+  items?: BundleItem[],
   media_gallery: MediaGalleryInterface[],
   name: string,
   parent_sku?: string,
   price_range: ProductPriceRangeInterface,
   related_products: ProductInterface[],
   s_attributes: SAttributesInterface[],
+  selectedBundleOptions?: object,
   selected_options?: string[],
   sku: string,
   small_image: SmallImageInterface,

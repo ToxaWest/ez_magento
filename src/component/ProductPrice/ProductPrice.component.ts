@@ -1,6 +1,8 @@
+import styles from './ProductPrice.module.scss';
+
 import { RootState } from '@store/index';
 import { getFinalPrice } from '@util/Price/price';
-import { ReactElement } from 'react';
+import { createElement, ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
 function ProductPriceComponent(props: { price_range: ProductPriceRangeInterface }): ReactElement {
@@ -11,30 +13,39 @@ function ProductPriceComponent(props: { price_range: ProductPriceRangeInterface 
 
     const renderDiscount = (): ReactElement | null => {
         if (percent_off) {
-            return <span>{ `${percent_off }%` }</span>;
+            return createElement('span', {
+                className: styles.discount
+            }, `-${Math.ceil(percent_off) }%`);
         }
 
         return null;
     };
 
     const renderPriceRange = (): ReactElement => {
+        const finalPrice = createElement('span', {
+            className: styles.current
+        }, getFinalPrice(final_price, locale));
+
         if (isRenderRange) {
-            return (
-                <div>
-                    <span>{ getFinalPrice(minimum_price.final_price, locale) }</span>
-                    <span>{ getFinalPrice(final_price, locale) }</span>
-                </div>
+            return createElement(
+                'div',
+                {},
+                createElement('span', {}, getFinalPrice(minimum_price.final_price, locale)),
+                ' - ',
+                finalPrice
             );
         }
 
-        return <span>{ getFinalPrice(final_price, locale) }</span>;
+        return finalPrice;
     };
 
-    return (
-          <div>
-            { renderDiscount() }
-            { renderPriceRange() }
-          </div>
+    return createElement(
+        'div',
+        {
+            className: styles.wrapper
+        },
+        renderDiscount(),
+        renderPriceRange()
     );
 }
 

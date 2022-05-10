@@ -8,6 +8,35 @@ query product($sku: String){
                     category_name
                 }
             }
+            ...on BundleProduct {
+                items {
+                    uid
+                    title
+                    required
+                    type
+                    position
+                    sku
+                    options {
+                        uid
+                        quantity
+                        position
+                        is_default
+                        price
+                        price_type
+                        can_change_quantity
+                        label
+                        product {
+                            uid
+                            name
+                            sku
+                            small_image {
+                                label
+                                url
+                            }
+                        }
+                    }
+                }
+            }
             ...on ConfigurableProduct {
                 configurable_options {
                     attribute_code

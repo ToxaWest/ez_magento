@@ -1,6 +1,7 @@
 import styles from './ProductPage.module.scss';
 
 import AddToCart from '@component/AddToCart';
+import BundleOptions from '@component/BundleOptions';
 import ConfigurableOptions from '@component/ConfigurableOptions';
 import ProductAttributes from '@component/ProductAttributes';
 import ProductMediaGallery from '@component/ProductMediaGallery';
@@ -22,6 +23,7 @@ function ProductPageComponent(): ReactElement {
             <strong>{ sku }</strong>
             <ProductPrice price_range={ price_range } />
             <ConfigurableOptions />
+            <BundleOptions />
             <WishListButton sku={ sku } />
             <AddToCart
               product={ product }
